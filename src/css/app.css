@@ -1,1 +1,4 @@
 body { background: #EEE; }
+
+.character-status-detail:before { content: '('; }
+.character-status-detail:after { content: ')'; }
