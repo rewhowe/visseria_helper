@@ -1,3 +1,21 @@
+// TODO: code
+// * level (shared across all characters?) +2/2 to everyone
+// * recharge level / recharge rate
+// * equipment select
+//   * stat boosts for spec are restricted to class
+//   * legendary equipment is restricted to class
+//   * zuciel's dmg can only be increased by G (complicated?)
+// * stop adding characters at 5
+// * add delete button
+// * save to local storage
+//
+// TODO: basic styles
+// * bold stats when modified
+// * add a border
+// * fix the ugly plus button
+// * get icons?
+// * icon 100x100
+
 $(function () {
   const $template = $('.js-character-template .js-character');
   const $mainContent = $('.js-main-content');
