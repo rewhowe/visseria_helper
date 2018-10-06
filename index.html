@@ -1,13 +1,13 @@
 <html>
   <head>
     <title>Vissera Helper</title>
-    <link rel="stylesheet" type="text/css" href="./src/css/app.css?v=201810041519"></link>
+    <link rel="stylesheet" type="text/css" href="./src/css/app.css?v=201810041518"></link>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <!-- TODO: minify into one js file instead to prevent synchronisation problems -->
-    <script type="text/javascript" src="./src/js/util.js?v=201810041519"></script>
-    <script type="text/javascript" src="./src/js/classes.js?v=201810041519"></script>
-    <script type="text/javascript" src="./src/js/character.js?v=201810041519"></script>
-    <script type="text/javascript" src="./src/js/app.js?v=201810041519"></script>
+    <script type="text/javascript" src="./src/js/util.js?v=201810041518"></script>
+    <script type="text/javascript" src="./src/js/classes.js?v=201810041518"></script>
+    <script type="text/javascript" src="./src/js/character.js?v=201810041518"></script>
+    <script type="text/javascript" src="./src/js/app.js?v=201810041518"></script>
   </head>
   <body>
     <div class="js-character-template" style="display:none;">
@@ -21,13 +21,13 @@
           <tr>
             <td class="character-status-name">HP</td>
             <td class="character-status-value">
-              <input type="number" class="js-hp-current"></input>
+              <input type="number" min="0" class="js-hp-current"></input>
               /
               <span class="js-hp-max"></span>
             </td>
             <td class="character-status-detail js-hp-detail"></td>
             <td class="character-status-mod">
-              +&nbsp;<input type="number" class="js-hp-mod"></input>
+              +&nbsp;<input type="number" data-status="hp" class="js-status-mod js-hp-mod"></input>
             </td>
           </tr>
           <tr>
@@ -35,7 +35,7 @@
             <td class="character-status-value js-dmg-value"></td>
             <td class="character-status-detail js-dmg-detail"></td>
             <td class="character-status-mod">
-              +&nbsp;<input type="number" class="js-dmg-mod"></input>
+              +&nbsp;<input type="number" data-status="dmg" class="js-status-mod js-dmg-mod"></input>
             </td>
           </tr>
           <tr>
@@ -43,7 +43,7 @@
             <td class="character-status-value js-spec-value"></td>
             <td class="character-status-detail js-spec-detail"></td>
             <td class="character-status-mod">
-              +&nbsp;<input type="number" class="js-spec-mod"></input>
+              +&nbsp;<input type="number" data-status="spec" class="js-status-mod js-spec-mod"></input>
             </td>
           </tr>
         </table>

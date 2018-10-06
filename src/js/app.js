@@ -21,6 +21,16 @@ $(function () {
     character.changeClass($(this).val());
   });
 
+  $(document).on('change', '.js-status-mod', function () {
+    const character = $(this).closest('.js-character').data('character');
+    character.mod($(this).data('status'), $(this).val());
+  });
+
+  $(document).on('change', '.js-hp-current', function () {
+    const character = $(this).closest('.js-character').data('character');
+    character.updateCurrentHp($(this).val());
+  });
+
   // if localStorage doesn't exist
   addCharacter();
 });
