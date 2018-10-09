@@ -3,7 +3,9 @@
 //   * stat boosts for spec are restricted to class
 //   * legendary equipment is restricted to class
 //   * zuciel's dmg can only be increased by G (complicated?)
+// * gear descriptions
 // * level (shared across all characters?) +2/2 to everyone
+// * abilities / descriptions
 // * recharge level / recharge rate
 // * stop adding characters at 5
 // * add delete button
