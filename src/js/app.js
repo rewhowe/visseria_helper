@@ -1,8 +1,8 @@
 // TODO: code
-// * equipment select
-//   * zuciel's dmg can only be increased by G (complicated?)
 // * gear descriptions
 // * level (shared across all characters?) +2/2 to everyone
+// * G input
+// * zuciel's dmg = G (complicated?)
 // * abilities / descriptions
 // * recharge level / recharge rate
 // * stop adding characters at 5
@@ -12,7 +12,7 @@
 // TODO: basic styles
 // * bold stats when modified
 // * add a border
-// * fix the ugly plus button
+// * fix the ugly plus / info buttons
 // * get icons?
 // * icon 100x100
 

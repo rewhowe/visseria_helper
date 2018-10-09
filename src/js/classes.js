@@ -153,7 +153,10 @@ let $CLASS_SELECT = null;
 {
   const options = {};
   for (className in CLASSES) {
-    options[className] = Object.keys(CLASSES[className].characters);
+    options[className] = {};
+    for (character in CLASSES[className].characters) {
+      options[className][character] = character;
+    }
   }
 
   $CLASS_SELECT = makeSelect(options, 'js-class-select');
@@ -163,6 +166,7 @@ function getCharacter(key) {
   key = key.split(KEY_DELIMITER);
   const character = CLASSES[key[0]].characters[key[1]];
   character.class = key[0];
+  character.name = key[1];
   character.specType = CLASSES[key[0]].spec_type;
   return character;
 }

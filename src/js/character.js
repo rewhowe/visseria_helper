@@ -81,6 +81,9 @@ class Character {
 
   getGearMod(status) {
     const character = this.character;
+
+    if (this.character.name === 'zuciel' && status === 'dmg') return 0;
+
     return this.gear.reduce(function (carry, gear) {
       if (status !== 'spec' || !gear.spec_type || gear.spec_type === character.specType) {
         carry += gear[status] || 0;

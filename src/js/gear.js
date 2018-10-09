@@ -173,7 +173,8 @@ let $GEAR_SELECT = null;
 {
   const options = {};
   for (categoryName in GEAR) {
-    options[categoryName] = [];
+    options[categoryName] = {};
+
     for (gearName in GEAR[categoryName]) {
       const gear = GEAR[categoryName][gearName];
       const stats = [
@@ -181,13 +182,9 @@ let $GEAR_SELECT = null;
         gear.dmg || 0,
         gear.spec ? gear.spec + ' ' + gear.spec_type : 0,
       ];
-      options[categoryName].push(
-        gearName
-        + ' ('
-          + stats.join('/')
-          + (gear.limit ? ' - ' + titleCase(gear.limit) + ' only' : '')
-        +')'
-      );
+      options[categoryName][gearName] = gearName
+        + ' (' + stats.join('/') + ')'
+        + (gear.limit ? ' - ' + titleCase(gear.limit) + ' only' : '');
     }
   }
 

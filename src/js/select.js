@@ -8,9 +8,9 @@ function makeSelect(groupedOptions, className, required = true) {
   for (group in groupedOptions) {
     $optGroup = $('<optgroup label="' + titleCase(group) + '">');
 
-    for (option of groupedOptions[group]) {
+    for (option in groupedOptions[group]) {
       const key = group + KEY_DELIMITER + option;
-      const $option = $('<option value="' + key + '">' + titleCase(option) + '</option>');
+      const $option = $('<option value="' + key + '">' + titleCase(groupedOptions[group][option]) + '</option>');
       $optGroup.append($option);
     }
 
