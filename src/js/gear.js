@@ -86,7 +86,7 @@ const GEAR = {
       cost: 5,
       dmg: 1,
       hp: 5,
-      effect: 'Equipped User is debuffed with Undead',
+      effect: 'Equipped User is debuffed with Undead', // TODO
     },
     lucky_charm: {
       cost: 5,
@@ -110,13 +110,13 @@ const GEAR = {
       cost: 5,
       dmg: 2,
       hp: 2,
-      effect: 'Item is treated as 5G',
+      effect: 'Item is treated as 5G', // TODO
     },
     absorbing_spirit: {
       cost: 5,
       dmg: 2,
       hp: 2,
-      effect: 'Equipped User\'s Ultimate recharge rate is 2',
+      effect: 'Equipped User\'s Ultimate recharge rate is 2', // TODO
     },
   },
   legendary_gear: {
@@ -148,7 +148,7 @@ const GEAR = {
       cost: 15,
       dmg: 1,
       hp: 4,
-      effect: 'Equipped User is immune to debuffs. Can only be equipped by Enchanters',
+      effect: 'Equipped User is immune to debuffs. Can only be equipped by Enchanters', // TODO
       sepc: 3,
       type: 'aura',
     },
@@ -162,3 +162,14 @@ const GEAR = {
     }
   },
 };
+
+let $GEAR_SELECT = null;
+
+{
+  const options = {};
+  for (categoryName in GEAR) {
+    options[categoryName] = Object.keys(GEAR[categoryName]);
+  }
+
+  $GEAR_SELECT = makeSelect(options, 'js-gear-select', false);
+}

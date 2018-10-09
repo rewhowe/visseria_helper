@@ -3,6 +3,8 @@ class Character {
     this.$node = $node;
 
     this.$node.find('.js-class').append($CLASS_SELECT.clone());
+    this.$node.find('.js-gear').each((i, gear) => $(gear).prepend($GEAR_SELECT.clone()));
+
     this.character = null;
 
     this.$icon = this.$node.find('.js-icon');

@@ -3,7 +3,7 @@ const KEY_DELIMITER = '.';
 function makeSelect(groupedOptions, className, required = true) {
   const $select = $('<select class="' + className + '">');
 
-  if (required) $select.append('<option selected disabled>-</option>');
+  $select.append('<option selected' + (required ? ' disabled' : '') + '>-</option>');
 
   for (group in groupedOptions) {
     $optGroup = $('<optgroup label="' + titleCase(group) + '">');

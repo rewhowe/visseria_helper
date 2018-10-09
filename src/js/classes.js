@@ -149,13 +149,15 @@ const CLASSES = {
   },
 };
 
+let $CLASS_SELECT = null;
+{
+  const options = {};
+  for (className in CLASSES) {
+    options[className] = Object.keys(CLASSES[className].characters);
+  }
 
-const options = {};
-for (className in CLASSES) {
-  options[className] = Object.keys(CLASSES[className].characters);
+  $CLASS_SELECT = makeSelect(options, 'js-class-select');
 }
-
-const $CLASS_SELECT = makeSelect(options, 'js-class-select');
 
 function getClass(key) {
   return CLASSES[key.split(KEY_DELIMITER)[0]];
