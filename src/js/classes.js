@@ -1,6 +1,6 @@
 const CLASSES = {
   guardian: {
-    spec: 'Soul',
+    spec_type: 'soul',
     characters: {
       albatross_grand: {
         title: 'The Armored Angel',
@@ -29,7 +29,7 @@ const CLASSES = {
     },
   },
   spellweaver: {
-    spec: 'Intelligence',
+    spec_type: 'intelligence',
     characters: {
       harmony_marx: {
         title: 'The Sorcerer Songstress',
@@ -61,7 +61,7 @@ const CLASSES = {
     },
   },
   slayer: {
-    spec: 'Courage',
+    spec_type: 'courage',
     characters: {
       grimwulf_kaiser: {
         title: 'The Howling Death',
@@ -90,7 +90,7 @@ const CLASSES = {
     },
   },
   enchanter: {
-    spec: 'Aura',
+    spec_type: 'aura',
     characters: {
       misteyes_snow: {
         title: 'The White Fox',
@@ -119,7 +119,7 @@ const CLASSES = {
     },
   },
   trickster: {
-    spec: 'Luck',
+    spec_type: 'luck',
     characters: {
       ein: {
         title: 'The Shadewalker',
@@ -159,11 +159,10 @@ let $CLASS_SELECT = null;
   $CLASS_SELECT = makeSelect(options, 'js-class-select');
 }
 
-function getClass(key) {
-  return CLASSES[key.split(KEY_DELIMITER)[0]];
-}
-
 function getCharacter(key) {
   key = key.split(KEY_DELIMITER);
-  return CLASSES[key[0]].characters[key[1]];
+  const character = CLASSES[key[0]].characters[key[1]];
+  character.class = key[0];
+  character.specType = CLASSES[key[0]].spec_type;
+  return character;
 }

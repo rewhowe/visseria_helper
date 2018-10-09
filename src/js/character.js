@@ -3,8 +3,9 @@ class Character {
     this.$node = $node;
 
     this.$node.find('.js-class').append($CLASS_SELECT.clone());
-    this.$node.find('.js-gear').each((i, gear) => $(gear).prepend($GEAR_SELECT.clone()));
+    this.$node.find('.js-gear').each((i, gear) => $(gear).prepend($GEAR_SELECT.clone().data('slot', i)));
 
+    this.class = null;
     this.character = null;
 
     this.$icon = this.$node.find('.js-icon');
@@ -33,6 +34,8 @@ class Character {
       $detail: this.$node.find('.js-spec-detail'),
       $mod: this.$node.find('.js-spec-mod'),
     };
+
+    this.gear = [];
   }
 
   changeClass(characterKey) {
@@ -50,12 +53,14 @@ class Character {
     this.mod('dmg');
 
     this.spec.value = 1;
-    this.spec.$name.html(getClass(characterKey).spec);
+    this.spec.$name.html(titleCase(this.character.specType));
     this.mod('spec');
   }
 
-  mod(status, mod) {
-    mod = parseInt(mod) || 0;
+  mod(status) {
+    const mod = (parseInt(this[status].$mod.val()) || 0)
+        + this.getGearMod(status);
+
     const moddedValue = Math.max(0, this[status].value + mod);
     this[status].$value.html(moddedValue);
 
@@ -64,6 +69,8 @@ class Character {
       // bold max
       // else transparent detail
       this[status].$detail.html(this[status].value + ' + ' + mod);
+    } else {
+      this[status].$detail.html('');
     }
 
     if (status === 'hp') {
@@ -72,10 +79,31 @@ class Character {
     }
   }
 
+  getGearMod(status) {
+    const character = this.character;
+    return this.gear.reduce(function (carry, gear) {
+      if (status !== 'spec' || !gear.spec_type || gear.spec_type === character.specType) {
+        carry += gear[status] || 0;
+      }
+      return carry;
+    }, 0);
+  }
+
   updateCurrentHp(hp) {
     hp = parseInt(hp) || 0;
     const mod = parseInt(this.hp.$mod.val()) || 0;
     this.hp.current = hp - mod;
+  }
+
+  updateGear(slot, gearKey) {
+    const gear = getGear(gearKey);
+
+    if (gear.limit && this.character.class !== gear.limit) return false;
+
+    this.gear[slot] = gear;
+    this.mod('hp');
+    this.mod('dmg');
+    this.mod('spec');
   }
 };
 

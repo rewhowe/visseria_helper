@@ -1,7 +1,5 @@
 // TODO: code
 // * equipment select
-//   * stat boosts for spec are restricted to class
-//   * legendary equipment is restricted to class
 //   * zuciel's dmg can only be increased by G (complicated?)
 // * gear descriptions
 // * level (shared across all characters?) +2/2 to everyone
@@ -36,17 +34,30 @@ $(function () {
   });
 
   $(document).on('change', '.js-class-select', function () {
-    const character = $(this).closest('.js-character').data('character');
+    const $character = $(this).closest('.js-character');
+    const character = $character.data('character');
     character.changeClass($(this).val());
+
+    $character.find('.js-gear-select, .js-status-mod').val('');
+  });
+
+  $(document).on('change', '.js-gear-select', function () {
+    const character = $(this).closest('.js-character').data('character');
+    if (!character.character || $(this).val() === '-') return;
+    const canWear = character.updateGear($(this).data('slot'), $(this).val());
+
+    if (canWear === false) $(this).val('');
   });
 
   $(document).on('change', '.js-status-mod', function () {
     const character = $(this).closest('.js-character').data('character');
-    character.mod($(this).data('status'), $(this).val());
+    if (!character.character) return;
+    character.mod($(this).data('status'));
   });
 
   $(document).on('change', '.js-hp-current', function () {
     const character = $(this).closest('.js-character').data('character');
+    if (!character.character) return;
     character.updateCurrentHp($(this).val());
   });
 
