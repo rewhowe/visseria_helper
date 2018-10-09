@@ -3,6 +3,7 @@ class Character {
     this.$node = $node;
 
     this.$node.find('.js-class').append($CLASS_SELECT.clone());
+    this.character = null;
 
     this.$icon = this.$node.find('.js-icon');
     this.$title = this.$node.find('.js-title');
@@ -33,17 +34,17 @@ class Character {
   }
 
   changeClass(characterKey) {
-    const character = getCharacter(characterKey);
+    this.character = getCharacter(characterKey);
 
     this.$icon.attr('src', 'https://placekitten.com/100/100'); // TODO: icons
-    this.$title.html(character.title);
+    this.$title.html(this.character.title);
 
-    this.hp.current = character.hp;
-    this.hp.value = character.hp;
-    this.hp.$current.val(character.hp);
+    this.hp.current = this.character.hp;
+    this.hp.value = this.character.hp;
+    this.hp.$current.val(this.character.hp);
     this.mod('hp');
 
-    this.dmg.value = character.dmg;
+    this.dmg.value = this.character.dmg;
     this.mod('dmg');
 
     this.spec.value = 1;
@@ -57,7 +58,9 @@ class Character {
     this[status].$value.html(moddedValue);
 
     if (mod > 0) {
-      // apply style to $max
+      // TODO: add class to parent
+      // bold max
+      // else transparent detail
       this[status].$detail.html(this[status].value + ' + ' + mod);
     }
 

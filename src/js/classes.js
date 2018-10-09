@@ -45,7 +45,7 @@ const CLASSES = {
         hp: 11,
         passive: 'Dimensional Decision - Once during your turn when a Room Type is revealed, draw the top 3 Rooms of that revealed Type and choose 1. It is now that chosen Room',
         active: 'Darkness Falls - Blind 1 basic enemy til the end of the next turn if succession roll',
-        ultimate: 'Foreseer\’s Favor - R5; Ariadne gains the following ability based on the current Room type:'
+        ultimate: 'Foreseer\'s Favor - R5; Ariadne gains the following ability based on the current Room type:'
           + "\nMob/Boss Room - Once per Room, Ariadne gains +1x (Intelligence Lvl) DMG for the Room"
           + "\nTrap Room - Ariadne gains +1x (Intelligence Lvl) succession roll"
           + "\nTreasure Room - Gain +1 Item if an Item is gained and/or gain +1 Note if a Note is gained"
@@ -133,9 +133,9 @@ const CLASSES = {
         title: 'The Phantom of Sin',
         dmg: 0,
         hp: 13,
-        passive: 'Greed - Zuciel cannot gain DMG from any Gear but gains DMG equal to the party’s total G',
+        passive: 'Greed - Zuciel cannot gain DMG from any Gear but gains DMG equal to the party\'s total G',
         active: 'Sloth - Zuciel heals for +1x (Luck Lvl) HP',
-        ultimate: 'Wrath - R1; If Zuciel is at full health, he can attack 1x (Luck Lvl) enemies. Zuciel’s health becomes 1',
+        ultimate: 'Wrath - R1; If Zuciel is at full health, he can attack 1x (Luck Lvl) enemies. Zuciel\'s health becomes 1',
       },
       marina: {
         title: 'The Chronokeeper',
@@ -149,28 +149,19 @@ const CLASSES = {
   },
 };
 
-const $CLASS_SELECT = $('<select class="js-class-select">');
-$CLASS_SELECT.append('<option selected disabled>-</option>');
 
-const CHARACTER_KEY_DELIMITER = '.';
-
+const options = {};
 for (className in CLASSES) {
-  $optGroup = $('<optgroup label="' + titleCase(className) + '">');
-
-  for (character in CLASSES[className].characters) {
-    const key = className + CHARACTER_KEY_DELIMITER + character;
-    $character = $('<option value="' + key + '">' + titleCase(character) + '</option>');
-    $optGroup.append($character);
-  }
-
-  $CLASS_SELECT.append($optGroup);
+  options[className] = Object.keys(CLASSES[className].characters);
 }
 
+const $CLASS_SELECT = makeSelect(options, 'js-class-select');
+
 function getClass(key) {
-  return CLASSES[key.split(CHARACTER_KEY_DELIMITER)[0]];
+  return CLASSES[key.split(KEY_DELIMITER)[0]];
 }
 
 function getCharacter(key) {
-  key = key.split(CHARACTER_KEY_DELIMITER);
+  key = key.split(KEY_DELIMITER);
   return CLASSES[key[0]].characters[key[1]];
 }

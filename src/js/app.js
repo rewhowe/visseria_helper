@@ -1,10 +1,10 @@
 // TODO: code
-// * level (shared across all characters?) +2/2 to everyone
-// * recharge level / recharge rate
 // * equipment select
 //   * stat boosts for spec are restricted to class
 //   * legendary equipment is restricted to class
 //   * zuciel's dmg can only be increased by G (complicated?)
+// * level (shared across all characters?) +2/2 to everyone
+// * recharge level / recharge rate
 // * stop adding characters at 5
 // * add delete button
 // * save to local storage
@@ -20,7 +20,6 @@ $(function () {
   const $template = $('.js-character-template .js-character');
   const $mainContent = $('.js-main-content');
   const $addButton = $('.js-add-character');
-
 
   function addCharacter() {
     const $character = $template.clone();
