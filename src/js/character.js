@@ -85,7 +85,7 @@ class Character {
     if (this.character.name === 'zuciel' && status === 'dmg') return 0;
 
     return this.gear.reduce(function (carry, gear) {
-      if (status !== 'spec' || !gear.spec_type || gear.spec_type === character.specType) {
+      if (gear && (status !== 'spec' || !gear.spec_type || gear.spec_type === character.specType)) {
         carry += gear[status] || 0;
       }
       return carry;
@@ -101,12 +101,14 @@ class Character {
   updateGear(slot, gearKey) {
     const gear = getGear(gearKey);
 
-    if (gear.limit && this.character.class !== gear.limit) return false;
+    const canWear = !gear.limit || this.character.class === gear.limit;
+    this.gear[slot] = canWear ? gear : undefined;
 
-    this.gear[slot] = gear;
     this.mod('hp');
     this.mod('dmg');
     this.mod('spec');
+
+    return canWear;
   }
 };
 

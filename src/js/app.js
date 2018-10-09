@@ -46,7 +46,7 @@ $(function () {
     if (!character.character || $(this).val() === '-') return;
     const canWear = character.updateGear($(this).data('slot'), $(this).val());
 
-    if (canWear === false) $(this).val('');
+    if (canWear === false) $(this).val('-');
   });
 
   $(document).on('change', '.js-status-mod', function () {
