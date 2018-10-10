@@ -38,7 +38,9 @@ $(function () {
     const character = $character.data('character');
     character.changeClass($(this).val());
 
-    $character.find('.js-gear-select, .js-status-mod').val('');
+    $character.find('.js-gear-select').val('-');
+    $character.find('.js-status-mod').val('');
+    $character.find('.js-gear-show-detail, .js-gear-detail').removeClass('show').hide();
   });
 
   $(document).on('change', '.js-gear-select', function () {
@@ -46,7 +48,7 @@ $(function () {
     if (!character.character || $(this).val() === '-') return;
     const canWear = character.updateGear($(this).data('slot'), $(this).val());
 
-    if (canWear === false) $(this).val('-');
+    if (!canWear) $(this).val('-');
   });
 
   $(document).on('change', '.js-status-mod', function () {
@@ -59,6 +61,15 @@ $(function () {
     const character = $(this).closest('.js-character').data('character');
     if (!character.character) return;
     character.updateCurrentHp($(this).val());
+  });
+
+  $(document).on('click', '.js-gear-show-detail', function () {
+    const $detail = $(this).siblings('.js-gear-detail');
+    if ($detail.hasClass('show')) {
+      $detail.removeClass('show').slideUp();
+    } else {
+      $detail.addClass('show').slideDown();
+    }
   });
 
   // if localStorage doesn't exist

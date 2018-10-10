@@ -3,7 +3,6 @@ class Character {
     this.$node = $node;
 
     this.$node.find('.js-class').append($CLASS_SELECT.clone());
-    this.$node.find('.js-gear').each((i, gear) => $(gear).prepend($GEAR_SELECT.clone().data('slot', i)));
 
     this.class = null;
     this.character = null;
@@ -36,6 +35,8 @@ class Character {
     };
 
     this.gear = [];
+    this.$gear = this.$node.find('.js-gear');
+    this.$gear.each((i, gear) => $(gear).prepend($GEAR_SELECT.clone().data('slot', i)));
   }
 
   changeClass(characterKey) {
@@ -108,7 +109,19 @@ class Character {
     this.mod('dmg');
     this.mod('spec');
 
+    this.updateGearEffect(this.gear[slot], $(this.$gear[slot]));
+
     return canWear;
+  }
+
+  updateGearEffect(gear, $gear) {
+    if (gear && gear.effect) {
+      $gear.find('.js-gear-show-detail').show();
+      $gear.find('.js-gear-detail').html(gear.effect);
+    } else {
+      $gear.find('.js-gear-show-detail, .js-gear-detail').hide();
+      $gear.find('.js-gear-detail').removeClass('show').html('');
+    }
   }
 };
 
