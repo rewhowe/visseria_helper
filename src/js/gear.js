@@ -172,14 +172,14 @@ let $GEAR_SELECT = null;
 
 {
   const options = {};
-  for (categoryName in GEAR) {
+  for (let categoryName in GEAR) {
     options[categoryName] = {};
 
-    for (gearName in GEAR[categoryName]) {
+    for (let gearName in GEAR[categoryName]) {
       const gear = GEAR[categoryName][gearName];
       const stats = [
-        gear.hp || 0,
         gear.dmg || 0,
+        gear.hp || 0,
         gear.spec ? gear.spec + ' ' + gear.spec_type : 0,
       ];
       options[categoryName][gearName] = gearName

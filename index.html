@@ -13,13 +13,13 @@
   </head>
   <body>
     <div class="js-character-template" style="display:none;">
-      <div class="js-character">
+      <div class="character-sheet js-character">
         <div class="character-icon">
           <img src="" class="js-icon"/>
         </div>
         <div class="js-class"></div>
         <div class="js-title"></div>
-        <div class="js-character-sheet" style="display:none;">
+        <div class="js-character-detail" style="display:none;">
           <table>
             <tr>
               <td class="character-status-name">HP</td>
@@ -50,21 +50,53 @@
               </td>
             </tr>
           </table>
-          <div class="character-gear js-gear" colspan="4">
+
+          <hr>
+
+          <div>Gear</div>
+          <div class="character-gear js-gear">
             <span class="js-gear-show-detail" style="display:none;">(?)</span>
             <div class="js-gear-detail" style="display:none;"></div>
           </div>
-          <div class="character-gear js-gear" colspan="4">
+          <div class="character-gear js-gear">
             <span class="js-gear-show-detail" style="display:none;">(?)</span>
             <div class="js-gear-detail" style="display:none;"></div>
           </div>
-          <div class="character-gear js-gear" colspan="4">
+          <div class="character-gear js-gear">
             <span class="js-gear-show-detail" style="display:none;">(?)</span>
             <div class="js-gear-detail" style="display:none;"></div>
           </div>
-          <div class="character-gear js-gear" colspan="4">
+          <div class="character-gear js-gear">
             <span class="js-gear-show-detail" style="display:none;">(?)</span>
             <div class="js-gear-detail" style="display:none;"></div>
+          </div>
+
+          <hr>
+
+          <div>Abilities</div>
+          <div class="character-ability js-ability-passive">
+            <div class="character-ability-head col-3" >Passive:</div>
+            <div class="character-ability-name col-6 js-ability-name"></div>
+            <div class="character-ability-show-detail col-3">
+              <span class="js-ability-show-detail">(?)</span>
+            </div>
+            <div class="js-ability-detail" style="display:none;"></div>
+          </div>
+          <div class="character-ability js-ability-active">
+            <div class="character-ability-head col-3" >Active:</div>
+            <div class="character-ability-name col-6 js-ability-name"></div>
+            <div class="character-ability-show-detail col-3">
+              <span class="js-ability-show-detail">(?)</span>
+            </div>
+            <div class="js-ability-detail" style="display:none;"></div>
+          </div>
+          <div class="character-ability js-ability-ultimate">
+            <div class="character-ability-head col-3" >Ultimate:</div>
+            <div class="character-ability-name col-6 js-ability-name"></div>
+            <div class="character-ability-show-detail col-3">
+              <span class="js-ability-show-detail">(?)</span>
+            </div>
+            <div class="js-ability-detail" style="display:none;"></div>
           </div>
         </div>
       </div>

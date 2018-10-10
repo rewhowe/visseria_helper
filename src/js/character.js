@@ -57,7 +57,9 @@ class Character {
     this.spec.$name.html(titleCase(this.character.specType));
     this.mod('spec');
 
-    this.$node.find('.js-character-sheet').slideDown();
+    this.setAbilities();
+
+    this.$node.find('.js-character-detail').slideDown();
   }
 
   mod(status) {
@@ -125,5 +127,12 @@ class Character {
       $gear.find('.js-gear-detail').removeClass('show').html('');
     }
   }
-};
 
+  setAbilities() {
+    for (let abilityType in this.character.abilities) {
+      const ability = this.character.abilities[abilityType];
+      this.$node.find('.js-ability-' + abilityType + ' .js-ability-name').html(ability.name);
+      this.$node.find('.js-ability-' + abilityType + ' .js-ability-detail').html(ability.effect);
+    }
+  }
+};

@@ -2,7 +2,6 @@
 // * level (shared across all characters?) +2/2 to everyone
 // * G input
 // * zuciel's dmg = G (complicated?)
-// * abilities / descriptions
 // * recharge level / recharge rate
 // * stop adding characters at 5
 // * add delete button
@@ -10,7 +9,6 @@
 //
 // TODO: basic styles
 // * bold stats when modified
-// * add a border
 // * fix the ugly plus / info buttons
 // * get icons?
 // * icon 100x100
@@ -62,14 +60,17 @@ $(function () {
     character.updateCurrentHp($(this).val());
   });
 
-  $(document).on('click', '.js-gear-show-detail', function () {
-    const $detail = $(this).siblings('.js-gear-detail');
-    if ($detail.hasClass('show')) {
-      $detail.removeClass('show').slideUp();
-    } else {
-      $detail.addClass('show').slideDown();
-    }
-  });
+  for (let type of ['gear', 'ability']) {
+    $(document).on('click', '.js-' + type + '-show-detail', function () {
+      // TODO: clean this up... (will depend on styling later, as that may change html structure)
+      const $detail = $($(this).siblings('.js-' + type + '-detail')[0] || $(this).parent().siblings('.js-' + type + '-detail'));
+      if ($detail.hasClass('show')) {
+        $detail.removeClass('show').slideUp();
+      } else {
+        $detail.addClass('show').slideDown();
+      }
+    });
+  }
 
   // if localStorage doesn't exist
   addCharacter();
