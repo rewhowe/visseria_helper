@@ -1,5 +1,4 @@
 // TODO: code
-// * gear descriptions
 // * level (shared across all characters?) +2/2 to everyone
 // * G input
 // * zuciel's dmg = G (complicated?)

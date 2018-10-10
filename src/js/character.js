@@ -56,6 +56,8 @@ class Character {
     this.spec.value = 1;
     this.spec.$name.html(titleCase(this.character.specType));
     this.mod('spec');
+
+    this.$node.find('.js-character-sheet').slideDown();
   }
 
   mod(status) {
