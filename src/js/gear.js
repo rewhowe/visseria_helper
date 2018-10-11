@@ -193,5 +193,7 @@ let $GEAR_SELECT = null;
 
 function getGear(key) {
   key = key.split(KEY_DELIMITER);
-  return GEAR[key[0]][key[1]];
+  const category = GEAR[key[0]];
+  if (!category) return;
+  return category[key[1]];
 }

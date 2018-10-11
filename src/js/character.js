@@ -1,4 +1,8 @@
 class Character {
+
+  static get MAX_LEVEL() { return 3; }
+  static get LEVEL_BONUS() { return 2; }
+
   constructor($node) {
     this.$node = $node;
 
@@ -6,6 +10,8 @@ class Character {
 
     this.class = null;
     this.character = null;
+    this.level = 0;
+    this.ready = false;
 
     this.$icon = this.$node.find('.js-icon');
     this.$title = this.$node.find('.js-title');
@@ -40,10 +46,12 @@ class Character {
   }
 
   changeClass(characterKey) {
+    this.ready = true;
     this.character = getCharacter(characterKey);
 
     this.$icon.attr('src', 'https://placekitten.com/100/100');
     this.$title.html(this.character.title);
+    this.gear = [];
 
     this.hp.current = this.character.hp;
     this.hp.value = this.character.hp;
@@ -63,14 +71,16 @@ class Character {
   }
 
   mod(status) {
-    const mod = (parseInt(this[status].$mod.val()) || 0)
-        + this.getGearMod(status);
+    const mod = this.getStatusMod(status);
+    const baseValue = this[status].value + this.getLevelMod(status);
 
-    const moddedValue = Math.max(0, this[status].value + mod);
+    const moddedValue = Math.max(0, baseValue + mod);
+
     this[status].$value.html(moddedValue);
 
-    if (mod > 0) {
-      this[status].$detail.html(this[status].value + ' + ' + mod);
+    if (mod !== 0) {
+      const operator = mod > 0 ? ' + ' : ' - ';
+      this[status].$detail.html(baseValue + operator + Math.abs(mod));
       this[status].$detail.parent().addClass('character-status-modified');
     } else {
       this[status].$detail.html('');
@@ -83,10 +93,26 @@ class Character {
     }
   }
 
+  setAbilities() {
+    for (let abilityType in this.character.abilities) {
+      const ability = this.character.abilities[abilityType];
+      this.$node.find('.js-ability-' + abilityType + ' .js-ability-name').html(ability.name);
+      this.$node.find('.js-ability-' + abilityType + ' .js-ability-detail').html(ability.effect);
+    }
+  }
+
+  getLevelMod(status) {
+    return status !== 'spec' ? this.level * Character.LEVEL_BONUS : 0;
+  }
+
+  getStatusMod(status) {
+    return (parseInt(this[status].$mod.val()) || 0)
+      + this.getGearMod(status)
+      + this.getCharacterMod(status);
+  }
+
   getGearMod(status) {
     const character = this.character;
-
-    if (this.character.name === 'zuciel' && status === 'dmg') return 0;
 
     return this.gear.reduce(function (carry, gear) {
       if (gear && (status !== 'spec' || !gear.spec_type || gear.spec_type === character.specType)) {
@@ -96,16 +122,27 @@ class Character {
     }, 0);
   }
 
+  getCharacterMod(status) {
+    switch (this.character.name) {
+      // TODO: fix this...
+      // case 'zuciel':
+      //   return status == 'dmg' ? -(this.getGearMod(status) + this.getLevelMod(status)) : 0;
+      case 'psykoshka':
+        return 0; // TODO: moddedValue + spec
+      default:
+        return 0;
+    }
+  }
+
   updateCurrentHp(hp) {
     hp = parseInt(hp) || 0;
-    const mod = parseInt(this.hp.$mod.val()) || 0;
-    this.hp.current = hp - mod;
+    this.hp.current = hp - this.getStatusMod('hp');
   }
 
   updateGear(slot, gearKey) {
     const gear = getGear(gearKey);
 
-    const canWear = !gear.limit || this.character.class === gear.limit;
+    const canWear = gear && (!gear.limit || this.character.class === gear.limit);
     this.gear[slot] = canWear ? gear : undefined;
 
     this.mod('hp');
@@ -127,11 +164,13 @@ class Character {
     }
   }
 
-  setAbilities() {
-    for (let abilityType in this.character.abilities) {
-      const ability = this.character.abilities[abilityType];
-      this.$node.find('.js-ability-' + abilityType + ' .js-ability-name').html(ability.name);
-      this.$node.find('.js-ability-' + abilityType + ' .js-ability-detail').html(ability.effect);
-    }
+  updateLevel(level) {
+    this.level = Math.min(Character.MAX_LEVEL, Math.max(0, level));
+    this.mod('hp');
+    this.mod('dmg');
+
+    // full heal
+    this.hp.current = this.hp.value + this.getLevelMod() + this.getStatusMod('hp');
+    this.hp.$current.val(this.hp.current);
   }
 };

@@ -13,6 +13,12 @@ body { background: #EEE; }
 .col-11 { width: 91.66%; }
 .col-12 { width: 100%; }
 
+.party-head, .character-ability {
+  max-width: 640px;
+  display: flex;
+  flex-wrap: wrap;
+}
+
 /* TODO: width = % ? */
 .character-sheet {
   width: 640px;
@@ -27,11 +33,6 @@ body { background: #EEE; }
 
 .character-status-modified .character-status-value { font-weight: bold; }
 .character-status-modified .character-status-detail { color: inherit; }
-
-.character-ability {
-  display: flex;
-  flex-wrap: wrap;
-}
 
 .add-character {
   margin-top: 10px;
