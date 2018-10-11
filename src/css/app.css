@@ -13,6 +13,7 @@ body { background: #EEE; }
 .col-11 { width: 91.66%; }
 .col-12 { width: 100%; }
 
+/* TODO: width = % ? */
 .character-sheet {
   width: 640px;
   padding: 10px;
@@ -20,10 +21,22 @@ body { background: #EEE; }
   border: 1px solid #CCC;
 }
 
+.character-status-detail { color: transparent; }
 .character-status-detail:before { content: '('; }
 .character-status-detail:after { content: ')'; }
+
+.character-status-modified .character-status-value { font-weight: bold; }
+.character-status-modified .character-status-detail { color: inherit; }
 
 .character-ability {
   display: flex;
   flex-wrap: wrap;
+}
+
+.add-character {
+  margin-top: 10px;
+}
+
+.hidden {
+  display: none;
 }

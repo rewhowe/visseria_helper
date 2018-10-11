@@ -8,7 +8,6 @@
 // * save to local storage
 //
 // TODO: basic styles
-// * bold stats when modified
 // * fix the ugly plus / info buttons
 // * get icons?
 // * icon 100x100
@@ -37,7 +36,7 @@ $(function () {
 
     $character.find('.js-gear-select').val('-');
     $character.find('.js-status-mod').val('');
-    $character.find('.js-gear-show-detail, .js-gear-detail').removeClass('show').hide();
+    $character.find('.js-gear-show-detail, .js-gear-detail').addClass('hidden');
   });
 
   $(document).on('change', '.js-gear-select', function () {
@@ -64,11 +63,7 @@ $(function () {
     $(document).on('click', '.js-' + type + '-show-detail', function () {
       // TODO: clean this up... (will depend on styling later, as that may change html structure)
       const $detail = $($(this).siblings('.js-' + type + '-detail')[0] || $(this).parent().siblings('.js-' + type + '-detail'));
-      if ($detail.hasClass('show')) {
-        $detail.removeClass('show').slideUp();
-      } else {
-        $detail.addClass('show').slideDown();
-      }
+      $detail.toggleClass('hidden');
     });
   }
 

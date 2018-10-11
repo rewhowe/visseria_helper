@@ -1,6 +1,7 @@
 <html>
   <head>
     <title>Visseria Helper</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" type="text/css" href="./src/css/app.css?v=201810101735"></link>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <!-- TODO: make async & minify into one js file instead to prevent synchronisation problems -->
@@ -22,15 +23,15 @@
         <div class="js-character-detail" style="display:none;">
           <table>
             <tr>
-              <td class="character-status-name">HP</td>
-              <td class="character-status-value">
-                <input type="number" min="0" class="js-hp-current"></input>
+              <td class="character-status-name col-3">HP</td>
+              <td class="character-status-value col-3">
+                <input type="number" min="0" class="col-6 js-hp-current"></input>
                 /
-                <span class="js-hp-max"></span>
+                <span class="col-6 js-hp-max"></span>
               </td>
-              <td class="character-status-detail js-hp-detail"></td>
-              <td class="character-status-mod">
-                <input type="number" data-status="hp" class="js-status-mod js-hp-mod"></input>
+              <td class="character-status-detail col-3 js-hp-detail"></td>
+              <td class="character-status-mod col-3">
+                <input type="number" data-status="hp" class="col-6 js-status-mod js-hp-mod"></input>
               </td>
             </tr>
             <tr>
@@ -38,7 +39,7 @@
               <td class="character-status-value js-dmg-value"></td>
               <td class="character-status-detail js-dmg-detail"></td>
               <td class="character-status-mod">
-                <input type="number" data-status="dmg" class="js-status-mod js-dmg-mod"></input>
+                <input type="number" data-status="dmg" class="col-6 js-status-mod js-dmg-mod"></input>
               </td>
             </tr>
             <tr>
@@ -46,7 +47,7 @@
               <td class="character-status-value js-spec-value"></td>
               <td class="character-status-detail js-spec-detail"></td>
               <td class="character-status-mod">
-                <input type="number" data-status="spec" class="js-status-mod js-spec-mod"></input>
+                <input type="number" data-status="spec" class=col-6 "js-status-mod js-spec-mod"></input>
               </td>
             </tr>
           </table>
@@ -55,20 +56,20 @@
 
           <div>Gear</div>
           <div class="character-gear js-gear">
-            <span class="js-gear-show-detail" style="display:none;">(?)</span>
-            <div class="js-gear-detail" style="display:none;"></div>
+            <span class="js-gear-show-detail">(?)</span>
+            <div class="js-gear-detail hidden"></div>
           </div>
           <div class="character-gear js-gear">
-            <span class="js-gear-show-detail" style="display:none;">(?)</span>
-            <div class="js-gear-detail" style="display:none;"></div>
+            <span class="js-gear-show-detail">(?)</span>
+            <div class="js-gear-detail hidden"></div>
           </div>
           <div class="character-gear js-gear">
-            <span class="js-gear-show-detail" style="display:none;">(?)</span>
-            <div class="js-gear-detail" style="display:none;"></div>
+            <span class="js-gear-show-detail">(?)</span>
+            <div class="js-gear-detail hidden"></div>
           </div>
           <div class="character-gear js-gear">
-            <span class="js-gear-show-detail" style="display:none;">(?)</span>
-            <div class="js-gear-detail" style="display:none;"></div>
+            <span class="js-gear-show-detail">(?)</span>
+            <div class="js-gear-detail hidden"></div>
           </div>
 
           <hr>
@@ -80,7 +81,7 @@
             <div class="character-ability-show-detail col-3">
               <span class="js-ability-show-detail">(?)</span>
             </div>
-            <div class="js-ability-detail" style="display:none;"></div>
+            <div class="js-ability-detail hidden"></div>
           </div>
           <div class="character-ability js-ability-active">
             <div class="character-ability-head col-3" >Active:</div>
@@ -88,7 +89,7 @@
             <div class="character-ability-show-detail col-3">
               <span class="js-ability-show-detail">(?)</span>
             </div>
-            <div class="js-ability-detail" style="display:none;"></div>
+            <div class="js-ability-detail hidden"></div>
           </div>
           <div class="character-ability js-ability-ultimate">
             <div class="character-ability-head col-3" >Ultimate:</div>
@@ -96,14 +97,14 @@
             <div class="character-ability-show-detail col-3">
               <span class="js-ability-show-detail">(?)</span>
             </div>
-            <div class="js-ability-detail" style="display:none;"></div>
+            <div class="js-ability-detail hidden"></div>
           </div>
         </div>
       </div>
     </div>
 
     <div class="content js-main-content">
-      <div class="js-add-character">(+)</div>
+      <div class="add-character js-add-character">(+)</div>
     </div>
   </body>
 </html>

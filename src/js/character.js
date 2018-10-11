@@ -42,7 +42,7 @@ class Character {
   changeClass(characterKey) {
     this.character = getCharacter(characterKey);
 
-    this.$icon.attr('src', 'https://placekitten.com/100/100'); // TODO: icons
+    this.$icon.attr('src', 'https://placekitten.com/100/100');
     this.$title.html(this.character.title);
 
     this.hp.current = this.character.hp;
@@ -70,12 +70,11 @@ class Character {
     this[status].$value.html(moddedValue);
 
     if (mod > 0) {
-      // TODO: add class to parent
-      // bold max
-      // else transparent detail
       this[status].$detail.html(this[status].value + ' + ' + mod);
+      this[status].$detail.parent().addClass('character-status-modified');
     } else {
       this[status].$detail.html('');
+      this[status].$detail.parent().removeClass('character-status-modified');
     }
 
     if (status === 'hp') {
@@ -120,11 +119,11 @@ class Character {
 
   updateGearEffect(gear, $gear) {
     if (gear && gear.effect) {
-      $gear.find('.js-gear-show-detail').show();
+      $gear.find('.js-gear-show-detail').removeClass('hidden');
       $gear.find('.js-gear-detail').html(gear.effect);
     } else {
-      $gear.find('.js-gear-show-detail, .js-gear-detail').hide();
-      $gear.find('.js-gear-detail').removeClass('show').html('');
+      $gear.find('.js-gear-show-detail, .js-gear-detail').addClass('hidden');
+      $gear.find('.js-gear-detail').html('');
     }
   }
 
