@@ -49,7 +49,7 @@ class Character {
     this.ready = true;
     this.character = getCharacter(characterKey);
 
-    this.$icon.attr('src', 'https://placekitten.com/100/100');
+    this.$icon.attr('src', 'placeholder');
     this.$title.html(this.character.title);
     this.gear = [];
 

@@ -7,7 +7,6 @@
 // TODO: basic styles
 // * fix the ugly plus / info buttons
 // * get icons?
-// * icon 100x100
 
 $(function () {
   const $template = $('.js-character-template .js-character');
