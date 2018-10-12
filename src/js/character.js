@@ -102,7 +102,9 @@ class Character {
   }
 
   getLevelMod(status) {
-    return status !== 'spec' ? this.level * Character.LEVEL_BONUS : 0;
+    if (status == 'spec') return 0
+    if (this.character.name == 'zuciel' && status == 'dmg') return 0;
+    return this.level * Character.LEVEL_BONUS;
   }
 
   getStatusMod(status) {
@@ -122,13 +124,16 @@ class Character {
     }, 0);
   }
 
+  // TODO: if this starts getting unwieldy, convert to using child classes
   getCharacterMod(status) {
     switch (this.character.name) {
-      // TODO: fix this...
-      // case 'zuciel':
-      //   return status == 'dmg' ? -(this.getGearMod(status) + this.getLevelMod(status)) : 0;
+      case 'zuciel':
+        this.$gold = this.$gold || $('.js-gold');
+        const gold = parseInt(this.$gold.val()) || 0;
+        return status == 'dmg' ? gold - this.getGearMod(status) : 0;
       case 'psykoshka':
-        return 0; // TODO: moddedValue + spec
+        if (status !== 'dmg') return 0;
+        return this.spec.value + this.getStatusMod('spec');
       default:
         return 0;
     }

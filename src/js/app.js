@@ -1,5 +1,4 @@
 // TODO: code
-// * zuciel's dmg = G (complicated?)
 // * recharge level / recharge rate
 // * stop adding characters at 5
 // * add delete button
