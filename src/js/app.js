@@ -1,13 +1,10 @@
 // TODO: code
-// * recharge level / recharge rate
-// * status things
 // * update with latest doc
 // * stop adding characters at 5
 // * add delete button
 // * save to local storage
 //
 // TODO: basic styles
-// * fix the ugly plus / info buttons
 // * get icons?
 
 $(function () {
@@ -19,7 +16,7 @@ $(function () {
   function addCharacter() {
     const $character = $template.clone();
     $character.data('character', new Character($character));
-    $mainContent.prepend($character);
+    $character.insertBefore($addButton.parent());
   }
 
   $addButton.on('click', function () {
