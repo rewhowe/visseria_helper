@@ -71,11 +71,14 @@ $(function () {
 
   for (let type of ['gear', 'ability']) {
     $(document).on('click', '.js-' + type + '-show-detail', function () {
-      // TODO: clean this up... (will depend on styling later, as that may change html structure)
-      const $detail = $($(this).siblings('.js-' + type + '-detail')[0] || $(this).parent().siblings('.js-' + type + '-detail'));
+      const $detail = $(this).parent().siblings('.js-' + type + '-detail');
       $detail.toggleClass('hidden');
     });
   }
+
+  $(document).on('click', 'input[type="checkbox"]', function () {
+    $(this).parent().toggleClass('checked');
+  });
 
   // if localStorage doesn't exist
   addCharacter();

@@ -1,6 +1,7 @@
 body {
   background: #EEE;
   padding: 1rem;
+  font-family: system-ui;
 }
 
 select, input {
@@ -33,11 +34,6 @@ input { padding-left: 0.5rem; }
   width: 3rem;
 }
 
-.content {
-  /* display: flex; */
-  /* flex-wrap: wrap; */
-}
-
 .character-sheet {
   margin-top: 1rem;
   padding: 1rem;
@@ -66,6 +62,36 @@ input { padding-left: 0.5rem; }
   font-size: 1rem;
 }
 
+.character-debuff {
+  display: flex;
+  padding: 0.5rem 0;
+}
+.character-debuff input[type="checkbox"] { display: none; }
+.character-debuff .debuff {
+  flex: 1;
+  text-align: center;
+  border: 0.1rem solid #CCC;
+  border-right: none;
+  padding: 0.2rem 0;
+  color: #CCC;
+}
+.character-debuff .debuff:first-of-type {
+  border-left: 0.1rem solid #CCC;
+  border-radius: 1rem 0 0 1rem;
+}
+.character-debuff .debuff:last-child {
+  border-right: 0.1rem solid #CCC;
+  border-radius: 0 1rem 1rem 0;
+}
+.character-debuff .debuff.checked { color: #FFF; }
+.character-debuff .debuff-bli.checked { background: #333; }
+.character-debuff .debuff-ble.checked { background: #C00; }
+.character-debuff .debuff-fea.checked { background: #63C; }
+.character-debuff .debuff-sil.checked { background: #969; }
+.character-debuff .debuff-cur.checked { background: #909; }
+.character-debuff .debuff-und.checked { background: #090; }
+.character-debuff .debuff-sle.checked { background: #F69; }
+
 .character-status-detail { color: transparent; }
 .character-status-detail:before { content: '('; }
 .character-status-detail:after { content: ')'; }
@@ -84,11 +110,11 @@ input { padding-left: 0.5rem; }
   align-items: center;
 }
 .character-gear select {
-  width: 90%;
+  width: 85%;
   padding: 0.2rem 0 0.2rem 0.5rem;
 }
 .character-gear-show-detail {
-  width: 10%;
+  width: 15%;
   display: flex;
   align-items: center;
 }
@@ -98,9 +124,12 @@ input { padding-left: 0.5rem; }
 
 .character-ability-name {
   box-sizing: border-box;
-  border: 0.1rem solid #CCC;
+  border: 0.1rem solid #99C;
   border-radius: 1rem;
   padding: 0.5rem;
+  text-align: center;
+}
+.character-ability-show-detail {
   text-align: center;
 }
 
@@ -110,9 +139,10 @@ input { padding-left: 0.5rem; }
 }
 
 .detail-button {
-  padding: 0.3rem 0.6rem;
+  display: inline-block;
+  padding: 0.3rem;
   border: 0.1rem solid #CCC;
-  border-radius: 1rem;
+  border-radius: 50%;
   color: #CCC;
 }
 
