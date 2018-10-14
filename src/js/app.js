@@ -19,7 +19,7 @@ $(function () {
   function addCharacter() {
     const $character = $template.clone();
     $character.data('character', new Character($character));
-    $character.insertBefore($addButton);
+    $mainContent.prepend($character);
   }
 
   $addButton.on('click', function () {
