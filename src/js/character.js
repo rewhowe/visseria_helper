@@ -123,7 +123,7 @@ class Character {
   }
 
   getLevelMod(status) {
-    if (status == 'spec') return 0
+    if (['hp', 'dmg'].indexOf(status) === -1) return 0
     if (this.character.name == 'zuciel' && status == 'dmg') return 0;
     return this.level * Character.LEVEL_BONUS;
   }
@@ -160,15 +160,12 @@ class Character {
     }
   }
 
-  // this isn't really necessary at the moment, but I'll keep it for future use?
   updateCurrent(status) {
     const currentValue = parseInt(this[status].$current.val()) || 0;
     this[status].current = currentValue - this.getStatusMod(status);
 
     // tickle
-    if (status === 'recharge') {
-      this.mod('recharge');
-    }
+    this.mod(status);
   }
 
   updateGear(slot, gearKey) {
