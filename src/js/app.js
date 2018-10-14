@@ -63,10 +63,10 @@ $(function () {
     character.mod($(this).data('status'));
   });
 
-  $(document).on('change', '.js-hp-current', function () {
+  $(document).on('change', '.js-hp-current, .js-recharge-current', function () {
     const character = $(this).closest('.js-character').data('character');
     if (!character.ready) return;
-    character.updateCurrentHp($(this).val());
+    character.updateCurrent($(this).data('status'));
   });
 
   for (let type of ['gear', 'ability']) {

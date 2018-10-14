@@ -30,8 +30,11 @@ input { padding-left: 0.5rem; }
   display: flex;
   flex-wrap: wrap;
 }
-.party-head input {
+.party-head input,
+.character-status-value input,
+.character-status-mod input {
   width: 3rem;
+  font-size: 0.8rem;
 }
 
 .character-sheet {
@@ -92,7 +95,14 @@ input { padding-left: 0.5rem; }
 .character-debuff .debuff-und.checked { background: #090; }
 .character-debuff .debuff-sle.checked { background: #F69; }
 
-.character-status-detail { color: transparent; }
+.character-status-value,
+.character-status-detail {
+  white-space: nowrap;
+}
+.character-status-detail {
+  color: transparent;
+  font-size: 0.8rem;
+}
 .character-status-detail:before { content: '('; }
 .character-status-detail:after { content: ')'; }
 
@@ -132,6 +142,25 @@ input { padding-left: 0.5rem; }
 .character-ability-show-detail {
   text-align: center;
 }
+.character-ability-name.charged {
+  color: #C00;
+  -webkit-animation: ChargePulse 2s ease infinite;
+  -moz-animation: ChargePulse 2s ease infinite;
+  animation: ChargePulse 2s ease infinite;
+}
+
+@-webkit-keyframes ChargePulse {
+  0%, 100% { background-color: #FFF; }
+  50% { background-color: rgba(255, 240, 0, 0.5); }
+};
+@-moz-keyframes ChargePulse {
+  0%, 100% { background-color: #FFF; }
+  50% { background-color: rgba(255, 240, 0, 0.5); }
+};
+@keyframes ChargePulse {
+  0%, 100% { background-color: #FFF; }
+  50% { background-color: rgba(255, 240, 0, 0.5); }
+};
 
 .add-character {
   margin-top: 1.5rem;
