@@ -1,5 +1,7 @@
 // TODO: code
 // * recharge level / recharge rate
+// * status things
+// * update with latest doc
 // * stop adding characters at 5
 // * add delete button
 // * save to local storage

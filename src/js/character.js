@@ -88,7 +88,7 @@ class Character {
     }
 
     if (status === 'hp') {
-      const currentHp = Math.max(0, this.hp.current + mod);
+      const currentHp = Math.min(this.hp.current, moddedValue);
       this[status].$current.val(currentHp);
     }
   }
@@ -139,6 +139,7 @@ class Character {
     }
   }
 
+  // this isn't really necessary at the moment, but I'll keep it for future use?
   updateCurrentHp(hp) {
     hp = parseInt(hp) || 0;
     this.hp.current = hp - this.getStatusMod('hp');
