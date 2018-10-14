@@ -78,7 +78,7 @@ class Character {
     this.mod('spec');
 
     this.recharge.current = 0;
-    this.recharge.base = 5; // TODO: update classes
+    this.recharge.base = this.character.abilities.ultimate.recharge;
     this.hp.$current.val(0);
     this.mod('recharge');
 
@@ -180,6 +180,7 @@ class Character {
     this.mod('hp');
     this.mod('dmg');
     this.mod('spec');
+    this.mod('recharge');
 
     this.updateGearEffect(this.gear[slot], $(this.$gear[slot]));
 
