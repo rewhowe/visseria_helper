@@ -99,6 +99,9 @@ input { padding-left: 0.5rem; }
 .character-status-detail {
   white-space: nowrap;
 }
+.character-status-name.recharge {
+  font-size: 0.8rem;
+}
 .character-status-detail {
   color: transparent;
   font-size: 0.8rem;
@@ -142,25 +145,12 @@ input { padding-left: 0.5rem; }
 .character-ability-show-detail {
   text-align: center;
 }
-.character-ability-name.charged {
+.character-ability.charged .character-ability-name {
   color: #C00;
   -webkit-animation: ChargePulse 2s ease infinite;
   -moz-animation: ChargePulse 2s ease infinite;
   animation: ChargePulse 2s ease infinite;
 }
-
-@-webkit-keyframes ChargePulse {
-  0%, 100% { background-color: #FFF; }
-  50% { background-color: rgba(255, 240, 0, 0.5); }
-};
-@-moz-keyframes ChargePulse {
-  0%, 100% { background-color: #FFF; }
-  50% { background-color: rgba(255, 240, 0, 0.5); }
-};
-@keyframes ChargePulse {
-  0%, 100% { background-color: #FFF; }
-  50% { background-color: rgba(255, 240, 0, 0.5); }
-};
 
 .add-character {
   margin-top: 1.5rem;
@@ -184,3 +174,16 @@ input { padding-left: 0.5rem; }
     width: 640px;
   }
 }
+
+@-webkit-keyframes ChargePulse {
+  0%, 100% { background-color: #FFF; }
+  50% { background-color: rgba(255, 240, 0, 0.5); }
+};
+@-moz-keyframes ChargePulse {
+  0%, 100% { background-color: #FFF; }
+  50% { background-color: rgba(255, 240, 0, 0.5); }
+};
+@keyframes ChargePulse {
+  0%, 100% { background-color: #FFF; }
+  50% { background-color: rgba(255, 240, 0, 0.5); }
+};

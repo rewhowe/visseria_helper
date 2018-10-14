@@ -62,6 +62,9 @@ class Character {
     this.$title.html(this.character.title);
     this.gear = [];
 
+    this.$ultimate = this.$node.find('.js-ability-ultimate');
+    this.setAbilities();
+
     this.hp.current = this.character.hp;
     this.hp.base = this.character.hp;
     this.hp.$current.val(this.character.hp);
@@ -78,8 +81,6 @@ class Character {
     this.recharge.base = 5; // TODO: update classes
     this.hp.$current.val(0);
     this.mod('recharge');
-
-    this.setAbilities();
 
     this.$node.find('.js-character-detail').slideDown();
   }
@@ -102,8 +103,14 @@ class Character {
     }
 
     if (['hp', 'recharge'].indexOf(status) !== -1) {
-      const currentValue = Math.min(this[status].current, moddedValue);
-      this[status].$current.val(currentValue);
+      this[status].current = Math.min(this[status].current, moddedValue);
+      this[status].$current.val(this[status].current);
+
+      if (status === 'recharge' && this.recharge.current === moddedValue) {
+        this.$ultimate.addClass('charged');
+      } else {
+        this.$ultimate.removeClass('charged');
+      }
     }
   }
 
