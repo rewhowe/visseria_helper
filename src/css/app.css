@@ -156,6 +156,11 @@ input { padding-left: 0.5rem; }
   margin-top: 1.5rem;
   text-align: center;
 }
+.add-character:hover,
+.detail-button:hover,
+.debuff:hover {
+  cursor: pointer;
+}
 
 .detail-button {
   display: inline-block;
@@ -164,6 +169,10 @@ input { padding-left: 0.5rem; }
   border-radius: 50%;
   color: #CCC;
 }
+.detail-button.pressed {
+  color: #FFF;
+  background: #CCC;
+}
 
 .hidden {
   display: none;
@@ -171,6 +180,10 @@ input { padding-left: 0.5rem; }
 
 @media only screen and (min-width: 640px) {
   .character-sheet {
+    width: 640px;
+  }
+
+  .add-character {
     width: 640px;
   }
 }

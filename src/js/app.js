@@ -1,8 +1,13 @@
 // TODO: code
-// * update with latest doc
-// * stop adding characters at 5
 // * add delete button
+// * stop adding characters at 5
+// * make a storage prompt
+//   * "Save your data locally? (You can clear it by deleting all characters)"
+//     * "Sure"
+//     * "No"
 // * save to local storage
+// * convert , and . to - and +
+// * update with latest doc
 //
 // TODO: basic styles
 // * get icons?
@@ -68,6 +73,7 @@ $(function () {
 
   for (let type of ['gear', 'ability']) {
     $(document).on('click', '.js-' + type + '-show-detail', function () {
+      $(this).toggleClass('pressed');
       const $detail = $(this).parent().siblings('.js-' + type + '-detail');
       $detail.toggleClass('hidden');
     });
