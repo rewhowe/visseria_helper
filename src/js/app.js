@@ -1,6 +1,4 @@
 // TODO: code
-// * add delete button
-// * stop adding characters at 5
 // * make a storage prompt
 //   * "Save your data locally? (You can clear it by deleting all characters)"
 //     * "Sure"
@@ -13,6 +11,8 @@
 // * get icons?
 
 $(function () {
+  const MAX_CHARACTERS = 5;
+
   const $template = $('.js-character-template .js-character');
   const $keyShards = $('.js-key-shards');
   const $mainContent = $('.js-main-content');
@@ -24,10 +24,13 @@ $(function () {
     $character.insertBefore($addButton.parent());
   }
 
+  function checkCharacterLimit() {
+    $mainContent.find('.js-character').length >= MAX_CHARACTERS ? $addButton.hide() : $addButton.show();
+  }
+
   $addButton.on('click', function () {
     addCharacter();
-    // TODO: stop at 5?
-    // TODO: also need to add delete button
+    checkCharacterLimit();
   });
 
   $keyShards.on('change', function () {
@@ -37,6 +40,11 @@ $(function () {
       if (!character || !character.ready) return;
       character.updateLevel(level);
     });
+  });
+
+  $(document).on('click', '.js-delete-character', function () {
+    $(this).closest('.js-character').remove();
+    checkCharacterLimit();
   });
 
   $(document).on('change', '.js-class-select', function () {
@@ -83,6 +91,6 @@ $(function () {
     $(this).parent().toggleClass('checked');
   });
 
-  // if localStorage doesn't exist
+  // TODO: if localStorage doesn't exist
   addCharacter();
 });
