@@ -13,6 +13,7 @@
 $(function () {
   const MAX_CHARACTERS = 5;
 
+  const $storagePrompt = $('.js-storage-prompt');
   const $template = $('.js-character-template .js-character');
   const $keyShards = $('.js-key-shards');
   const $mainContent = $('.js-main-content');
@@ -91,6 +92,17 @@ $(function () {
     $(this).parent().toggleClass('checked');
   });
 
-  // TODO: if localStorage doesn't exist
-  addCharacter();
+  if (localStorage.visseria) {
+    // load key_shards / G from storage
+    if (localStorage.visseria.characters) {
+      // load from storage
+    } else {
+      addCharacter();
+    }
+  } else {
+    $storagePrompt.removeClass('hidden').on('click', '.js-prompt-button', function () {
+      if ($(this).data('answer') === 'yes') localStorage.visseria = {};
+      $storagePrompt.remove();
+    });
+  }
 });

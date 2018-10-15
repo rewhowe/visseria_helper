@@ -25,6 +25,44 @@ input { padding-left: 0.5rem; }
 .col-11 { width: 91.66%; }
 .col-12 { width: 100%; }
 
+.storage-prompt-background {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 100;
+}
+.storage-prompt {
+  margin: 0 5%;
+  text-align: center;
+  padding: 1rem;
+  background: #FFF;
+}
+.prompt-buttons {
+  display: flex;
+  justify-content: space-around;
+  margin-top: 1rem;
+}
+.prompt-button {
+  width: 6rem;
+  padding: 0.3rem;
+  border: 0.1rem solid #99C;
+  border-radius: 1rem;
+  cursor: pointer;
+}
+.prompt-button.no {
+  color: #666;
+}
+.prompt-button.yes {
+  background: #99C;
+  color: #FFF;
+}
+
 .party-head, .character-ability {
   max-width: 640px;
   display: flex;
