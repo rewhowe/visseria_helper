@@ -12,6 +12,7 @@
 
 $(function () {
   const MAX_CHARACTERS = 5;
+  const SAVE_DELAY = 5000;
 
   const $storagePrompt = $('.js-storage-prompt');
   const $template = $('.js-character-template .js-character');
@@ -20,6 +21,7 @@ $(function () {
   const $addButton = $('.js-add-character');
 
   let storage = null;
+  let savePid = null;
 
   function addCharacter() {
     const $character = $template.clone();
@@ -31,16 +33,22 @@ $(function () {
     $mainContent.find('.js-character').length >= MAX_CHARACTERS ? $addButton.hide() : $addButton.show();
   }
 
+  function queueSave() {
+    console.log('queue save');
+    window.clearTimeout(savePid);
+    savePid = window.setTimeout(saveToStorage, SAVE_DELAY);
+  }
+
   function saveToStorage() {
-    // set timeout, save id
-    // if id, reset timeout
-    // on timeout, save + remove id
+    console.log('saving...');
   }
 
   $addButton.on('click', function () {
     addCharacter();
     checkCharacterLimit();
   });
+
+  $(document).on('change', queueSave);
 
   $keyShards.on('change', function () {
     const level = parseInt($(this).val()) || 0;
@@ -54,6 +62,7 @@ $(function () {
   $(document).on('click', '.js-delete-character', function () {
     $(this).closest('.js-character').remove();
     checkCharacterLimit();
+    queueSave();
   });
 
   $(document).on('change', '.js-class-select', function () {
