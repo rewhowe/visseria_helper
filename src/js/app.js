@@ -1,8 +1,8 @@
 // TODO: code
 // * make a storage prompt
 //   * "Save your data locally? (You can clear it by deleting all characters)"
+//     * "No, don't!"
 //     * "Sure"
-//     * "No"
 // * save to local storage
 // * convert , and . to - and +
 // * update with latest doc
