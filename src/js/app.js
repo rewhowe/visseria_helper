@@ -53,10 +53,6 @@ $(function () {
     const character = $character.data('character');
     character.changeClass($(this).val());
 
-    $character.find('.js-gear-select').val('-');
-    $character.find('.js-status-mod').val('');
-    $character.find('.js-gear-show-detail, .js-gear-detail').addClass('hidden');
-
     $keyShards.trigger('change');
   });
 

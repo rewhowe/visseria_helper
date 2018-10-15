@@ -8,13 +8,13 @@ class Character {
 
     this.$node.find('.js-class').append($CLASS_SELECT.clone());
 
-    this.class = null;
     this.character = null;
     this.level = 0;
     this.ready = false;
 
     this.$icon = this.$node.find('.js-icon');
     this.$title = this.$node.find('.js-title');
+    this.$debuffs = this.$node.find('.js-debuff input[type="checkbox"]');
 
     this.hp = {
       current: 0,
@@ -61,9 +61,13 @@ class Character {
     this.$icon.attr('src', 'placeholder');
     this.$title.html(this.character.title);
     this.gear = [];
+    this.$gear.find('.js-gear-select').val('-');
 
     this.$ultimate = this.$node.find('.js-ability-ultimate');
     this.setAbilities();
+
+    this.$node.find('.js-status-mod').val('');
+    this.$node.find('.js-gear-show-detail, .js-gear-detail').addClass('hidden');
 
     this.hp.current = this.character.hp;
     this.hp.base = this.character.hp;
@@ -171,7 +175,7 @@ class Character {
   updateGear(slot, gearKey) {
     const gear = getGear(gearKey);
 
-    const canWear = gear && (!gear.limit || this.character.class === gear.limit);
+    const canWear = gear && (!gear.limit_class || this.character.class === gear.limit_class);
     this.gear[slot] = canWear ? gear : undefined;
 
     this.mod('hp');
@@ -200,7 +204,55 @@ class Character {
     this.mod('dmg');
 
     // full heal
-    this.hp.current = this.hp.base + this.getLevelMod() + this.getStatusMod('hp');
+    this.hp.current = this.hp.base + this.getLevelMod('hp') + this.getStatusMod('hp');
     this.hp.$current.val(this.hp.current);
+  }
+
+  // serializer
+
+  toBundle() {
+    const bundle = {
+      debuffs: this.$debuffs.map((i, checkbox) => checkbox.checked).toArray(),
+      character_key: getCharacterKey(this.character),
+      level: this.level,
+      hp: {
+        current: this.hp.current,
+        mod: parseInt(this.hp.$mod.val() || 0)
+      },
+      dmg: { mod: parseInt(this.dmg.$mod.val() || 0) },
+      spec: { mod: parseInt(this.spec.$mod.val() || 0) },
+      recharge: {
+        current: this.recharge.current,
+        mod: parseInt(this.recharge.$mod.val() || 0)
+      },
+      gear: [],
+    };
+
+    for (let gear of this.gear) {
+      if (gear) bundle.gear.push(getGearKey(gear));
+    }
+
+    return bundle;
+  }
+
+  fromBundle(bundle) {
+    this.changeClass(bundle.character_key);
+    this.level = bundle.level;
+
+    for (let i in bundle.debuffs) {
+      if (bundle.debuffs[i]) $(this.$debuffs[i]).click();
+    }
+
+    for (let slot in bundle.gear) {
+      this.gear[slot] = getGear(bundle.gear[slot]);
+      $(this.$gear[slot]).find('.js-gear-select').val(bundle.gear[slot]);
+      this.updateGearEffect(this.gear[slot], $(this.$gear[slot]));
+    }
+
+    for (let status of ['hp', 'dmg', 'spec', 'recharge']) {
+      this[status].$mod.val(parseInt(bundle[status].mod) || 0);
+      if (['hp', 'recharge'].indexOf(status) !== -1) this[status].current = bundle[status].current;
+      this.mod(status);
+    }
   }
 };

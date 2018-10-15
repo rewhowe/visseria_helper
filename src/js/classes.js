@@ -347,3 +347,7 @@ function getCharacter(key) {
   character.specType = CLASSES[key[0]].spec_type;
   return character;
 }
+
+function getCharacterKey(character) {
+  return makeKey(character.class, character.name);
+}

@@ -124,7 +124,7 @@ const GEAR = {
       cost: 15,
       dmg: 0,
       hp: 5,
-      limit: 'guardian',
+      limit_class: 'guardian',
       effect: 'When the equipped User blocks an attack, deal DMG equal to the equipped User\'s DMG to the attacking enemy. Can only be equipped by Guardians',
       spec: 3,
       spec_type: 'soul',
@@ -133,7 +133,7 @@ const GEAR = {
       cost: 15,
       dmg: 2,
       hp: 3,
-      limit: 'spellweaver',
+      limit_class: 'spellweaver',
       effect: 'Equipped User can attack and use their abilities in the same turn. Can only be equipped by Spellweavers',
       spec: 3,
       spec_type: 'intelligence',
@@ -142,7 +142,7 @@ const GEAR = {
       cost: 15,
       dmg: 5,
       hp: 0,
-      limit: 'slayer',
+      limit_class: 'slayer',
       effect: 'Successful attacks on enemies heal equipped User by 2HP. Can only be equipped by Slayers',
       spec: 3,
       spec_type: 'courage',
@@ -151,7 +151,7 @@ const GEAR = {
       cost: 15,
       dmg: 1,
       hp: 4,
-      limit: 'enchanter',
+      limit_class: 'enchanter',
       effect: 'Equipped User is immune to debuffs. Can only be equipped by Enchanters', // TODO
       spec: 3,
       spec_type: 'aura',
@@ -160,7 +160,7 @@ const GEAR = {
       cost: 15,
       dmg: 3,
       hp: 2,
-      limit: 'trickster',
+      limit_class: 'trickster',
       effect: '+1 Item, +XG equal to dice roll, +1 consumable Item slot and +1 succession roll. Can only be equipped by Tricksters',
       spec: 3,
       spec_type: 'luck',
@@ -184,7 +184,7 @@ let $GEAR_SELECT = null;
       ];
       options[categoryName][gearName] = gearName
         + ' (' + stats.join('/') + ')'
-        + (gear.limit ? ' - ' + titleCase(gear.limit) + ' only' : '');
+        + (gear.limit_class ? ' - ' + titleCase(gear.limit_class) + ' only' : '');
     }
   }
 
@@ -195,5 +195,12 @@ function getGear(key) {
   key = key.split(KEY_DELIMITER);
   const category = GEAR[key[0]];
   if (!category) return;
-  return category[key[1]];
+  const gear = category[key[1]];
+  gear.category = key[0];
+  gear.name = key[1];
+  return gear;
+}
+
+function getGearKey(gear) {
+  return makeKey(gear.category, gear.name);
 }
