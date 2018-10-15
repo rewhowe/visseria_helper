@@ -19,6 +19,8 @@ $(function () {
   const $mainContent = $('.js-main-content');
   const $addButton = $('.js-add-character');
 
+  let storage = null;
+
   function addCharacter() {
     const $character = $template.clone();
     $character.data('character', new Character($character));
@@ -27,6 +29,12 @@ $(function () {
 
   function checkCharacterLimit() {
     $mainContent.find('.js-character').length >= MAX_CHARACTERS ? $addButton.hide() : $addButton.show();
+  }
+
+  function saveToStorage() {
+    // set timeout, save id
+    // if id, reset timeout
+    // on timeout, save + remove id
   }
 
   $addButton.on('click', function () {
@@ -84,20 +92,27 @@ $(function () {
     });
   }
 
-  $(document).on('click', 'input[type="checkbox"]', function () {
+  $(document).on('click', '.js-debuff input[type="checkbox"]', function () {
     $(this).parent().toggleClass('checked');
   });
 
   if (localStorage.visseria) {
+    try {
+      storage = JSON.parse(localStorage.visseria);
+    } catch {
+      storage = {};
+    }
+
     // load key_shards / G from storage
-    if (localStorage.visseria.characters) {
+
+    if (storage.characters) {
       // load from storage
     } else {
       addCharacter();
     }
   } else {
     $storagePrompt.removeClass('hidden').on('click', '.js-prompt-button', function () {
-      if ($(this).data('answer') === 'yes') localStorage.visseria = {};
+      if ($(this).data('answer') === 'yes') storage = {};
       $storagePrompt.remove();
     });
   }
