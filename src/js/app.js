@@ -6,7 +6,7 @@
 // * get icons?
 
 $(function () {
-  const APP_VERSION = 'v0.0.7';
+  const APP_VERSION = 'v0'; // not backwards compatible
   $('.js-version').html(APP_VERSION);
 
   const MAX_CHARACTERS = 5;
