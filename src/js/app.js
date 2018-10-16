@@ -6,9 +6,25 @@
 // * get icons?
 
 $(function () {
-  const APP_VERSION = 'v0.0.6';
+  const APP_VERSION = 'v0.0.7';
+  $('.js-version').html(APP_VERSION);
+
   const MAX_CHARACTERS = 5;
   const SAVE_DELAY = 5000;
+
+  const PROMPT = {
+    REQUEST: {
+      MESSAGE: 'Would you like to save your data locally?',
+      NO: 'No, don\'t!',
+      YES: 'Sure',
+    },
+    UPDATE: {
+      MESSAGE: 'Hey, we\'ve updated, so old data will be deleted. Sorry!<br>'
+        + 'Do you still want to save your data locally?',
+      NO: 'Nah',
+      YES: 'Yes please!',
+    },
+  };
 
   const $storagePrompt = $('.js-storage-prompt');
   const $template = $('.js-character-template .js-character');
@@ -31,13 +47,11 @@ $(function () {
   }
 
   function queueSave() {
-    console.log('queue save');
     window.clearTimeout(savePid);
     savePid = window.setTimeout(saveToStorage, SAVE_DELAY);
   }
 
   function saveToStorage() {
-    console.log('saving...');
     storage[APP_VERSION] = {
       key_shards: int($keyShards.val()),
       gold: int($gold.val()),
@@ -57,6 +71,14 @@ $(function () {
     addCharacter();
     checkCharacterLimit();
   });
+
+  $storagePrompt.on('click', '.js-prompt-button', function () {
+    if ($(this).data('answer') === 'yes') {
+      storage = {};
+      saveToStorage();
+    }
+    $storagePrompt.remove();
+  })
 
   $(document).on('change', queueSave);
 
@@ -116,20 +138,21 @@ $(function () {
   });
 
   if (localStorage.visseria) {
-    console.log('load from storage');
     try {
-      console.log(JSON.parse(localStorage.visseria));
       storage = JSON.parse(localStorage.visseria);
-      // TODO: if Object.keys(storage).length > 0 && !storage[APP_VERSION]
-      // "Visseria Helper has updated so old data will be deleted. Sorry!"
-      // replace prompt
+
+      if (Object.keys(storage).length > 0 && !storage[APP_VERSION]) {
+        $storagePrompt.find('.js-prompt-message').html(PROMPT.UPDATE.MESSAGE);
+        $storagePrompt.find('.js-prompt-button.no').html(PROMPT.UPDATE.NO);
+        $storagePrompt.find('.js-prompt-button.yes').html(PROMPT.UPDATE.YES);
+        $storagePrompt.removeClass('hidden');
+        throw 'App was updated to version: ' + APP_VERSION;
+      }
 
       $keyShards.val(storage[APP_VERSION].key_shards);
       $gold.val(storage[APP_VERSION].gold);
 
       if (storage[APP_VERSION].characters) {
-        console.log('load characters from storage');
-        console.log(storage[APP_VERSION].characters);
         for (let bundle of storage[APP_VERSION].characters) {
           addCharacter(bundle);
         }
@@ -139,10 +162,10 @@ $(function () {
       storage = {};
     }
   } else {
-    $storagePrompt.removeClass('hidden').on('click', '.js-prompt-button', function () {
-      if ($(this).data('answer') === 'yes') storage = {};
-      $storagePrompt.remove();
-    });
+    $storagePrompt.find('.js-prompt-message').html(PROMPT.REQUEST.MESSAGE);
+    $storagePrompt.find('.js-prompt-button.no').html(PROMPT.REQUEST.NO);
+    $storagePrompt.find('.js-prompt-button.yes').html(PROMPT.REQUEST.YES);
+    $storagePrompt.removeClass('hidden');
   }
 
   if ($mainContent.find('.js-character').length === 0) {
