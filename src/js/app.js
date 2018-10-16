@@ -1,6 +1,7 @@
 // TODO: code
 // * save to local storage
 // * load from local storage
+// * add versioning to storage
 // * convert , and . to - and +
 // * update with latest doc
 //
@@ -48,7 +49,7 @@ $(function () {
   $(document).on('change', queueSave);
 
   $keyShards.on('change', function () {
-    const level = parseInt($(this).val()) || 0;
+    const level = int($(this).val());
     $('.js-character').each(function (i, el) {
       const character = $(el).data('character');
       if (!character || !character.ready) return;

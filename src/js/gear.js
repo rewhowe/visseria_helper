@@ -110,13 +110,13 @@ const GEAR = {
       cost: 5,
       dmg: 2,
       hp: 2,
-      effect: 'Item is treated as 5G', // TODO
+      effect: 'Item is treated as 5G',
     },
     absorbing_spirit: {
       cost: 5,
       dmg: 2,
       hp: 2,
-      effect: 'Equipped User\'s Ultimate recharge rate is 2', // TODO
+      effect: 'Equipped User\'s Ultimate recharge rate is 2',
     },
   },
   legendary_gear: {

@@ -133,7 +133,7 @@ class Character {
   }
 
   getStatusMod(status) {
-    return (parseInt(this[status].$mod.val()) || 0)
+    return int(this[status].$mod.val())
       + this.getGearMod(status)
       + this.getCharacterMod(status);
   }
@@ -154,7 +154,7 @@ class Character {
     switch (this.character.name) {
       case 'zuciel':
         this.$gold = this.$gold || $('.js-gold');
-        const gold = parseInt(this.$gold.val()) || 0;
+        const gold = int(this.$gold.val());
         return status == 'dmg' ? gold - this.getGearMod(status) : 0;
       case 'psykoshka':
         if (status !== 'dmg') return 0;
@@ -165,7 +165,7 @@ class Character {
   }
 
   updateCurrent(status) {
-    const currentValue = parseInt(this[status].$current.val()) || 0;
+    const currentValue = int(this[status].$current.val());
     this[status].current = currentValue - this.getStatusMod(status);
 
     // tickle
@@ -217,13 +217,13 @@ class Character {
       level: this.level,
       hp: {
         current: this.hp.current,
-        mod: parseInt(this.hp.$mod.val() || 0)
+        mod: int(this.hp.$mod.val())
       },
-      dmg: { mod: parseInt(this.dmg.$mod.val() || 0) },
-      spec: { mod: parseInt(this.spec.$mod.val() || 0) },
+      dmg: { mod: int(this.dmg.$mod.val()) },
+      spec: { mod: int(this.spec.$mod.val()) },
       recharge: {
         current: this.recharge.current,
-        mod: parseInt(this.recharge.$mod.val() || 0)
+        mod: int(this.recharge.$mod.val())
       },
       gear: [],
     };
@@ -250,7 +250,7 @@ class Character {
     }
 
     for (let status of ['hp', 'dmg', 'spec', 'recharge']) {
-      this[status].$mod.val(parseInt(bundle[status].mod) || 0);
+      this[status].$mod.val(int(bundle[status].mod));
       if (['hp', 'recharge'].indexOf(status) !== -1) this[status].current = bundle[status].current;
       this.mod(status);
     }
