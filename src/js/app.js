@@ -1,7 +1,4 @@
 // TODO: code
-// * save to local storage
-// * load from local storage
-// * add versioning to storage
 // * convert , and . to - and +
 // * update with latest doc
 //

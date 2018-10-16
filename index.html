@@ -5,11 +5,11 @@
     <link rel="preload"
           as="style"
           onload="this.rel='stylesheet'"
-          href="./src/css/reset.css?v=20181014181912"/>
+          href="./src/css/reset.css?v=20181016215613"/>
     <link rel="preload"
           as="style"
           onload="this.rel='stylesheet'"
-          href="./src/css/app.css?v=20181014181912"/>
+          href="./src/css/app.css?v=20181016215613"/>
   </head>
   <body>
     <div class="js-character-template" style="display:none;">
@@ -79,7 +79,7 @@
 
           <hr>
 
-          <div>Gear</div>
+          <div class="character-section">Gear</div>
           <div class="character-gear js-gear">
             <div class="character-gear-show-detail">
               <i class="detail-button js-gear-show-detail">？</i>
@@ -107,26 +107,26 @@
 
           <hr>
 
-          <div>Abilities</div>
+          <div class="character-section">Abilities</div>
+          <div class="character-ability-head">Passive:</div>
           <div class="character-ability js-ability-passive">
-            <div class="character-ability-head col-3" >Passive:</div>
-            <div class="character-ability-name col-7 js-ability-name"></div>
+            <div class="character-ability-name col-10 js-ability-name"></div>
             <div class="character-ability-show-detail col-2">
               <i class="detail-button js-ability-show-detail">？</i>
             </div>
             <div class="js-ability-detail hidden"></div>
           </div>
+          <div class="character-ability-head">Active:</div>
           <div class="character-ability js-ability-active">
-            <div class="character-ability-head col-3" >Active:</div>
-            <div class="character-ability-name col-7 js-ability-name"></div>
+            <div class="character-ability-name col-10 js-ability-name"></div>
             <div class="character-ability-show-detail col-2">
               <i class="detail-button js-ability-show-detail">？</i>
             </div>
             <div class="js-ability-detail hidden"></div>
           </div>
+          <div class="character-ability-head">Ultimate:</div>
           <div class="character-ability js-ability-ultimate">
-            <div class="character-ability-head col-3" >Ultimate:</div>
-            <div class="character-ability-name col-7 js-ability-name"></div>
+            <div class="character-ability-name col-10 js-ability-name"></div>
             <div class="character-ability-show-detail col-2">
               <i class="detail-button js-ability-show-detail">？</i>
             </div>
@@ -164,10 +164,10 @@
 
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   <!-- TODO: make async & minify into one js file instead to prevent synchronisation problems -->
-  <script type="text/javascript" src="./src/js/util.js?v=20181014181912"></script>
-  <script type="text/javascript" src="./src/js/select.js?v=20181014181912"></script>
-  <script type="text/javascript" src="./src/js/classes.js?v=20181014181912"></script>
-  <script type="text/javascript" src="./src/js/gear.js?v=20181014181912"></script>
-  <script type="text/javascript" src="./src/js/character.js?v=20181014181912"></script>
-  <script type="text/javascript" src="./src/js/app.js?v=20181014181912"></script>
+  <script type="text/javascript" src="./src/js/util.js?v=20181016215613"></script>
+  <script type="text/javascript" src="./src/js/select.js?v=20181016215613"></script>
+  <script type="text/javascript" src="./src/js/classes.js?v=20181016215613"></script>
+  <script type="text/javascript" src="./src/js/gear.js?v=20181016215613"></script>
+  <script type="text/javascript" src="./src/js/character.js?v=20181016215613"></script>
+  <script type="text/javascript" src="./src/js/app.js?v=20181016215613"></script>
 </html>

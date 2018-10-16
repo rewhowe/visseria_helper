@@ -67,6 +67,7 @@ input { padding-left: 0.5rem; }
   max-width: 640px;
   display: flex;
   flex-wrap: wrap;
+  align-items: center;
 }
 .party-head input,
 .character-status-value input,
@@ -159,8 +160,11 @@ input { padding-left: 0.5rem; }
 .character-status-mod { vertical-align: bottom; }
 .character-status-mod input { float: right; }
 
-.character-gear,
-.character-ability {
+.character-section {
+  text-align: center;
+}
+
+.character-gear {
   display: flex;
   flex-wrap: wrap;
   margin: 0.5rem 0;
@@ -172,22 +176,24 @@ input { padding-left: 0.5rem; }
 }
 .character-gear-show-detail {
   width: 15%;
-  display: flex;
-  align-items: center;
-}
-.character-gear-show-detail .detail-button {
-  margin: auto;
+  display: block;
+  text-align: right;
 }
 
+.character-ability-head {
+  color: #666;
+  font-size: 0.9rem;
+  padding-top: 0.5rem;
+}
 .character-ability-name {
   box-sizing: border-box;
-  border: 0.1rem solid #99C;
   border-radius: 1rem;
-  padding: 0.5rem;
-  text-align: center;
+  padding-left: 0.5rem;
+  font-size: 1.1rem;
+  font-weight: bold;
 }
 .character-ability-show-detail {
-  text-align: center;
+  text-align: right;
 }
 .character-ability.charged .character-ability-name {
   color: #C00;
@@ -234,14 +240,14 @@ input { padding-left: 0.5rem; }
 }
 
 @-webkit-keyframes ChargePulse {
-  0%, 100% { background-color: #FFF; }
-  50% { background-color: rgba(255, 240, 0, 0.5); }
+  0%, 100% { color: #C30; }
+  50% { color: #FC0; }
 };
 @-moz-keyframes ChargePulse {
-  0%, 100% { background-color: #FFF; }
-  50% { background-color: rgba(255, 240, 0, 0.5); }
+  0%, 100% { color: #C30; }
+  50% { color: #FC0; }
 };
 @keyframes ChargePulse {
-  0%, 100% { background-color: #FFF; }
-  50% { background-color: rgba(255, 240, 0, 0.5); }
+  0%, 100% { color: #C30; }
+  50% { color: #FC0; }
 };
