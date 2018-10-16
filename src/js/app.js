@@ -9,21 +9,23 @@
 // * get icons?
 
 $(function () {
+  const APP_VERSION = 'v0.0.6';
   const MAX_CHARACTERS = 5;
   const SAVE_DELAY = 5000;
 
   const $storagePrompt = $('.js-storage-prompt');
   const $template = $('.js-character-template .js-character');
   const $keyShards = $('.js-key-shards');
+  const $gold = $('.js-gold');
   const $mainContent = $('.js-main-content');
   const $addButton = $('.js-add-character');
 
   let storage = null;
   let savePid = null;
 
-  function addCharacter() {
+  function addCharacter(bundle = null) {
     const $character = $template.clone();
-    $character.data('character', new Character($character));
+    $character.data('character', new Character($character, bundle));
     $character.insertBefore($addButton.parent());
   }
 
@@ -39,6 +41,19 @@ $(function () {
 
   function saveToStorage() {
     console.log('saving...');
+    storage[APP_VERSION] = {
+      key_shards: int($keyShards.val()),
+      gold: int($gold.val()),
+      characters: [],
+    };
+
+    $mainContent.find('.js-character').each(function (i, characterSheet) {
+      const character = $(characterSheet).data('character');
+      if (!character.ready) return;
+      storage[APP_VERSION].characters.push(character.toBundle());
+    });
+
+    localStorage.visseria = JSON.stringify(storage);
   }
 
   $addButton.on('click', function () {
@@ -104,23 +119,36 @@ $(function () {
   });
 
   if (localStorage.visseria) {
+    console.log('load from storage');
     try {
+      console.log(JSON.parse(localStorage.visseria));
       storage = JSON.parse(localStorage.visseria);
-    } catch {
+      // TODO: if Object.keys(storage).length > 0 && !storage[APP_VERSION]
+      // "Visseria Helper has updated so old data will be deleted. Sorry!"
+      // replace prompt
+
+      $keyShards.val(storage[APP_VERSION].key_shards);
+      $gold.val(storage[APP_VERSION].gold);
+
+      if (storage[APP_VERSION].characters) {
+        console.log('load characters from storage');
+        console.log(storage[APP_VERSION].characters);
+        for (let bundle of storage[APP_VERSION].characters) {
+          addCharacter(bundle);
+        }
+      }
+    } catch (e) {
+      console.error("An error occurred while loading from storage:\n" + e);
       storage = {};
-    }
-
-    // load key_shards / G from storage
-
-    if (storage.characters) {
-      // load from storage
-    } else {
-      addCharacter();
     }
   } else {
     $storagePrompt.removeClass('hidden').on('click', '.js-prompt-button', function () {
       if ($(this).data('answer') === 'yes') storage = {};
       $storagePrompt.remove();
     });
+  }
+
+  if ($mainContent.find('.js-character').length === 0) {
+    addCharacter();
   }
 });

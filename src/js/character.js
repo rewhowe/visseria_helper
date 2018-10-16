@@ -3,10 +3,11 @@ class Character {
   static get MAX_LEVEL() { return 3; }
   static get LEVEL_BONUS() { return 2; }
 
-  constructor($node) {
+  constructor($node, bundle = null) {
     this.$node = $node;
 
-    this.$node.find('.js-class').append($CLASS_SELECT.clone());
+    this.$class = $CLASS_SELECT.clone();
+    this.$node.find('.js-class').append(this.$class);
 
     this.character = null;
     this.level = 0;
@@ -52,6 +53,9 @@ class Character {
     this.gear = [];
     this.$gear = this.$node.find('.js-gear');
     this.$gear.each((i, gear) => $(gear).prepend($GEAR_SELECT.clone().data('slot', i)));
+
+    if (!bundle) return;
+    this.fromBundle(bundle);
   }
 
   changeClass(characterKey) {
@@ -237,11 +241,8 @@ class Character {
 
   fromBundle(bundle) {
     this.changeClass(bundle.character_key);
+    this.$class.val(bundle.character_key);
     this.level = bundle.level;
-
-    for (let i in bundle.debuffs) {
-      if (bundle.debuffs[i]) $(this.$debuffs[i]).click();
-    }
 
     for (let slot in bundle.gear) {
       this.gear[slot] = getGear(bundle.gear[slot]);
@@ -253,6 +254,11 @@ class Character {
       this[status].$mod.val(int(bundle[status].mod));
       if (['hp', 'recharge'].indexOf(status) !== -1) this[status].current = bundle[status].current;
       this.mod(status);
+    }
+
+    for (let i in bundle.debuffs) {
+      if (!bundle.debuffs[i]) continue;
+      $(this.$debuffs[i]).prop('checked', true).parent().toggleClass('checked');
     }
   }
 };
