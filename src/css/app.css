@@ -226,13 +226,11 @@ input { padding-left: 0.5rem; }
 }
 
 @media only screen and (min-width: 640px) {
-  .character-sheet {
-    width: 640px;
-  }
+  .character-sheet { width: 640px; }
 
-  .add-character {
-    width: 640px;
-  }
+  .add-character { width: 640px; }
+
+  .storage-prompt { max-width: 480px; }
 }
 
 @-webkit-keyframes ChargePulse {
