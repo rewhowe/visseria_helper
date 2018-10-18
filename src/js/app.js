@@ -1,5 +1,4 @@
 // TODO: code
-// * convert , and . to - and +
 // * update with latest doc
 //
 // TODO: basic styles
