@@ -230,6 +230,12 @@ input { padding-left: 0.5rem; }
   background: #CCC;
 }
 
+.up-button,
+.down-button {
+  position: absolute;
+  font-size: 1.1rem;
+}
+
 .hidden {
   display: none;
 }
