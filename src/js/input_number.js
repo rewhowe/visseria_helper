@@ -32,5 +32,11 @@ $(function () {
     e.preventDefault();
   });
 
-  // TODO: respect min/max?
+  // respect min / max
+  $(document).on('change', 'input[type="number"]', function () {
+    let value = int($(this).val());
+    if (this.max) value = Math.min(this.max, value);
+    if (this.min) value = Math.max(this.min, value);
+    $(this).val(value);
+  });
 });
