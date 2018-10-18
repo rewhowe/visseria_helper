@@ -147,9 +147,6 @@ input { padding-left: 0.5rem; }
 .character-status-value {
   padding-left: 0.5rem;
 }
-.character-status-name.recharge {
-  font-size: 0.8rem;
-}
 .character-status-detail {
   color: transparent;
   font-size: 0.8rem;
@@ -241,12 +238,10 @@ input { padding-left: 0.5rem; }
   border-radius: 50%;
   background: #FFF;
   padding: 0.1rem;
-}
-.up-button {
   line-height: 1rem;
-  color: #F66;
 }
-.down-button { color: #66F; }
+.up-button { color: #C66; }
+.down-button { color: #66C; }
 
 .hidden {
   display: none;

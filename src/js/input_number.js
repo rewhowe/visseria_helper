@@ -1,4 +1,7 @@
 $(function () {
+  // don't show on pc
+  if (window.matchMedia('only screen and (min-width: 640px)').matches) return;
+
   const $upButton = $('.js-up-button');
   const $downButton = $('.js-down-button');
 
@@ -22,13 +25,13 @@ $(function () {
 
   $upButton.on('mousedown', function (e) {
     const $focusedInput = $('input[type="number"]:focus');
-    $focusedInput.val(int($focusedInput.val()) + 1);
+    $focusedInput.val(int($focusedInput.val()) + 1).trigger('change');
     e.preventDefault();
   });
 
   $downButton.on('mousedown', function (e) {
     const $focusedInput = $('input[type="number"]:focus');
-    $focusedInput.val(int($focusedInput.val()) - 1);
+    $focusedInput.val(int($focusedInput.val()) - 1).trigger('change');
     e.preventDefault();
   });
 
