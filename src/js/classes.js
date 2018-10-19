@@ -1,4 +1,8 @@
-const CLASSES = {
+// @require Select
+
+const Classes = {};
+
+Classes.CLASSES = {
   guardian: {
     spec_type: 'soul',
     characters: {
@@ -326,28 +330,28 @@ const CLASSES = {
   },
 };
 
-let $CLASS_SELECT = null;
-{
+Classes.getCharacter = function (key) {
+  key = key.split(Select.KEY_DELIMITER);
+  const character = Classes.CLASSES[key[0]].characters[key[1]];
+  character.class = key[0];
+  character.name = key[1];
+  character.specType = Classes.CLASSES[key[0]].spec_type;
+  return character;
+}
+
+Classes.getCharacterKey = function (character) {
+  return Select.makeKey(character.class, character.name);
+}
+
+Classes.$CLASS_SELECT = (function () {
   const options = {};
-  for (let className in CLASSES) {
+
+  for (let className in Classes.CLASSES) {
     options[className] = {};
-    for (let character in CLASSES[className].characters) {
+    for (let character in Classes.CLASSES[className].characters) {
       options[className][character] = character;
     }
   }
 
-  $CLASS_SELECT = makeSelect(options, 'js-class-select');
-}
-
-function getCharacter(key) {
-  key = key.split(KEY_DELIMITER);
-  const character = CLASSES[key[0]].characters[key[1]];
-  character.class = key[0];
-  character.name = key[1];
-  character.specType = CLASSES[key[0]].spec_type;
-  return character;
-}
-
-function getCharacterKey(character) {
-  return makeKey(character.class, character.name);
-}
+  return Select.makeSelect(options, 'js-class-select');
+})();

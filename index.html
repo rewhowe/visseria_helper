@@ -2,14 +2,11 @@
   <head>
     <title>Visseria Helper</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="preload" as="style" onload="this.rel='stylesheet'" href="./public/css/lib/reset.css"/>
     <link rel="preload"
           as="style"
           onload="this.rel='stylesheet'"
-          href="./src/css/reset.css?v=201810181812"/>
-    <link rel="preload"
-          as="style"
-          onload="this.rel='stylesheet'"
-          href="./src/css/app.css?v=201810181812"/>
+          href="./public/css/visseria.min.css?v=201810181812"/>
   </head>
   <body>
     <div class="js-character-template" style="display:none;">
@@ -167,12 +164,5 @@
   </body>
 
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-  <!-- TODO: make async & minify into one js file instead to prevent synchronisation problems -->
-  <script type="text/javascript" src="./src/js/util.js?v=201810181812"></script>
-  <script type="text/javascript" src="./src/js/select.js?v=201810181812"></script>
-  <script type="text/javascript" src="./src/js/classes.js?v=201810181812"></script>
-  <script type="text/javascript" src="./src/js/gear.js?v=201810181812"></script>
-  <script type="text/javascript" src="./src/js/character.js?v=201810181812"></script>
-  <script type="text/javascript" src="./src/js/app.js?v=201810181812"></script>
-  <script type="text/javascript" src="./src/js/input_number.js?v=201810181812"></script>
+  <script async type="text/javascript" src="./public/js/visseria.min.js?v=201810181812"></script>
 </html>
