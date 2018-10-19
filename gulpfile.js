@@ -2,10 +2,11 @@ const gulp = require('gulp');
 const concat = require('gulp-concat');
 const rename = require('gulp-rename');
 const uglify = require('gulp-uglify-es').default;
+const uglifycss = require('gulp-uglifycss');
 
 const JS_SRC_DIR = 'src/js/';
 const JS_OUTPUT_DIR = 'public/js/';
-const JS_OUTPUT_FILE = 'visseria.min.js';
+const JS_OUTPUT_FILE = 'visseria';
 
 gulp.task('js', function () {
   return gulp.src([
@@ -17,8 +18,22 @@ gulp.task('js', function () {
       JS_SRC_DIR + 'character.js',
       JS_SRC_DIR + 'app.js',
   ])
-  .pipe(concat('visseria.js'))
-  .pipe(rename(JS_OUTPUT_FILE))
+  .pipe(concat(JS_OUTPUT_FILE + '.js'))
+  .pipe(rename(JS_OUTPUT_FILE + '.min.js'))
   .pipe(uglify())
   .pipe(gulp.dest(JS_OUTPUT_DIR));
+});
+
+const CSS_SRC_DIR = 'src/css/';
+const CSS_OUTPUT_DIR = 'public/css/';
+const CSS_OUTPUT_FILE = 'visseria';
+
+gulp.task('css', function () {
+  return gulp.src([
+      CSS_SRC_DIR + 'app.css',
+  ])
+  .pipe(concat(CSS_OUTPUT_FILE + '.css'))
+  .pipe(rename(CSS_OUTPUT_FILE + '.min.css'))
+  .pipe(uglifycss())
+  .pipe(gulp.dest(CSS_OUTPUT_DIR));
 });
