@@ -1,3 +1,5 @@
+// @require Character
+
 // TODO: code
 // * update with latest doc
 //
