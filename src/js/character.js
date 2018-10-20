@@ -1,3 +1,5 @@
+// @require Classes, Gear
+
 class Character {
 
   static get MAX_LEVEL() { return 3; }
@@ -6,7 +8,7 @@ class Character {
   constructor($node, bundle = null) {
     this.$node = $node;
 
-    this.$class = $CLASS_SELECT.clone();
+    this.$class = Classes.$CLASS_SELECT.clone();
     this.$node.find('.js-class').append(this.$class);
 
     this.character = null;
@@ -50,9 +52,11 @@ class Character {
       $mod: this.$node.find('.js-recharge-mod'),
     };
 
+    this.$ultimate = this.$node.find('.js-ability-ultimate');
+
     this.gear = [];
     this.$gear = this.$node.find('.js-gear');
-    this.$gear.each((i, gear) => $(gear).prepend($GEAR_SELECT.clone().data('slot', i)));
+    this.$gear.each((i, gear) => $(gear).prepend(Gear.$GEAR_SELECT.clone().data('slot', i)));
 
     if (!bundle) return;
     this.fromBundle(bundle);
@@ -60,18 +64,19 @@ class Character {
 
   changeClass(characterKey) {
     this.ready = true;
-    this.character = getCharacter(characterKey);
+    this.character = Classes.getCharacter(characterKey);
 
     this.$icon.attr('src', 'placeholder');
     this.$title.html(this.character.title);
     this.gear = [];
     this.$gear.find('.js-gear-select').val('-');
-
-    this.$ultimate = this.$node.find('.js-ability-ultimate');
     this.setAbilities();
 
     this.$node.find('.js-status-mod').val('');
-    this.$node.find('.js-gear-show-detail, .js-gear-detail').addClass('hidden');
+    this.$node.find('.js-gear-show-detail, .js-gear-detail').addClass('hidden').removeClass('pressed');
+    for (let debuff of this.$debuffs) {
+      $(debuff).prop('checked', false).parent().removeClass('checked');
+    }
 
     this.hp.current = this.character.hp;
     this.hp.base = this.character.hp;
@@ -114,10 +119,12 @@ class Character {
       this[status].current = Math.min(this[status].current, moddedValue);
       this[status].$current.val(this[status].current);
 
-      if (status === 'recharge' && this.recharge.current === moddedValue) {
-        this.$ultimate.addClass('charged');
-      } else {
-        this.$ultimate.removeClass('charged');
+      if (status === 'recharge') {
+        if (this.recharge.current === moddedValue) {
+          this.$ultimate.addClass('charged');
+        } else {
+          this.$ultimate.removeClass('charged');
+        }
       }
     }
   }
@@ -177,7 +184,7 @@ class Character {
   }
 
   updateGear(slot, gearKey) {
-    const gear = getGear(gearKey);
+    const gear = Gear.getGear(gearKey);
 
     const canWear = gear && (!gear.limit_class || this.character.class === gear.limit_class);
     this.gear[slot] = canWear ? gear : undefined;
@@ -217,7 +224,7 @@ class Character {
   toBundle() {
     const bundle = {
       debuffs: this.$debuffs.map((i, checkbox) => checkbox.checked).toArray(),
-      character_key: getCharacterKey(this.character),
+      character_key: Classes.getCharacterKey(this.character),
       level: this.level,
       hp: {
         current: this.hp.current,
@@ -233,7 +240,7 @@ class Character {
     };
 
     for (let gear of this.gear) {
-      if (gear) bundle.gear.push(getGearKey(gear));
+      if (gear) bundle.gear.push(Gear.getGearKey(gear));
     }
 
     return bundle;
@@ -245,7 +252,7 @@ class Character {
     this.level = bundle.level;
 
     for (let slot in bundle.gear) {
-      this.gear[slot] = getGear(bundle.gear[slot]);
+      this.gear[slot] = Gear.getGear(bundle.gear[slot]);
       $(this.$gear[slot]).find('.js-gear-select').val(bundle.gear[slot]);
       this.updateGearEffect(this.gear[slot], $(this.$gear[slot]));
     }

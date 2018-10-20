@@ -1,4 +1,8 @@
-const GEAR = {
+// @require Select
+
+const Gear = {};
+
+Gear.GEAR = {
   basic_gear: {
     angel_feather: {
       cost: 3,
@@ -168,15 +172,28 @@ const GEAR = {
   },
 };
 
-let $GEAR_SELECT = null;
+Gear.getGear = function (key) {
+  key = key.split(Select.KEY_DELIMITER);
+  const category = Gear.GEAR[key[0]];
+  if (!category) return;
+  const gear = category[key[1]];
+  gear.category = key[0];
+  gear.name = key[1];
+  return gear;
+}
 
-{
+Gear.getGearKey = function (gear) {
+  return Select.makeKey(gear.category, gear.name);
+}
+
+Gear.$GEAR_SELECT = (function () {
   const options = {};
-  for (let categoryName in GEAR) {
+
+  for (let categoryName in Gear.GEAR) {
     options[categoryName] = {};
 
-    for (let gearName in GEAR[categoryName]) {
-      const gear = GEAR[categoryName][gearName];
+    for (let gearName in Gear.GEAR[categoryName]) {
+      const gear = Gear.GEAR[categoryName][gearName];
       const stats = [
         gear.dmg || 0,
         gear.hp || 0,
@@ -188,19 +205,5 @@ let $GEAR_SELECT = null;
     }
   }
 
-  $GEAR_SELECT = makeSelect(options, 'js-gear-select', false);
-}
-
-function getGear(key) {
-  key = key.split(KEY_DELIMITER);
-  const category = GEAR[key[0]];
-  if (!category) return;
-  const gear = category[key[1]];
-  gear.category = key[0];
-  gear.name = key[1];
-  return gear;
-}
-
-function getGearKey(gear) {
-  return makeKey(gear.category, gear.name);
-}
+  return Select.makeSelect(options, 'js-gear-select', false);
+})();
