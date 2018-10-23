@@ -1,0 +1,53 @@
+ /* guardian */
+.guardian.character-sheet {
+  background: #EDF3EB; /* 237 243 235 */
+  border: 0.1rem solid #282;
+}
+.character-icon img { border-color: #CCC; }
+.character-debuff .debuff {
+  border-color: #CCC;
+  color: #CCC;
+}
+.character-debuff .debuff:first-of-type { border-left-color: #CCC; }
+.character-debuff .debuff:last-child { border-right-color: #CCC; }
+.detail-button {
+  border-color: #CCC;
+  color: #CCC;
+}
+.detail-button.pressed { background: #CCC; }
+
+/**/
+.spellweaver.character-sheet {
+  background: #EEF3F8; /* 238 243 248 */
+  border: 0.1rem solid #48B;
+}
+
+.slayer.character-sheet {
+  background: #FAEBEC; /* 250 235 236 */
+  border: 0.1rem solid #D13;
+}
+
+.enchanter.character-sheet {
+  background: #F8EBF3; /* 248 235 243 */
+  border: 0.1rem solid #C18;
+}
+
+.trickster.character-sheet {
+  background: #FBF7ED; /* 251 247 237 */
+  border: 0.1rem solid #DA2
+}
+
+
+
+.character-icon img { border-color: #CCC; }
+.character-debuff .debuff {
+  border-color: #CCC;
+  color: #CCC;
+}
+.character-debuff .debuff:first-of-type { border-left-color: #CCC; }
+.character-debuff .debuff:last-child { border-right-color: #CCC; }
+.detail-button {
+  border-color: #CCC;
+  color: #CCC;
+}
+.detail-button.pressed { background: #CCC; }

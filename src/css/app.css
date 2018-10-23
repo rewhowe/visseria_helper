@@ -99,9 +99,9 @@ input { padding-left: 0.5rem; }
   padding: 0.2rem 0;
 }
 .character-icon img {
-  width: 100px;
-  height: 100px;
-  border: 1px solid #CCC;
+  width: 128px;
+  height: 128px;
+  border: 0.1rem solid #CCC;
 }
 
 .character-class select {
