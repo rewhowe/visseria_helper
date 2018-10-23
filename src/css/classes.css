@@ -98,3 +98,9 @@
 .slayer .character-debuff .debuff.checked,
 .enchanter .character-debuff .debuff.checked,
 .trickster .character-debuff .debuff.checked { color: #FFF; }
+
+.guardian.character-sheet .detail-button.pressed,
+.spellweaver.character-sheet .detail-button.pressed,
+.slayer.character-sheet .detail-button.pressed,
+.enchanter.character-sheet .detail-button.pressed,
+.trickster.character-sheet .detail-button.pressed { color: #FFF; }
