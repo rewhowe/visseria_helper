@@ -4,7 +4,8 @@ body {
   font-family: system-ui;
 }
 
-select, input {
+select,
+input {
   background: #FFF;
   border: 0.1rem solid #CCC;
 }
@@ -264,12 +265,12 @@ input { padding-left: 0.5rem; }
 @-webkit-keyframes ChargePulse {
   0%, 100% { color: #C30; }
   50% { color: #FC0; }
-};
+}
 @-moz-keyframes ChargePulse {
   0%, 100% { color: #C30; }
   50% { color: #FC0; }
-};
+}
 @keyframes ChargePulse {
   0%, 100% { color: #C30; }
   50% { color: #FC0; }
-};
+}

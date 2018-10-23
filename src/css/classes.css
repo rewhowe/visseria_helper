@@ -1,53 +1,100 @@
- /* guardian */
 .guardian.character-sheet {
-  background: #EDF3EB; /* 237 243 235 */
-  border: 0.1rem solid #282;
+  background: #EDF3EB;
+  border-color: #282;
 }
-.character-icon img { border-color: #CCC; }
-.character-debuff .debuff {
-  border-color: #CCC;
-  color: #CCC;
+.guardian.character-sheet select,
+.guardian.character-sheet input { border-color: #282; }
+.guardian.character-sheet .character-icon img { border-color: #282; }
+.guardian.character-sheet .character-debuff .debuff {
+  border-color: #282;
+  color: #282;
 }
-.character-debuff .debuff:first-of-type { border-left-color: #CCC; }
-.character-debuff .debuff:last-child { border-right-color: #CCC; }
-.detail-button {
-  border-color: #CCC;
-  color: #CCC;
+.guardian.character-sheet .character-debuff .debuff:first-of-type { border-left-color: #282; }
+.guardian.character-sheet .character-debuff .debuff:last-child { border-right-color: #282; }
+.guardian.character-sheet .detail-button {
+  border-color: #282;
+  color: #282;
 }
-.detail-button.pressed { background: #CCC; }
+.guardian.character-sheet .detail-button.pressed { background: #282; }
 
-/**/
 .spellweaver.character-sheet {
-  background: #EEF3F8; /* 238 243 248 */
-  border: 0.1rem solid #48B;
+  background: #EEF3F8;
+  border-color: #48B;
 }
+.spellweaver.character-sheet select,
+.spellweaver.character-sheet input { border-color: #48B; }
+.spellweaver.character-sheet .character-icon img { border-color: #48B; }
+.spellweaver.character-sheet .character-debuff .debuff {
+  border-color: #48B;
+  color: #48B;
+}
+.spellweaver.character-sheet .character-debuff .debuff:first-of-type { border-left-color: #48B; }
+.spellweaver.character-sheet .character-debuff .debuff:last-child { border-right-color: #48B; }
+.spellweaver.character-sheet .detail-button {
+  border-color: #48B;
+  color: #48B;
+}
+.spellweaver.character-sheet .detail-button.pressed { background: #48B; }
 
 .slayer.character-sheet {
-  background: #FAEBEC; /* 250 235 236 */
+  background: #FAEBEC;
   border: 0.1rem solid #D13;
 }
+.slayer.character-sheet select,
+.slayer.character-sheet input { border-color: #D13; }
+.slayer.character-sheet .character-icon img { border-color: #D13; }
+.slayer.character-sheet .character-debuff .debuff {
+  border-color: #D13;
+  color: #D13;
+}
+.slayer.character-sheet .character-debuff .debuff:first-of-type { border-left-color: #D13; }
+.slayer.character-sheet .character-debuff .debuff:last-child { border-right-color: #D13; }
+.slayer.character-sheet .detail-button {
+  border-color: #D13;
+  color: #D13;
+}
+.slayer.character-sheet .detail-button.pressed { background: #D13; }
 
 .enchanter.character-sheet {
-  background: #F8EBF3; /* 248 235 243 */
+  background: #F8EBF3;
   border: 0.1rem solid #C18;
 }
+.enchanter.character-sheet select,
+.enchanter.character-sheet input { border-color: #C18; }
+.enchanter.character-sheet .character-icon img { border-color: #C18; }
+.enchanter.character-sheet .character-debuff .debuff {
+  border-color: #C18;
+  color: #C18;
+}
+.enchanter.character-sheet .character-debuff .debuff:first-of-type { border-left-color: #C18; }
+.enchanter.character-sheet .character-debuff .debuff:last-child { border-right-color: #C18; }
+.enchanter.character-sheet .detail-button {
+  border-color: #C18;
+  color: #C18;
+}
+.enchanter.character-sheet .detail-button.pressed { background: #C18; }
 
 .trickster.character-sheet {
-  background: #FBF7ED; /* 251 247 237 */
+  background: #FBF7ED;
   border: 0.1rem solid #DA2
 }
-
-
-
-.character-icon img { border-color: #CCC; }
-.character-debuff .debuff {
-  border-color: #CCC;
-  color: #CCC;
+.trickster.character-sheet select,
+.trickster.character-sheet input { border-color: #DA2; }
+.trickster.character-sheet .character-icon img { border-color: #DA2; }
+.trickster.character-sheet .character-debuff .debuff {
+  border-color: #DA2;
+  color: #DA2;
 }
-.character-debuff .debuff:first-of-type { border-left-color: #CCC; }
-.character-debuff .debuff:last-child { border-right-color: #CCC; }
-.detail-button {
-  border-color: #CCC;
-  color: #CCC;
+.trickster.character-sheet .character-debuff .debuff:first-of-type { border-left-color: #DA2; }
+.trickster.character-sheet .character-debuff .debuff:last-child { border-right-color: #DA2; }
+.trickster.character-sheet .detail-button {
+  border-color: #DA2;
+  color: #DA2;
 }
-.detail-button.pressed { background: #CCC; }
+.trickster.character-sheet .detail-button.pressed { background: #DA2; }
+
+.guardian .character-debuff .debuff.checked,
+.spellweaver .character-debuff .debuff.checked,
+.slayer .character-debuff .debuff.checked,
+.enchanter .character-debuff .debuff.checked,
+.trickster .character-debuff .debuff.checked { color: #FFF; }
