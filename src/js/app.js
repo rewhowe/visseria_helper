@@ -2,9 +2,6 @@
 
 // TODO: code
 // * update with latest doc
-//
-// TODO: basic styles
-// * get icons?
 
 $(function () {
   const APP_VERSION = 'v0'; // not backwards compatible
