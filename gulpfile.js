@@ -31,6 +31,7 @@ const CSS_OUTPUT_FILE = 'visseria';
 gulp.task('css', function () {
   return gulp.src([
       CSS_SRC_DIR + 'app.css',
+      CSS_SRC_DIR + 'classes.css',
   ])
   .pipe(concat(CSS_OUTPUT_FILE + '.css'))
   .pipe(rename(CSS_OUTPUT_FILE + '.min.css'))

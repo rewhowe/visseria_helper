@@ -66,7 +66,8 @@ class Character {
     this.ready = true;
     this.character = Classes.getCharacter(characterKey);
 
-    this.$icon.attr('src', './public/img/' + this.character.name + '.png');
+    this.$node.removeClass(Object.keys(Classes.CLASSES).join(' ')).addClass(this.character.class);
+    this.$icon.attr('src', './public/img/' + this.character.name.toLowerCase() + '.png');
     this.$title.html(this.character.title);
     this.gear = [];
     this.$gear.find('.js-gear-select').val('-');
