@@ -177,8 +177,7 @@ class Character {
   }
 
   updateCurrent(status) {
-    const currentValue = int(this[status].$current.val());
-    this[status].current = currentValue - this.getStatusMod(status);
+    this[status].current = int(this[status].$current.val());
 
     // tickle
     this.mod(status);
