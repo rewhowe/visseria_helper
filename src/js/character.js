@@ -181,6 +181,12 @@ class Character {
 
     // tickle
     this.mod(status);
+
+    if (status === 'hp' && this.hp.current === 0) {
+      this.$node.addClass('dead');
+    } else {
+      this.$node.removeClass('dead');
+    }
   }
 
   updateGear(slot, gearKey) {
@@ -215,8 +221,8 @@ class Character {
     this.mod('dmg');
 
     // full heal
-    this.hp.current = this.hp.base + this.getLevelMod('hp') + this.getStatusMod('hp');
-    this.hp.$current.val(this.hp.current);
+    this.hp.$current.val(this.hp.base + this.getLevelMod('hp') + this.getStatusMod('hp'));
+    this.updateCurrent('hp');
   }
 
   // serializer

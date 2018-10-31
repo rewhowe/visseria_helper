@@ -86,23 +86,29 @@ input { padding-left: 0.5rem; }
   border-radius: 1rem;
   box-sizing: border-box;
 }
+.character-sheet.dead .character-icon { background-color: #C33; }
+.character-sheet.dead .character-icon img { opacity: 0.5; }
 
 .character-delete {
   position: absolute;
   right: 1rem;
 }
 
-.character-icon,
-.character-class,
-.character-title {
-  display: flex;
-  justify-content: center;
-  padding: 0.2rem 0;
+.character-icon {
+  margin: 0.2rem auto;
+  width: fit-content;
 }
 .character-icon img {
   width: 128px;
   height: 128px;
   border: 0.1rem solid #CCC;
+}
+
+.character-class,
+.character-title {
+  display: flex;
+  justify-content: center;
+  padding: 0.2rem 0;
 }
 
 .character-class select {
