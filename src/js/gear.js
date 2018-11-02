@@ -80,35 +80,39 @@ Gear.GEAR = {
   standard_gear: {
     thirstfire: {
       cost: 5,
+      dmg: 2,
+      hp: 0,
       effect: 'Enemies the equipped User attacks are debuffed with Bleed',
     },
     mugger_dagger: {
       cost: 5,
-      effect: 'Equipped User gains +1G every successful attack on an Enemy if succession roll',
+      dmg: 2,
+      hp: 0,
+      effect: 'Equipped User gains 1G for every successful attack on an Enemy if Success roll',
     },
     bones: {
       cost: 5,
       dmg: 1,
       hp: 5,
-      effect: 'Equipped User is debuffed with Undead', // TODO
+      effect: 'While equipped with Bones: equipped User is debuffed with Undead', // TODO
     },
     lucky_charm: {
       cost: 5,
       dmg: 1,
       hp: 1,
-      effect: 'Equipped User gains +2 succession roll',
+      effect: 'Equipped User gains +2 Success roll',
     },
     devil_charm: {
       cost: 5,
       dmg: 3,
       hp: 3,
-      effect: 'Equipped User gains -1 succession roll',
+      effect: 'Equipped User gains -2 Success roll',
     },
     courage_charm: {
       cost: 5,
       dmg: 2,
       hp: 1,
-      effect: 'Equipped User gains +1 decisive roll in battle involving User',
+      effect: 'Equipped User gains +1 Decisive roll in battle involving User',
     },
     artifact_coin: {
       cost: 5,
@@ -122,6 +126,18 @@ Gear.GEAR = {
       hp: 2,
       effect: 'Equipped User\'s Ultimate recharge rate is 2',
     },
+    regenerating_armour: {
+      cost: 5,
+      dmg: 0,
+      hp: 3,
+      effect: 'Any DMG the equipped User receives from any source is reduced by 1 DMG',
+    },
+    the_murmur: {
+      cost: 5,
+      dmg: 5,
+      hp: 0,
+      effect: 'While equipped with The Murmur: equipped User is debuffed with Silence', // TODO
+    },
   },
   legendary_gear: {
     'wilhelm\'s_gauntlet': {
@@ -129,7 +145,7 @@ Gear.GEAR = {
       dmg: 0,
       hp: 5,
       limit_class: 'guardian',
-      effect: 'When the equipped User blocks an attack, deal DMG equal to the equipped User\'s DMG to the attacking enemy. Can only be equipped by Guardians',
+      effect: 'When the equipped User is attacked: deal DMG equal to the equipped User\'s DMG to the attacking Enemy. Can only be equipped by Guardians',
       spec: 3,
       spec_type: 'soul',
     },
@@ -138,7 +154,7 @@ Gear.GEAR = {
       dmg: 2,
       hp: 3,
       limit_class: 'spellweaver',
-      effect: 'Equipped User can attack and use their abilities in the same turn. Can only be equipped by Spellweavers',
+      effect: 'The equipped User can attack and use abilities once each before becoming inactive. Can only be equipped by Spellweavers',
       spec: 3,
       spec_type: 'intelligence',
     },
@@ -147,7 +163,7 @@ Gear.GEAR = {
       dmg: 5,
       hp: 0,
       limit_class: 'slayer',
-      effect: 'Successful attacks on enemies heal equipped User by 2HP. Can only be equipped by Slayers',
+      effect: 'When the equipped User attacks: equipped User recovers (Room Lvl) HP. Can only be equipped by Slayers',
       spec: 3,
       spec_type: 'courage',
     },
@@ -156,7 +172,7 @@ Gear.GEAR = {
       dmg: 1,
       hp: 4,
       limit_class: 'enchanter',
-      effect: 'Equipped User is immune to debuffs. Can only be equipped by Enchanters', // TODO
+      effect: 'Remove all debuffs from the equipped User. Equipped User is immune to debuffs. Can only be equipped by Enchanters', // TODO
       spec: 3,
       spec_type: 'aura',
     },
@@ -165,7 +181,7 @@ Gear.GEAR = {
       dmg: 3,
       hp: 2,
       limit_class: 'trickster',
-      effect: '+1 Item, +XG equal to dice roll, +1 consumable Item slot and +1 succession roll. Can only be equipped by Tricksters',
+      effect: '+1 Item, +XG equal to D10 roll and +2 Success roll. Can only be equipped by Tricksters',
       spec: 3,
       spec_type: 'luck',
     }
