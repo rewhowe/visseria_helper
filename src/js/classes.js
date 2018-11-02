@@ -20,7 +20,7 @@ Classes.CLASSES = {
             effect: 'Albatross Grand can block 2 enemies per Round',
           },
           ultimate: {
-            name: 'Divine Intervention',
+            name: 'Beckoning Light',
             effect: 'Negate any DMG any 1 active ally User is dealt this turn',
             recharge: 5,
           },
