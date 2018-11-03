@@ -4,7 +4,7 @@
 // * update with latest doc
 
 $(function () {
-  const APP_VERSION = 'v0'; // not backwards compatible
+  const APP_VERSION = 'v1'; // not backwards compatible
   $('.js-version').html(APP_VERSION);
 
   const MAX_CHARACTERS = 5;
