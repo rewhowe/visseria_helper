@@ -181,7 +181,7 @@ Gear.GEAR = {
       dmg: 3,
       hp: 2,
       limit_class: 'trickster',
-      effect: '+1 Item, +XG equal to D10 roll and +2 Success roll. Can only be equipped by Tricksters',
+      effect: 'When this item is acquired: acquire 1 Item and +XG equal to D10 roll. The equipped User gains +2 Success roll. Can only be equipped by Tricksters',
       spec: 3,
       spec_type: 'luck',
     }
