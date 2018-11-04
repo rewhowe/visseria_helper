@@ -6,10 +6,10 @@
 
 * Show Special stat values in descriptions
 
-* Code for Faerie's passive
+* Code for everyone's passives
 
 * Add Success roll modifier somewhere
 
-* Add a "reduce damage" thing
+* Add something to show damage reduction (ex. armour effects)
 
 * Add consumable items
