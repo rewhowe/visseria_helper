@@ -182,11 +182,12 @@ class Character {
   }
 
   getGearMod(status) {
-    const character = this.character;
+    // const character = this.character;
+    const specType = this.specType;
 
     return this.gear.reduce(function (carry, gear) {
       // if (gear && (status !== 'spec' || !gear.spec_type || gear.spec_type === character.specType)) {
-      if (gear && (status !== 'spec' || !gear.spec_type || gear.spec_type === this.specType)) {
+      if (gear && (status !== 'spec' || !gear.spec_type || gear.spec_type === specType)) {
         carry += gear[status] || 0;
       }
       return carry;
@@ -223,15 +224,17 @@ class Character {
 
   updateGear(slot, gearKey) {
     const gear = Gear.getGear(gearKey);
+    console.log(slot);
 
     // const canWear = gear && (!gear.limit_class || this.character.class === gear.limit_class);
     const canWear = gear && (!gear.limit_class || this.class === gear.limit_class);
     this.gear[slot] = canWear ? gear : undefined;
 
-    this.mod('hp');
-    this.mod('dmg');
-    this.mod('spec');
-    this.mod('recharge');
+    // this.mod('hp');
+    // this.mod('dmg');
+    // this.mod('spec');
+    // this.mod('recharge');
+    for (let status of ['hp', 'dmg', 'spec', 'recharge']) this.mod(status);
 
     this.updateGearEffect(this.gear[slot], $(this.$gear[slot]));
 

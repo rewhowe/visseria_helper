@@ -344,14 +344,13 @@ Classes.getCharacterKey = function (character) {
 }
 
 Classes.makeCharacter = function ($node, characterKey, bundle = null) {
+  console.log(characterKey);
   const characterClassName = studlyCase(characterKey.split(Select.KEY_DELIMITER)[1]);
 
-  // if (typeof characterClassName === 'undefined') {
-  //   return new Character($node, characterKey, bundle);
-  // }
-  console.log(characterKey);
-  return new Classes[characterClassName]($node, characterKey, bundle);
-  // return new Function('new ' + characterClassName)($node, characterKey, bundle);
+  if (Classes[characterClassName]) {
+    return new Classes[characterClassName]($node, characterKey, bundle);
+  }
+  return new Character($node, characterKey, bundle);
 }
 
 Classes.$CLASS_SELECT = (function () {

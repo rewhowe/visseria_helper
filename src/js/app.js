@@ -35,7 +35,7 @@ $(function () {
   let savePid = null;
 
   $template.find('.js-class').append(Classes.$CLASS_SELECT.clone());
-  $template.find('.js-gear').each((i, gear) => $(gear).prepend(Gear.$GEAR_SELECT.clone().data('slot', i)));
+  $template.find('.js-gear').each((i, gear) => $(gear).prepend(Gear.$GEAR_SELECT.clone().attr('data-slot', i)));
 
   function addCharacter(bundle = null) {
     // const $character = $template.clone();
@@ -67,7 +67,8 @@ $(function () {
     $mainContent.find('.js-character').each(function (i, characterSheet) {
       const character = $(characterSheet).data('character');
       // TODO: remove all ready stuff
-      if (!character.ready) return;
+      // if (!character.ready) return;
+      if (!character) return;
       storage[APP_VERSION].characters.push(character.toBundle());
     });
 
@@ -93,7 +94,8 @@ $(function () {
     const level = int($(this).val());
     $('.js-character').each(function (i, el) {
       const character = $(el).data('character');
-      if (!character || !character.ready) return;
+      // if (!character || !character.ready) return;
+      if (!character) return;
       character.updateLevel(level);
     });
   });
@@ -116,7 +118,8 @@ $(function () {
 
   $(document).on('change', '.js-gear-select', function () {
     const character = $(this).closest('.js-character').data('character');
-    if (!character.ready) return;
+    // if (!character.ready) return;
+    if (!character) return;
     const canWear = character.updateGear($(this).data('slot'), $(this).val());
 
     if (!canWear) $(this).val('-');
@@ -124,13 +127,15 @@ $(function () {
 
   $(document).on('change', '.js-status-mod', function () {
     const character = $(this).closest('.js-character').data('character');
-    if (!character.ready) return;
+    // if (!character.ready) return;
+    if (!character) return;
     character.mod($(this).data('status'));
   });
 
   $(document).on('change', '.js-hp-current, .js-recharge-current', function () {
     const character = $(this).closest('.js-character').data('character');
-    if (!character.ready) return;
+    // if (!character.ready) return;
+    if (!character) return;
     character.updateCurrent($(this).data('status'));
   });
 
