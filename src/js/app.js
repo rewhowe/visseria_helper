@@ -1,4 +1,4 @@
-// @require Character
+// @require Gear, Classes, Character
 
 // TODO: code
 // * update with latest doc
@@ -34,10 +34,18 @@ $(function () {
   let storage = null;
   let savePid = null;
 
+  $template.find('.js-class').append(Classes.$CLASS_SELECT.clone());
+  $template.find('.js-gear').each((i, gear) => $(gear).prepend(Gear.$GEAR_SELECT.clone().data('slot', i)));
+
   function addCharacter(bundle = null) {
-    const $character = $template.clone();
-    $character.data('character', new Character($character, bundle));
-    $character.insertBefore($addButton.parent());
+    // const $character = $template.clone();
+    // $character.data('character', new Character($character, bundle));
+    // $character.insertBefore($addButton.parent());
+    $template.clone().insertBefore($addButton.parent());
+
+    if (bundle) {
+      // TODO: do same as change class but pass bundle
+    }
   }
 
   function checkCharacterLimit() {
@@ -58,6 +66,7 @@ $(function () {
 
     $mainContent.find('.js-character').each(function (i, characterSheet) {
       const character = $(characterSheet).data('character');
+      // TODO: remove all ready stuff
       if (!character.ready) return;
       storage[APP_VERSION].characters.push(character.toBundle());
     });
@@ -97,8 +106,10 @@ $(function () {
 
   $(document).on('change', '.js-class-select', function () {
     const $character = $(this).closest('.js-character');
-    const character = $character.data('character');
-    character.changeClass($(this).val());
+    // const character = $character.data('character');
+    // character.changeClass($(this).val());
+    const character = Classes.makeCharacter($character, $(this).val());
+    $character.data('character', character);
 
     $keyShards.trigger('change');
   });

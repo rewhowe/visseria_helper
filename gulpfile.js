@@ -13,14 +13,15 @@ gulp.task('js', function () {
       JS_SRC_DIR + 'util.js',
       JS_SRC_DIR + 'input_number.js',
       JS_SRC_DIR + 'select.js',
-      JS_SRC_DIR + 'classes.js',
       JS_SRC_DIR + 'gear.js',
-      JS_SRC_DIR + 'character.js',
+      JS_SRC_DIR + 'character/classes.js',
+      JS_SRC_DIR + 'character/character.js',
+      JS_SRC_DIR + 'character/albatross_grand.js',
       JS_SRC_DIR + 'app.js',
   ])
   .pipe(concat(JS_OUTPUT_FILE + '.js'))
   .pipe(rename(JS_OUTPUT_FILE + '.min.js'))
-  .pipe(uglify())
+  // .pipe(uglify())
   .pipe(gulp.dest(JS_OUTPUT_DIR));
 });
 
