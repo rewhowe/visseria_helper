@@ -149,6 +149,9 @@ $(function () {
   }
 
   $(document).on('click', '.js-debuff input[type="checkbox"]', function () {
+    // TODO: check character canDebuff(...)
+    // - check for magus cloak / other items
+    // - check for T40
     $(this).parent().toggleClass('checked');
   });
 

@@ -129,7 +129,8 @@ class Character {
 
   getStatusMod(status) {
     return int(this[status].$mod.val())
-      + this.getGearMod(status);
+      + this.getGearMod(status)
+      + this.getGlobalCharacterMod(status);
   }
 
   getGearMod(status) {
@@ -141,6 +142,11 @@ class Character {
       }
       return carry;
     }, 0);
+  }
+
+  getGlobalCharacterMod(status) {
+    // TODO: check for faeries
+    return 0;
   }
 
   updateCurrent(status) {

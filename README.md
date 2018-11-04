@@ -8,8 +8,8 @@
 
 * Code for Faerie's passive
 
-* Code for T4O's passive
-
 * Add Success roll modifier somewhere
 
 * Add a "reduce damage" thing
+
+* Add consumable items
