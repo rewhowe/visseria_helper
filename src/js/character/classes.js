@@ -339,9 +339,9 @@ Classes.getCharacterData = function (key) {
   return character;
 }
 
-Classes.getCharacterKey = function (character) {
-  return Select.makeKey(character.class, character.name);
-}
+// Classes.getCharacterKey = function (character) {
+//   return Select.makeKey(character.class, character.name);
+// }
 
 Classes.makeCharacter = function ($node, characterKey, bundle = null) {
   console.log(characterKey);

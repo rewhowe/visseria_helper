@@ -29,6 +29,7 @@ class Character {
       .attr('src', './public/img/' + this.name.toLowerCase() + '.png');
     this.$title = this.$node.find('.js-title')
       .html(character.title);
+    this.$class = this.$node.find('.js-class-select');
 
     this.$debuffs = this.$node.find('.js-debuff input[type="checkbox"]');
     for (let debuff of this.$debuffs) {
@@ -266,8 +267,8 @@ class Character {
   toBundle() {
     const bundle = {
       debuffs: this.$debuffs.map((i, checkbox) => checkbox.checked).toArray(),
-      // TODO: fix
-      character_key: Classes.getCharacterKey(this.character),
+      // character_key: Classes.getCharacterKey(this.character),
+      character_key: Select.makeKey(this.class, this.name),
       level: this.level,
       hp: {
         current: this.hp.current,

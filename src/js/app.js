@@ -37,15 +37,27 @@ $(function () {
   $template.find('.js-class').append(Classes.$CLASS_SELECT.clone());
   $template.find('.js-gear').each((i, gear) => $(gear).prepend(Gear.$GEAR_SELECT.clone().attr('data-slot', i)));
 
+  function localStorageAvailable() {
+    try { return !!localStorage; } catch { return false; };
+  }
+
   function addCharacter(bundle = null) {
-    // const $character = $template.clone();
+    const $character = $template.clone();
     // $character.data('character', new Character($character, bundle));
-    // $character.insertBefore($addButton.parent());
-    $template.clone().insertBefore($addButton.parent());
+    $character.insertBefore($addButton.parent());
+    // $template.clone().insertBefore($addButton.parent());
 
     if (bundle) {
       // TODO: do same as change class but pass bundle
+      setCharacter($character, bundle.character_key, bundle);
     }
+  }
+
+  function setCharacter($node, characterKey, bundle = null) {
+    const character = Classes.makeCharacter($node, characterKey, bundle);
+    $node.data('character', character);
+
+    $keyShards.trigger('change');
   }
 
   function checkCharacterLimit() {
@@ -53,6 +65,7 @@ $(function () {
   }
 
   function queueSave() {
+    if (!localStorageAvailable()) return;
     window.clearTimeout(savePid);
     savePid = window.setTimeout(saveToStorage, SAVE_DELAY);
   }
@@ -110,10 +123,11 @@ $(function () {
     const $character = $(this).closest('.js-character');
     // const character = $character.data('character');
     // character.changeClass($(this).val());
-    const character = Classes.makeCharacter($character, $(this).val());
-    $character.data('character', character);
+    // const character = Classes.makeCharacter($character, $(this).val());
+    // $character.data('character', character);
 
-    $keyShards.trigger('change');
+    // $keyShards.trigger('change');
+    setCharacter($character, $(this).val());
   });
 
   $(document).on('change', '.js-gear-select', function () {
@@ -151,7 +165,7 @@ $(function () {
     $(this).parent().toggleClass('checked');
   });
 
-  if (localStorage.visseria) {
+  if (localStorageAvailable() && localStorage.visseria) {
     try {
       storage = JSON.parse(localStorage.visseria);
 
@@ -175,7 +189,7 @@ $(function () {
       console.error("An error occurred while loading from storage:\n" + e);
       storage = {};
     }
-  } else {
+  } else if (localStorageAvailable()) {
     $storagePrompt.find('.js-prompt-message').html(PROMPT.REQUEST.MESSAGE);
     $storagePrompt.find('.js-prompt-button.no').html(PROMPT.REQUEST.NO);
     $storagePrompt.find('.js-prompt-button.yes').html(PROMPT.REQUEST.YES);
