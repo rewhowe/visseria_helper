@@ -16,7 +16,7 @@ gulp.task('js', function () {
       JS_SRC_DIR + 'gear.js',
       JS_SRC_DIR + 'character/classes.js',
       JS_SRC_DIR + 'character/character.js',
-      JS_SRC_DIR + 'character/albatross_grand.js',
+      JS_SRC_DIR + 'character/zuciel.js',
       JS_SRC_DIR + 'app.js',
   ])
   .pipe(concat(JS_OUTPUT_FILE + '.js'))
