@@ -37,10 +37,10 @@ Classes.CLASSES = {
           },
           active: {
             name: 'Self Destruct',
-            effect: 'T4O MKII deals X DMG to 1 Enemy and loses X HP (X cannot be greater than T4O MKII\'s current HP)',
+            effect: 'Self Destruct - Declare X (X cannot be greater than T4O MKII\'s current HP): T4O MKII deals X DMG to 1 Enemy and loses X HP',
           },
           ultimate: {
-            name: 'Recharge',
+            name: 'Reconstruct',
             effect: 'T4O MKII Recovers to Max HP',
             recharge: 7,
           },
@@ -151,7 +151,7 @@ Classes.CLASSES = {
           },
           ultimate: {
             name: 'Hellhound',
-            effect: 'Spawn a Hellhound Token with (Courage Lvl) DMG and (Courage Lvl) Max HP. Hellhound Token is treated as an ally User (cannot acquire or hold Gear). There can only be 1 Hellhound Token at a time',
+            effect: 'Spawn a Hellhound Token with (Courage Lvl) DMG and (Courage Lvl) Max HP. Hellhound Token is treated as an ally User (cannot acquire or hold Gear). If Grimwulf Kaiser targeted for an attack, Hellhound Token is attacked instead. There can only be 1 Hellhound Token at a time',
             recharge: 5,
           },
         },
@@ -228,15 +228,15 @@ Classes.CLASSES = {
         abilities: {
           passive: {
             name: 'Duplicate',
-            effect: 'When a Consumable Item would be discarded, Success roll: the Consumable Item is not discarded',
+            effect: 'When a Consumable Item would be consumed or discarded, Success roll: gain the effects of the Consumable Item without discarding it',
           },
           active: {
             name: 'Alchemic Warfare',
-            effect: 'Discard 1 Consumable Item: deal 5 + (Aura Lvl) DMG to 1 Enemy or 1 ally User Recovers 5 + (Aura Lvl) HP',
+            effect: 'Discard 1 Consumable Item: deal (Aura Lvl) +5 DMG to 1 Enemy or 1 ally User Recovers (Aura Lvl) +5 HP',
           },
           ultimate: {
             name: 'The Creator',
-            effect: 'Search for 1 Consumable Item in the Item deck and acquire it',
+            effect: 'Search for 1 Consumable Item in the Item deck and acquire it. Shuffle the deck',
             recharge: 7,
           },
         },
@@ -301,7 +301,7 @@ Classes.CLASSES = {
           },
           ultimate: {
             name: 'Wrath',
-            effect: 'If all ally Users are active: Zuciel can attack (Luck Lvl) Enemies once each. All ally Users become inactive',
+            effect: 'If all ally Users are active: Zuciel can attack (Luck Lvl) Enemies once each. Discard (Luck Lvl) G. All ally Users become inactive',
             recharge: 5,
           },
         },
