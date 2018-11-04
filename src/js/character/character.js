@@ -8,7 +8,6 @@ class Character {
   constructor($node, characterKey, bundle = null) {
     this.$node = $node;
 
-    console.log(characterKey);
     const character = Classes.getCharacterData(characterKey);
     this.class = character.class;
     this.name = character.name;
@@ -18,12 +17,7 @@ class Character {
     this.$node.removeClass(Object.keys(Classes.CLASSES).join(' '))
       .addClass(this.class);
 
-    // this.$class = Classes.$CLASS_SELECT.clone();
-    // this.$node.find('.js-class').append(this.$class);
-
-    // this.character = null;
     this.level = 0;
-    // this.ready = false;
 
     this.$icon = this.$node.find('.js-icon')
       .attr('src', './public/img/' + this.name.toLowerCase() + '.png');
@@ -88,47 +82,6 @@ class Character {
     this.$node.find('.js-character-detail').slideDown();
   }
 
-  // changeClass(characterKey) {
-    // this.ready = true;
-    // this.character = Classes.getCharacterData(characterKey);
-
-    // this.$node.removeClass(Object.keys(Classes.CLASSES).join(' ')).addClass(this.class);
-    // this.$icon.attr('src', './public/img/' + this.character.name.toLowerCase() + '.png');
-    // this.$title.html(this.character.title);
-    // this.gear = [];
-    // this.$gear.find('.js-gear-select').val('-');
-    // this.setAbilities();
-
-    // this.$node.find('.js-gear-show-detail, .js-gear-detail')
-    //   .addClass('hidden')
-    //   .removeClass('pressed');
-
-    // for (let debuff of this.$debuffs) {
-    //   $(debuff).prop('checked', false).parent().removeClass('checked');
-    // }
-
-    // this.$node.find('.js-status-mod').val('');
-
-    // this.hp.current = this.character.hp;
-    // this.hp.base = this.character.hp;
-    // this.hp.$current.val(this.character.hp);
-    // this.mod('hp');
-
-    // this.dmg.base = this.character.dmg;
-    // this.mod('dmg');
-
-    // this.spec.base = 1;
-    // this.spec.$name.html(titleCase(this.character.specType));
-    // this.mod('spec');
-
-    // this.recharge.current = 0;
-    // this.recharge.base = this.character.abilities.ultimate.recharge;
-    // this.hp.$current.val(0);
-    // this.mod('recharge');
-
-    // this.$node.find('.js-character-detail').slideDown();
-  // }
-
   mod(status) {
     const mod = this.getStatusMod(status);
     const value = this[status].base + this.getLevelMod(status);
@@ -161,7 +114,6 @@ class Character {
   }
 
   setAbilities() {
-    // for (let abilityType in this.character.abilities) {
     for (let abilityType in this.abilities) {
       const ability = this.abilities[abilityType];
       this.$node.find('.js-ability-' + abilityType + ' .js-ability-name').html(ability.name);
@@ -171,7 +123,6 @@ class Character {
 
   getLevelMod(status) {
     if (['hp', 'dmg'].indexOf(status) === -1) return 0
-    // if (this.character.name == 'zuciel' && status == 'dmg') return 0;
     if (this.name == 'zuciel' && status == 'dmg') return 0;
     return this.level * Character.LEVEL_BONUS;
   }
@@ -179,36 +130,18 @@ class Character {
   getStatusMod(status) {
     return int(this[status].$mod.val())
       + this.getGearMod(status);
-      // + this.getCharacterMod(status);
   }
 
   getGearMod(status) {
-    // const character = this.character;
     const specType = this.specType;
 
     return this.gear.reduce(function (carry, gear) {
-      // if (gear && (status !== 'spec' || !gear.spec_type || gear.spec_type === character.specType)) {
       if (gear && (status !== 'spec' || !gear.spec_type || gear.spec_type === specType)) {
         carry += gear[status] || 0;
       }
       return carry;
     }, 0);
   }
-
-  // TODO: if this starts getting unwieldy, convert to using child classes
-  // getCharacterMod(status) {
-  //   switch (this.character.name) {
-  //     case 'zuciel':
-  //       this.$gold = this.$gold || $('.js-gold');
-  //       const gold = int(this.$gold.val());
-  //       return status == 'dmg' ? gold - this.getGearMod(status) : 0;
-  //     case 'psykoshka':
-  //       if (status !== 'dmg') return 0;
-  //       return this.spec.base + this.getStatusMod('spec');
-  //     default:
-  //       return 0;
-  //   }
-  // }
 
   updateCurrent(status) {
     this[status].current = int(this[status].$current.val());
@@ -225,16 +158,10 @@ class Character {
 
   updateGear(slot, gearKey) {
     const gear = Gear.getGear(gearKey);
-    console.log(slot);
 
-    // const canWear = gear && (!gear.limit_class || this.character.class === gear.limit_class);
     const canWear = gear && (!gear.limit_class || this.class === gear.limit_class);
     this.gear[slot] = canWear ? gear : undefined;
 
-    // this.mod('hp');
-    // this.mod('dmg');
-    // this.mod('spec');
-    // this.mod('recharge');
     for (let status of ['hp', 'dmg', 'spec', 'recharge']) this.mod(status);
 
     this.updateGearEffect(this.gear[slot], $(this.$gear[slot]));
@@ -267,7 +194,6 @@ class Character {
   toBundle() {
     const bundle = {
       debuffs: this.$debuffs.map((i, checkbox) => checkbox.checked).toArray(),
-      // character_key: Classes.getCharacterKey(this.character),
       character_key: Select.makeKey(this.class, this.name),
       level: this.level,
       hp: {
@@ -303,7 +229,6 @@ class Character {
     for (let status of ['hp', 'dmg', 'spec', 'recharge']) {
       this[status].$mod.val(int(bundle[status].mod));
       if (['hp', 'recharge'].indexOf(status) !== -1) this[status].current = bundle[status].current;
-      // this.mod(status);
     }
 
     for (let i in bundle.debuffs) {

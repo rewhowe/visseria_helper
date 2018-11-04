@@ -1,10 +1,7 @@
 // @require Gear, Classes, Character
 
-// TODO: code
-// * update with latest doc
-
 $(function () {
-  const APP_VERSION = 'v1'; // not backwards compatible
+  const APP_VERSION = 'v2'; // not backwards compatible
   $('.js-version').html(APP_VERSION);
 
   const MAX_CHARACTERS = 5;
@@ -38,19 +35,14 @@ $(function () {
   $template.find('.js-gear').each((i, gear) => $(gear).prepend(Gear.$GEAR_SELECT.clone().attr('data-slot', i)));
 
   function localStorageAvailable() {
-    try { return !!localStorage; } catch { return false; };
+    try { return !!localStorage; } catch (e) { return false; };
   }
 
   function addCharacter(bundle = null) {
     const $character = $template.clone();
-    // $character.data('character', new Character($character, bundle));
     $character.insertBefore($addButton.parent());
-    // $template.clone().insertBefore($addButton.parent());
 
-    if (bundle) {
-      // TODO: do same as change class but pass bundle
-      setCharacter($character, bundle.character_key, bundle);
-    }
+    if (bundle) setCharacter($character, bundle.character_key, bundle);
   }
 
   function setCharacter($node, characterKey, bundle = null) {
@@ -79,8 +71,6 @@ $(function () {
 
     $mainContent.find('.js-character').each(function (i, characterSheet) {
       const character = $(characterSheet).data('character');
-      // TODO: remove all ready stuff
-      // if (!character.ready) return;
       if (!character) return;
       storage[APP_VERSION].characters.push(character.toBundle());
     });
@@ -107,9 +97,16 @@ $(function () {
     const level = int($(this).val());
     $('.js-character').each(function (i, el) {
       const character = $(el).data('character');
-      // if (!character || !character.ready) return;
       if (!character) return;
       character.updateLevel(level);
+    });
+  });
+
+  $gold.on('change', function () {
+    $('.js-character').each(function (i, el) {
+      const character = $(el).data('character');
+      if (!character || character.name !== 'zuciel') return;
+      character.mod('dmg');
     });
   });
 
@@ -121,34 +118,24 @@ $(function () {
 
   $(document).on('change', '.js-class-select', function () {
     const $character = $(this).closest('.js-character');
-    // const character = $character.data('character');
-    // character.changeClass($(this).val());
-    // const character = Classes.makeCharacter($character, $(this).val());
-    // $character.data('character', character);
-
-    // $keyShards.trigger('change');
     setCharacter($character, $(this).val());
   });
 
   $(document).on('change', '.js-gear-select', function () {
     const character = $(this).closest('.js-character').data('character');
-    // if (!character.ready) return;
     if (!character) return;
     const canWear = character.updateGear($(this).data('slot'), $(this).val());
-
     if (!canWear) $(this).val('-');
   });
 
   $(document).on('change', '.js-status-mod', function () {
     const character = $(this).closest('.js-character').data('character');
-    // if (!character.ready) return;
     if (!character) return;
     character.mod($(this).data('status'));
   });
 
   $(document).on('change', '.js-hp-current, .js-recharge-current', function () {
     const character = $(this).closest('.js-character').data('character');
-    // if (!character.ready) return;
     if (!character) return;
     character.updateCurrent($(this).data('status'));
   });

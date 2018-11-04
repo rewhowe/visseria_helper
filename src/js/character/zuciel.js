@@ -1,4 +1,15 @@
 Classes.Zuciel = class Zuciel extends Character {
+  getStatusMod(status) {
+    let characterMod = 0;
+    if (status === 'dmg') {
+      characterMod = int($('.js-gold').val());
+    }
+
+    return int(this[status].$mod.val())
+      + this.getGearMod(status)
+      + characterMod;
+  }
+
   getGearMod(status) {
     if (status === 'dmg') return 0;
 
