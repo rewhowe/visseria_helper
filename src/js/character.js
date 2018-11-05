@@ -18,9 +18,12 @@ class Character {
       .addClass(this.class);
 
     this.level = 0;
+    this.globalMod = {
+      hp: 0,
+    };
 
-    this.$icon = this.$node.find('.js-icon')
-      .attr('src', './public/img/' + this.name.toLowerCase() + '.png');
+    // this.$icon = this.$node.find('.js-icon')
+    //   .attr('src', './public/img/' + this.name.toLowerCase() + '.png');
     this.$title = this.$node.find('.js-title')
       .html(character.title);
     this.$class = this.$node.find('.js-class-select');
@@ -131,12 +134,13 @@ class Character {
   getGlobalCharacterMod(status) {
     let mod = 0;
 
+    // TODO: Actually, let's move this to an actual global state variable...
     $('.js-character').each(function (i, characterSheet) {
       const character = $(characterSheet).data('character');
       if (!character) return;
 
-      if (status === 'dmg' && character.name === 'faerie' && character.hp.current === character.mod('hp')) {
-        mod += int($('.js-key-shards').val());
+      if (status === 'dmg' && character.name === 'faerie') {
+        mod += int(character.globalMod.hp);
       }
     });
 
