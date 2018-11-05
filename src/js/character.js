@@ -22,8 +22,8 @@ class Character {
       dmg: 0,
     };
 
-    // this.$icon = this.$node.find('.js-icon')
-    //   .attr('src', './public/img/' + this.name.toLowerCase() + '.png');
+    this.$icon = this.$node.find('.js-icon')
+      .attr('src', './public/img/' + this.name.toLowerCase() + '.png');
     this.$title = this.$node.find('.js-title')
       .html(character.title);
     this.$class = this.$node.find('.js-class-select');

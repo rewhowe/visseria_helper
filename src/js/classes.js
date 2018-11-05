@@ -340,7 +340,6 @@ Classes.getCharacterData = function (key) {
 }
 
 Classes.makeCharacter = function ($node, characterKey, bundle = null) {
-  console.log(characterKey);
   const characterClassName = studlyCase(characterKey.split(Select.KEY_DELIMITER)[1]);
 
   if (Classes[characterClassName]) {
