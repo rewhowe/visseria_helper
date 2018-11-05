@@ -19,7 +19,7 @@ class Character {
 
     this.level = 0;
     this.globalMod = {
-      hp: 0,
+      dmg: 0,
     };
 
     // this.$icon = this.$node.find('.js-icon')
@@ -132,19 +132,10 @@ class Character {
   }
 
   getGlobalCharacterMod(status) {
-    let mod = 0;
-
-    // TODO: Actually, let's move this to an actual global state variable...
-    $('.js-character').each(function (i, characterSheet) {
+    return $('.js-character').toArray().reduce(function (carry, characterSheet) {
       const character = $(characterSheet).data('character');
-      if (!character) return;
-
-      if (status === 'dmg' && character.name === 'faerie') {
-        mod += int(character.globalMod.hp);
-      }
-    });
-
-    return mod;
+      return carry + (character ? int(character.globalMod[status]) : 0);
+    }, 0);
   }
 
   updateStatusDetail(status, mod, value) {

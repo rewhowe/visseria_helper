@@ -155,8 +155,8 @@ input { padding-left: 0.5rem; }
 .character-status-value span:before { content: ' / '; }
 .character-status-detail { font-size: 0.8rem; }
 .character-status-detail:empty { color: transparent; }
-.character-status-detail:not(:empty):before { content: '('; }
-.character-status-detail:not(:empty):after { content: ')'; }
+.character-status-detail:before { content: '('; }
+.character-status-detail:after { content: ')'; }
 
 .character-status-modified .character-status-value { font-weight: bold; }
 .character-status-modified .character-status-value span:before { font-weight: normal; }

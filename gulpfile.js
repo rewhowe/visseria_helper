@@ -21,9 +21,7 @@ gulp.task('js', function () {
   ])
   .pipe(concat(JS_OUTPUT_FILE + '.js'))
   .pipe(rename(JS_OUTPUT_FILE + '.min.js'))
-  .pipe(uglify()).on('error', function(e) {
-      console.log(e);
-   })
+  .pipe(uglify()).on('error', (e) => console.log(e))
   .pipe(gulp.dest(JS_OUTPUT_DIR));
 });
 

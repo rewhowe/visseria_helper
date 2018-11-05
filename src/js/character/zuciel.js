@@ -18,7 +18,8 @@ Classes.Zuciel = class Zuciel extends Character {
       const operator = mod > 0 ? ' + ' : ' - ';
       this[status].$detail.html(value + operator + Math.abs(mod));
       this[status].$detail.parent().addClass('character-status-modified');
-    } else if (status === 'dmg' && base !== 0) {
+    } else if (status === 'dmg' && int($('.js-gold').val()) !== 0) {
+      this[status].$detail.html('');
       this[status].$detail.parent().addClass('character-status-modified');
     } else {
       this[status].$detail.html('');

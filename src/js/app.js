@@ -103,7 +103,7 @@ $(function () {
   });
 
   $gold.on('change', function () {
-    $('.js-character').each(function (i, el) {
+    $mainContent.find('.js-character').each(function (i, el) {
       const character = $(el).data('character');
       if (!character || character.name !== 'zuciel') return;
       character.mod('dmg');
