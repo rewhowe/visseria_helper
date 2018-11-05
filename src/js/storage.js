@@ -7,16 +7,16 @@ class Storage {
 
   static get PROMPT() {
     return {
-      REQUEST: {
-        MESSAGE: 'Would you like to save your data locally?',
-        NO: 'No, don\'t!',
-        YES: 'Sure',
+      request: {
+        message: 'Would you like to save your data locally?',
+        no: 'No, don\'t!',
+        yes: 'Sure',
       },
-      UPDATE: {
-        MESSAGE: 'Hey, we\'ve updated, so old data will be deleted. Sorry!<br>'
+      update: {
+        message: 'Hey, we\'ve updated, so old data will be deleted. Sorry!<br>'
           + 'Do you still want to save your data locally?',
-        NO: 'Nah',
-        YES: 'Yes please!',
+        no: 'Nah',
+        yes: 'Yes please!',
       },
     };
   }
@@ -69,7 +69,7 @@ class Storage {
         this.gameData = JSON.parse(localStorage.visseria);
 
         if (Object.keys(this.gameData).length > 0 && !this.gameData[APP_VERSION]) {
-          this.showPrompt('UPDATE');
+          this.showPrompt('update');
           throw 'App was updated to version: ' + APP_VERSION;
         }
 
@@ -85,14 +85,14 @@ class Storage {
         console.error("An error occurred while loading from storage:\n" + e);
       }
     } else if (Storage.localStorageAvailable()) {
-      this.showPrompt('REQUEST');
+      this.showPrompt('request');
     }
   }
 
   showPrompt(type) {
-    this.$storagePrompt.find('.js-prompt-message').html(Storage.PROMPT[type].MESSAGE);
-    this.$storagePrompt.find('.js-prompt-button.no').html(Storage.PROMPT[type].NO);
-    this.$storagePrompt.find('.js-prompt-button.yes').html(Storage.PROMPT[type].YES);
+    this.$storagePrompt.find('.js-prompt-message').html(Storage.PROMPT[type].message);
+    this.$storagePrompt.find('.js-prompt-button.no').html(Storage.PROMPT[type].no);
+    this.$storagePrompt.find('.js-prompt-button.yes').html(Storage.PROMPT[type].yes);
     this.$storagePrompt.removeClass('hidden');
   }
 }
