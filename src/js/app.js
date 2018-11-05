@@ -124,7 +124,7 @@ $(function () {
   $(document).on('change', '.js-gear-select', function () {
     const character = $(this).closest('.js-character').data('character');
     if (!character) return;
-    const canWear = character.updateGear($(this).data('slot'), $(this).val());
+    const canWear = character.changeGear($(this).data('slot'), $(this).val());
     if (!canWear) $(this).val('-');
   });
 
@@ -137,7 +137,7 @@ $(function () {
   $(document).on('change', '.js-hp-current, .js-recharge-current', function () {
     const character = $(this).closest('.js-character').data('character');
     if (!character) return;
-    character.updateCurrent($(this).data('status'));
+    character.changeCurrent($(this).data('status'));
   });
 
   for (let type of ['gear', 'ability']) {

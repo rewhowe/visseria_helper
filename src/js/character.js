@@ -82,6 +82,15 @@ class Character {
     this.$node.find('.js-character-detail').slideDown();
   }
 
+  // TODO: change to "updateAbilities" and call after mod spec
+  setAbilities() {
+    for (let abilityType in this.abilities) {
+      const ability = this.abilities[abilityType];
+      this.$node.find('.js-ability-' + abilityType + ' .js-ability-name').html(ability.name);
+      this.$node.find('.js-ability-' + abilityType + ' .js-ability-detail').html(ability.effect);
+    }
+  }
+
   mod(status) {
     const mod = this.getStatusMod(status);
     const value = this[status].base + this.getLevelMod(status);
@@ -90,35 +99,10 @@ class Character {
 
     this[status].$value.html(moddedValue);
 
-    if (mod !== 0) {
-      const operator = mod > 0 ? ' + ' : ' - ';
-      this[status].$detail.html(value + operator + Math.abs(mod));
-      this[status].$detail.parent().addClass('character-status-modified');
-    } else {
-      this[status].$detail.html('');
-      this[status].$detail.parent().removeClass('character-status-modified');
-    }
+    this.updateStatusDetail(status, mod, value);
+    this.updateCurrentStatus(status, moddedValue);
 
-    if (['hp', 'recharge'].indexOf(status) !== -1) {
-      this[status].current = Math.min(this[status].current, moddedValue);
-      this[status].$current.val(this[status].current);
-
-      if (status === 'recharge') {
-        if (this.recharge.current === moddedValue) {
-          this.$ultimate.addClass('charged');
-        } else {
-          this.$ultimate.removeClass('charged');
-        }
-      }
-    }
-  }
-
-  setAbilities() {
-    for (let abilityType in this.abilities) {
-      const ability = this.abilities[abilityType];
-      this.$node.find('.js-ability-' + abilityType + ' .js-ability-name').html(ability.name);
-      this.$node.find('.js-ability-' + abilityType + ' .js-ability-detail').html(ability.effect);
-    }
+    return moddedValue;
   }
 
   getLevelMod(status) {
@@ -145,11 +129,47 @@ class Character {
   }
 
   getGlobalCharacterMod(status) {
-    // TODO: check for faeries
-    return 0;
+    let mod = 0;
+
+    $('.js-character').each(function (i, characterSheet) {
+      const character = $(characterSheet).data('character');
+      if (!character) return;
+
+      if (status === 'dmg' && character.name === 'faerie' && character.hp.current === character.mod('hp')) {
+        mod += int($('.js-key-shards').val());
+      }
+    });
+
+    return mod;
   }
 
-  updateCurrent(status) {
+  updateStatusDetail(status, mod, value) {
+    if (mod !== 0) {
+      const operator = mod > 0 ? ' + ' : ' - ';
+      this[status].$detail.html(value + operator + Math.abs(mod));
+      this[status].$detail.parent().addClass('character-status-modified');
+    } else {
+      this[status].$detail.html('');
+      this[status].$detail.parent().removeClass('character-status-modified');
+    }
+  }
+
+  updateCurrentStatus(status, moddedValue) {
+    if (['hp', 'recharge'].indexOf(status) !== -1) {
+      this[status].current = Math.min(this[status].current, moddedValue);
+      this[status].$current.val(this[status].current);
+
+      if (status === 'recharge') {
+        if (this.recharge.current === moddedValue) {
+          this.$ultimate.addClass('charged');
+        } else {
+          this.$ultimate.removeClass('charged');
+        }
+      }
+    }
+  }
+
+  changeCurrent(status) {
     this[status].current = int(this[status].$current.val());
 
     // tickle
@@ -162,7 +182,7 @@ class Character {
     }
   }
 
-  updateGear(slot, gearKey) {
+  changeGear(slot, gearKey) {
     const gear = Gear.getGear(gearKey);
 
     const canWear = gear && (!gear.limit_class || this.class === gear.limit_class);
@@ -192,7 +212,7 @@ class Character {
 
     // full heal
     this.hp.$current.val(this.hp.base + this.getLevelMod('hp') + this.getStatusMod('hp'));
-    this.updateCurrent('hp');
+    this.changeCurrent('hp');
   }
 
   // serializer

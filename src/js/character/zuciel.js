@@ -7,6 +7,13 @@ Classes.Zuciel = class Zuciel extends Character {
 
     this[status].$value.html(moddedValue);
 
+    this.updateStatusDetail(status, mod, value);
+    this.updateCurrentStatus(status, moddedValue);
+
+    return moddedValue;
+  }
+
+  updateStatusDetail(status, mod, value) {
     if (mod !== 0) {
       const operator = mod > 0 ? ' + ' : ' - ';
       this[status].$detail.html(value + operator + Math.abs(mod));
@@ -16,19 +23,6 @@ Classes.Zuciel = class Zuciel extends Character {
     } else {
       this[status].$detail.html('');
       this[status].$detail.parent().removeClass('character-status-modified');
-    }
-
-    if (['hp', 'recharge'].indexOf(status) !== -1) {
-      this[status].current = Math.min(this[status].current, moddedValue);
-      this[status].$current.val(this[status].current);
-
-      if (status === 'recharge') {
-        if (this.recharge.current === moddedValue) {
-          this.$ultimate.addClass('charged');
-        } else {
-          this.$ultimate.removeClass('charged');
-        }
-      }
     }
   }
 
