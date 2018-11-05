@@ -330,7 +330,7 @@ Classes.CLASSES = {
   },
 };
 
-Classes.getCharacter = function (key) {
+Classes.getCharacterData = function (key) {
   key = key.split(Select.KEY_DELIMITER);
   const character = Classes.CLASSES[key[0]].characters[key[1]];
   character.class = key[0];
@@ -339,8 +339,13 @@ Classes.getCharacter = function (key) {
   return character;
 }
 
-Classes.getCharacterKey = function (character) {
-  return Select.makeKey(character.class, character.name);
+Classes.makeCharacter = function ($node, characterKey, bundle = null) {
+  const characterClassName = studlyCase(characterKey.split(Select.KEY_DELIMITER)[1]);
+
+  if (Classes[characterClassName]) {
+    return new Classes[characterClassName]($node, characterKey, bundle);
+  }
+  return new Character($node, characterKey, bundle);
 }
 
 Classes.$CLASS_SELECT = (function () {

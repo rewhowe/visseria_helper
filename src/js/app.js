@@ -1,10 +1,7 @@
-// @require Character
-
-// TODO: code
-// * update with latest doc
+// @require Gear, Classes, Character
 
 $(function () {
-  const APP_VERSION = 'v1'; // not backwards compatible
+  const APP_VERSION = 'v2'; // not backwards compatible
   $('.js-version').html(APP_VERSION);
 
   const MAX_CHARACTERS = 5;
@@ -34,10 +31,25 @@ $(function () {
   let storage = null;
   let savePid = null;
 
+  $template.find('.js-class').append(Classes.$CLASS_SELECT.clone());
+  $template.find('.js-gear').each((i, gear) => $(gear).prepend(Gear.$GEAR_SELECT.clone().attr('data-slot', i)));
+
+  function localStorageAvailable() {
+    try { return !!localStorage; } catch (e) { return false; };
+  }
+
   function addCharacter(bundle = null) {
     const $character = $template.clone();
-    $character.data('character', new Character($character, bundle));
     $character.insertBefore($addButton.parent());
+
+    if (bundle) setCharacter($character, bundle.character_key, bundle);
+  }
+
+  function setCharacter($node, characterKey, bundle = null) {
+    const character = Classes.makeCharacter($node, characterKey, bundle);
+    $node.data('character', character);
+
+    $keyShards.trigger('change');
   }
 
   function checkCharacterLimit() {
@@ -45,6 +57,7 @@ $(function () {
   }
 
   function queueSave() {
+    if (!localStorageAvailable()) return;
     window.clearTimeout(savePid);
     savePid = window.setTimeout(saveToStorage, SAVE_DELAY);
   }
@@ -58,7 +71,7 @@ $(function () {
 
     $mainContent.find('.js-character').each(function (i, characterSheet) {
       const character = $(characterSheet).data('character');
-      if (!character.ready) return;
+      if (!character) return;
       storage[APP_VERSION].characters.push(character.toBundle());
     });
 
@@ -84,8 +97,16 @@ $(function () {
     const level = int($(this).val());
     $('.js-character').each(function (i, el) {
       const character = $(el).data('character');
-      if (!character || !character.ready) return;
+      if (!character) return;
       character.updateLevel(level);
+    });
+  });
+
+  $gold.on('change', function () {
+    $mainContent.find('.js-character').each(function (i, el) {
+      const character = $(el).data('character');
+      if (!character || character.name !== 'zuciel') return;
+      character.mod('dmg');
     });
   });
 
@@ -97,30 +118,26 @@ $(function () {
 
   $(document).on('change', '.js-class-select', function () {
     const $character = $(this).closest('.js-character');
-    const character = $character.data('character');
-    character.changeClass($(this).val());
-
-    $keyShards.trigger('change');
+    setCharacter($character, $(this).val());
   });
 
   $(document).on('change', '.js-gear-select', function () {
     const character = $(this).closest('.js-character').data('character');
-    if (!character.ready) return;
-    const canWear = character.updateGear($(this).data('slot'), $(this).val());
-
+    if (!character) return;
+    const canWear = character.changeGear($(this).data('slot'), $(this).val());
     if (!canWear) $(this).val('-');
   });
 
   $(document).on('change', '.js-status-mod', function () {
     const character = $(this).closest('.js-character').data('character');
-    if (!character.ready) return;
+    if (!character) return;
     character.mod($(this).data('status'));
   });
 
   $(document).on('change', '.js-hp-current, .js-recharge-current', function () {
     const character = $(this).closest('.js-character').data('character');
-    if (!character.ready) return;
-    character.updateCurrent($(this).data('status'));
+    if (!character) return;
+    character.changeCurrent($(this).data('status'));
   });
 
   for (let type of ['gear', 'ability']) {
@@ -132,10 +149,13 @@ $(function () {
   }
 
   $(document).on('click', '.js-debuff input[type="checkbox"]', function () {
+    // TODO: check character canDebuff(...)
+    // - check for magus cloak / other items
+    // - check for T40
     $(this).parent().toggleClass('checked');
   });
 
-  if (localStorage.visseria) {
+  if (localStorageAvailable() && localStorage.visseria) {
     try {
       storage = JSON.parse(localStorage.visseria);
 
@@ -159,7 +179,7 @@ $(function () {
       console.error("An error occurred while loading from storage:\n" + e);
       storage = {};
     }
-  } else {
+  } else if (localStorageAvailable()) {
     $storagePrompt.find('.js-prompt-message').html(PROMPT.REQUEST.MESSAGE);
     $storagePrompt.find('.js-prompt-button.no').html(PROMPT.REQUEST.NO);
     $storagePrompt.find('.js-prompt-button.yes').html(PROMPT.REQUEST.YES);
