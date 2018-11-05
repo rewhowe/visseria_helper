@@ -4,8 +4,6 @@
 
 ## TODO
 
-* Code for everyone's passives
-
 * Show Special stat values as bold, class-coloured text in descriptions
 
   * Use #SPEC placeholder
