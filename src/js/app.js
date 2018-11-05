@@ -27,8 +27,6 @@ $(function () {
   function setCharacter($node, characterKey, bundle = null) {
     const character = Classes.makeCharacter($node, characterKey, bundle);
     $node.data('character', character);
-
-    $keyShards.trigger('change');
   }
 
   function checkCharacterLimit() {

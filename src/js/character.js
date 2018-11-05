@@ -206,6 +206,7 @@ class Character {
     this.mod('dmg');
 
     // full heal
+    console.log('full heal');
     this.hp.$current.val(this.hp.base + this.getLevelMod('hp') + this.getStatusMod('hp'));
     this.changeCurrent('hp');
   }
