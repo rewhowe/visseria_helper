@@ -69,10 +69,7 @@ class Storage {
         this.gameData = JSON.parse(localStorage.visseria);
 
         if (Object.keys(this.gameData).length > 0 && !this.gameData[APP_VERSION]) {
-          this.$storagePrompt.find('.js-prompt-message').html(Storage.PROMPT.UPDATE.MESSAGE);
-          this.$storagePrompt.find('.js-prompt-button.no').html(Storage.PROMPT.UPDATE.NO);
-          this.$storagePrompt.find('.js-prompt-button.yes').html(Storage.PROMPT.UPDATE.YES);
-          this.$storagePrompt.removeClass('hidden');
+          this.showPrompt('UPDATE');
           throw 'App was updated to version: ' + APP_VERSION;
         }
 
@@ -88,10 +85,14 @@ class Storage {
         console.error("An error occurred while loading from storage:\n" + e);
       }
     } else if (Storage.localStorageAvailable()) {
-      this.$storagePrompt.find('.js-prompt-message').html(Storage.PROMPT.REQUEST.MESSAGE);
-      this.$storagePrompt.find('.js-prompt-button.no').html(Storage.PROMPT.REQUEST.NO);
-      this.$storagePrompt.find('.js-prompt-button.yes').html(Storage.PROMPT.REQUEST.YES);
-      this.$storagePrompt.removeClass('hidden');
+      this.showPrompt('REQUEST');
     }
+  }
+
+  showPrompt(type) {
+    this.$storagePrompt.find('.js-prompt-message').html(Storage.PROMPT[type].MESSAGE);
+    this.$storagePrompt.find('.js-prompt-button.no').html(Storage.PROMPT[type].NO);
+    this.$storagePrompt.find('.js-prompt-button.yes').html(Storage.PROMPT[type].YES);
+    this.$storagePrompt.removeClass('hidden');
   }
 }

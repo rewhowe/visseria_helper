@@ -4,8 +4,6 @@
 
 ## TODO
 
-* Try to move storage stuff into separate file
-
 * Show Special stat values as bold, class-coloured text in descriptions
 
   * Use #SPEC placeholder
