@@ -3,7 +3,7 @@
 const Classes = {};
 
 Classes.CLASSES = {
-  guardian: {
+  'Guardian': {
     spec_type: 'soul',
     characters: {
       albatross_grand: {
@@ -68,7 +68,7 @@ Classes.CLASSES = {
       },
     },
   },
-  spellweaver: {
+  'Spellweaver': {
     spec_type: 'intelligence',
     characters: {
       harmony_marx: {
@@ -133,7 +133,7 @@ Classes.CLASSES = {
       },
     },
   },
-  slayer: {
+  'Slayer': {
     spec_type: 'courage',
     characters: {
       grimwulf_kaiser: {
@@ -198,7 +198,7 @@ Classes.CLASSES = {
       },
     },
   },
-  enchanter: {
+  'Enchanter': {
     spec_type: 'aura',
     characters: {
       misteyes_snow: {
@@ -263,7 +263,7 @@ Classes.CLASSES = {
       },
     },
   },
-  trickster: {
+  'Trickster': {
     spec_type: 'luck',
     characters: {
       ein: {

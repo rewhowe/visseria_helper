@@ -3,36 +3,36 @@
 const Gear = {};
 
 Gear.GEAR = {
-  basic_gear: {
-    angel_feather: {
+  'Basic Gear': {
+    'Angel Feather': {
       cost: 3,
       dmg: 0,
       hp: 1,
       spec: 1,
       spec_type: 'soul',
     },
-    ring_of_remnai: {
+    'Ring Of Remnai': {
       cost: 3,
       dmg: 0,
       hp: 1,
       spec: 1,
       spec_type: 'intelligence',
     },
-    badge_of_heroism: {
+    'Badge Of Heroism': {
       cost: 3,
       dmg: 1,
       hp: 0,
       spec: 1,
       spec_type: 'courage',
     },
-    blank_totem: {
+    'Blank Totem': {
       cost: 3,
       dmg: 0,
       hp: 1,
       spec: 1,
       spec_type: 'aura',
     },
-    loaded_die: {
+    'Loaded Die': {
       cost: 3,
       dmg: 1,
       hp: 0,
@@ -40,36 +40,36 @@ Gear.GEAR = {
       spec_type: 'luck',
     },
   },
-  intermediate_gear: {
-    exxo_armor: {
+  'Intermediate Gear': {
+    'Exxo Armor': {
       cost: 5,
       dmg: 0,
       hp: 3,
       spec: 2,
       spec_type: 'soul',
     },
-    trinity_staff: {
+    'Trinity Staff': {
       cost: 5,
       dmg: 1,
       hp: 2,
       spec: 2,
       spec_type: 'intelligence',
     },
-    darkling_sword: {
+    'Darkling Sword': {
       cost: 5,
       dmg: 3,
       hp: 0,
       spec: 2,
       spec_type: 'courage',
     },
-    illumination_pendant: {
+    'Illumination Pendant': {
       cost: 5,
       dmg: 0,
       hp: 3,
       spec: 2,
       spec_type: 'aura',
     },
-    broken_dagger: {
+    'Broken Dagger': {
       cost: 5,
       dmg: 2,
       hp: 1,
@@ -77,110 +77,110 @@ Gear.GEAR = {
       spec_type: 'luck',
     },
   },
-  standard_gear: {
-    thirstfire: {
+  'Standard Gear': {
+    'Thirstfire': {
       cost: 5,
       dmg: 2,
       hp: 0,
       effect: 'Enemies the equipped User attacks are debuffed with Bleed',
     },
-    mugger_dagger: {
+    'Mugger Dagger': {
       cost: 5,
       dmg: 2,
       hp: 0,
       effect: 'Equipped User gains 1G for every successful attack on an Enemy if Success roll',
     },
-    bones: {
+    'Bones': {
       cost: 5,
       dmg: 1,
       hp: 5,
       effect: 'While equipped with Bones: equipped User is debuffed with Undead', // TODO
     },
-    lucky_charm: {
+    'Lucky Charm': {
       cost: 5,
       dmg: 1,
       hp: 1,
       effect: 'Equipped User gains +2 Success roll',
     },
-    devil_charm: {
+    'Devil Charm': {
       cost: 5,
       dmg: 3,
       hp: 3,
       effect: 'Equipped User gains -2 Success roll',
     },
-    bravery_charm: {
+    'Bravery Charm': {
       cost: 5,
       dmg: 2,
       hp: 1,
       effect: 'Equipped User gains +1 Decisive roll in battle involving User',
     },
-    artifact_coin: {
+    'Artifact Coin': {
       cost: 5,
       dmg: 2,
       hp: 2,
       effect: 'Item is treated as 5G',
     },
-    absorbing_spirit: {
+    'Absorbing Spirit': {
       cost: 5,
       dmg: 2,
       hp: 2,
       effect: 'Equipped User\'s Ultimate recharge rate is 2',
     },
-    regenerating_armour: {
+    'Regenerating Armour': {
       cost: 5,
       dmg: 0,
       hp: 3,
       effect: 'Any DMG the equipped User receives from any source is reduced by 1 DMG',
     },
-    the_murmur: {
+    'The Murmur': {
       cost: 5,
       dmg: 5,
       hp: 0,
       effect: 'While equipped with The Murmur: equipped User is debuffed with Silence', // TODO
     },
   },
-  legendary_gear: {
-    'wilhelm\'s_gauntlet': {
+  'Legendary Gear': {
+    'Wilhelm\'s Gauntlet': {
       cost: 15,
       dmg: 0,
       hp: 5,
-      limit_class: 'guardian',
+      limit_class: 'Guardian',
       effect: 'When the equipped User is attacked: deal DMG equal to the equipped User\'s DMG to the attacking Enemy. Can only be equipped by Guardians',
       spec: 3,
       spec_type: 'soul',
     },
-    'solomon\'s_cipher': {
+    'Solomon\'s Cipher': {
       cost: 15,
       dmg: 2,
       hp: 3,
-      limit_class: 'spellweaver',
+      limit_class: 'Spellweaver',
       effect: 'The equipped User can attack and use abilities once each before becoming inactive. Can only be equipped by Spellweavers',
       spec: 3,
       spec_type: 'intelligence',
     },
-    'zatyr\'s_saber': {
+    'Zatyr\'s Saber': {
       cost: 15,
       dmg: 5,
       hp: 0,
-      limit_class: 'slayer',
+      limit_class: 'Slayer',
       effect: 'When the equipped User attacks: equipped User recovers (Room Lvl) HP. Can only be equipped by Slayers',
       spec: 3,
       spec_type: 'courage',
     },
-    'magus\'_cloak': {
+    'Magus\' Cloak': {
       cost: 15,
       dmg: 1,
       hp: 4,
-      limit_class: 'enchanter',
+      limit_class: 'Enchanter',
       effect: 'Remove all debuffs from the equipped User. Equipped User is immune to debuffs. Can only be equipped by Enchanters', // TODO
       spec: 3,
       spec_type: 'aura',
     },
-    'weeper\'s_satchel': {
+    'Weeper\'s Satchel': {
       cost: 15,
       dmg: 3,
       hp: 2,
-      limit_class: 'trickster',
+      limit_class: 'Trickster',
       effect: 'When this item is acquired: acquire 1 Item and +XG equal to D10 roll. The equipped User gains +2 Success roll. Can only be equipped by Tricksters',
       spec: 3,
       spec_type: 'luck',
@@ -217,7 +217,7 @@ Gear.$GEAR_SELECT = (function () {
       ];
       options[categoryName][gearName] = gearName
         + ' (' + stats.join('/') + ')'
-        + (gear.limit_class ? ' - ' + titleCase(gear.limit_class) + ' only' : '');
+        + (gear.limit_class ? ' - ' + gear.limit_class + ' only' : '');
     }
   }
 

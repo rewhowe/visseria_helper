@@ -22,8 +22,8 @@ class Character {
       dmg: 0,
     };
 
-    this.$icon = this.$node.find('.js-icon')
-      .attr('src', './public/img/' + this.name.toLowerCase() + '.png');
+    // this.$icon = this.$node.find('.js-icon')
+    //   .attr('src', './public/img/' + snakeCase(this.name) + '.png');
     this.$title = this.$node.find('.js-title')
       .html(character.title);
     this.$class = this.$node.find('.js-class-select');
@@ -242,7 +242,7 @@ class Character {
     this.level = bundle.level;
 
     for (let slot in bundle.gear) {
-      this.gear[slot] = Gear.getGear(bundle.gear[slot]);
+      this.gear[slot] = Gear.getGearData(bundle.gear[slot]);
       $(this.$gear[slot]).find('.js-gear-select').val(bundle.gear[slot]);
       this.updateGearEffect(this.gear[slot], $(this.$gear[slot]));
     }
