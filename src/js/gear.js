@@ -108,7 +108,7 @@ Gear.GEAR = {
       hp: 3,
       effect: 'Equipped User gains -2 Success roll',
     },
-    courage_charm: {
+    bravery_charm: {
       cost: 5,
       dmg: 2,
       hp: 1,
