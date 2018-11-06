@@ -188,7 +188,7 @@ Gear.GEAR = {
   },
 };
 
-Gear.getGear = function (key) {
+Gear.getGearData = function (key) {
   key = key.split(Select.KEY_DELIMITER);
   const category = Gear.GEAR[key[0]];
   if (!category) return;

@@ -178,7 +178,7 @@ class Character {
   }
 
   changeGear(slot, gearKey) {
-    const gear = Gear.getGear(gearKey);
+    const gear = Gear.getGearData(gearKey);
 
     const canWear = gear && (!gear.limit_class || this.class === gear.limit_class);
     this.gear[slot] = canWear ? gear : undefined;
