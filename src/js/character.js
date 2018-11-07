@@ -1,4 +1,4 @@
-// @require Classes, Gear
+// @require Classes, Gear, Items
 
 class Character {
 
@@ -23,7 +23,7 @@ class Character {
     };
 
     this.$icon = this.$node.find('.js-icon')
-      .attr('src', './public/img/' + this.name.toLowerCase() + '.png');
+      .attr('src', './public/img/' + snakeCase(this.name) + '.png');
     this.$title = this.$node.find('.js-title')
       .html(character.title);
     this.$class = this.$node.find('.js-class-select');
@@ -54,7 +54,7 @@ class Character {
 
     this.spec = {
       base: 1,
-      $name: this.$node.find('.js-spec-name').html(titleCase(character.specType)),
+      $name: this.$node.find('.js-spec-name').html(character.specType),
       $value: this.$node.find('.js-spec-value'),
       $detail: this.$node.find('.js-spec-detail'),
       $mod: this.$node.find('.js-spec-mod'),
@@ -72,7 +72,7 @@ class Character {
     this.gear = [];
     this.$gear = this.$node.find('.js-gear');
     this.$gear.find('.js-gear-select').val('-');
-    this.$node.find('.js-gear-show-detail, .js-gear-detail')
+    this.$node.find('.js-gear .js-show-detail, .js-gear .js-detail, .js-item .js-show-detail, .js-item .js-detail')
       .addClass('hidden')
       .removeClass('pressed');
 
@@ -80,7 +80,7 @@ class Character {
 
     if (bundle) this.fromBundle(bundle);
 
-    for (let status of ['hp', 'dmg', 'spec', 'recharge']) this.mod(status);
+    this.refresh();
 
     this.$node.find('.js-character-detail').slideDown();
   }
@@ -90,7 +90,7 @@ class Character {
     for (let abilityType in this.abilities) {
       const ability = this.abilities[abilityType];
       this.$node.find('.js-ability-' + abilityType + ' .js-ability-name').html(ability.name);
-      this.$node.find('.js-ability-' + abilityType + ' .js-ability-detail').html(ability.effect);
+      this.$node.find('.js-ability-' + abilityType + ' .js-detail').html(ability.effect);
     }
   }
 
@@ -178,36 +178,48 @@ class Character {
   }
 
   changeGear(slot, gearKey) {
-    const gear = Gear.getGear(gearKey);
+    const gear = Gear.getGearData(gearKey);
 
     const canWear = gear && (!gear.limit_class || this.class === gear.limit_class);
     this.gear[slot] = canWear ? gear : undefined;
 
-    for (let status of ['hp', 'dmg', 'spec', 'recharge']) this.mod(status);
+    this.refresh();
 
-    this.updateGearEffect(this.gear[slot], $(this.$gear[slot]));
+    this.updateEffect(this.gear[slot], $(this.$gear[slot]));
+
+    // TODO: trigger gear effects
+    // if (canWear) this.gear[slot].onEquip(this);
 
     return canWear;
   }
 
-  updateGearEffect(gear, $gear) {
-    if (gear && gear.effect) {
-      $gear.find('.js-gear-show-detail').removeClass('hidden');
-      $gear.find('.js-gear-detail').html(gear.effect);
+  changeItem($item, itemKey) {
+    const item = Items.getItemData(itemKey);
+    this.updateEffect(item, $item);
+  }
+
+  updateEffect(data, $node) {
+    if (data && data.effect) {
+      $node.find('.js-show-detail').removeClass('hidden');
+      $node.find('.js-detail').html(data.effect);
     } else {
-      $gear.find('.js-gear-show-detail, .js-gear-detail').addClass('hidden');
-      $gear.find('.js-gear-detail').html('');
+      $node.find('.js-show-detail, .js-detail').addClass('hidden');
+      $node.find('.js-detail').html('');
     }
   }
 
   updateLevel(level) {
     this.level = Math.min(Character.MAX_LEVEL, Math.max(0, level));
-    this.mod('hp');
-    this.mod('dmg');
 
     // full heal
     this.hp.$current.val(this.hp.base + this.getLevelMod('hp') + this.getStatusMod('hp'));
     this.changeCurrent('hp');
+
+    this.mod('dmg');
+  }
+
+  refresh(statuses = ['hp', 'dmg', 'spec', 'recharge']) {
+    for (let status of statuses) this.mod(status);
   }
 
   // serializer
@@ -228,11 +240,17 @@ class Character {
         mod: int(this.recharge.$mod.val())
       },
       gear: [],
+      items: [],
     };
 
     for (let gear of this.gear) {
       if (gear) bundle.gear.push(Gear.getGearKey(gear));
     }
+
+    this.$node.find('.js-item select').each(function (i, item) {
+      const itemKey = $(item).val();
+      if (itemKey) bundle.items.push(itemKey);
+    });
 
     return bundle;
   }
@@ -242,9 +260,14 @@ class Character {
     this.level = bundle.level;
 
     for (let slot in bundle.gear) {
-      this.gear[slot] = Gear.getGear(bundle.gear[slot]);
+      this.gear[slot] = Gear.getGearData(bundle.gear[slot]);
       $(this.$gear[slot]).find('.js-gear-select').val(bundle.gear[slot]);
-      this.updateGearEffect(this.gear[slot], $(this.$gear[slot]));
+      this.updateEffect(this.gear[slot], $(this.$gear[slot]), 'gear');
+    }
+
+    const $items = this.$node.find('.js-item select');
+    for (let slot in bundle.items) {
+      $($items[slot]).val(bundle.items[slot]).trigger('change');
     }
 
     for (let status of ['hp', 'dmg', 'spec', 'recharge']) {

@@ -23,5 +23,3 @@
   * Update for albatross's passive
 
   * Add mod input (for albatross' ultimate)
-
-* Add consumable items

@@ -81,6 +81,12 @@ class Storage {
             addCharacter(bundle);
           }
         }
+
+        this.$mainContent.find('.js-character').each(function (i, characterSheet) {
+          const character = $(characterSheet).data('character');
+          if (!character) return;
+          character.refresh();
+        });
       } catch (e) {
         console.error("An error occurred while loading from storage:\n" + e);
       }

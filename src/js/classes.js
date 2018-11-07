@@ -3,10 +3,10 @@
 const Classes = {};
 
 Classes.CLASSES = {
-  guardian: {
-    spec_type: 'soul',
+  'Guardian': {
+    spec_type: 'Soul',
     characters: {
-      albatross_grand: {
+      'Albatross Grand': {
         title: 'The Armored Angel',
         dmg: 2,
         hp: 18,
@@ -26,7 +26,7 @@ Classes.CLASSES = {
           },
         },
       },
-      T4O_MKII: {
+      'T4O MKII': {
         title: 'The Soul in the Shell',
         dmg: 3,
         hp: 17,
@@ -46,7 +46,7 @@ Classes.CLASSES = {
           },
         },
       },
-      lilith: {
+      'Lilith': {
         title: 'The Bad Blood',
         dmg: 1,
         hp: 16,
@@ -68,10 +68,10 @@ Classes.CLASSES = {
       },
     },
   },
-  spellweaver: {
-    spec_type: 'intelligence',
+  'Spellweaver': {
+    spec_type: 'Intelligence',
     characters: {
-      harmony_marx: {
+      'Harmony Marx': {
         title: 'The Sorcerer Songstress',
         dmg: 4,
         hp: 14,
@@ -91,7 +91,7 @@ Classes.CLASSES = {
           },
         },
       },
-      ariadne: {
+      'Ariadne': {
         title: 'The Blind Prophet',
         dmg: 5,
         hp: 11,
@@ -111,7 +111,7 @@ Classes.CLASSES = {
           },
         },
       },
-      psykoshka: {
+      'Psykoshka': {
         title: 'The Lost Familiar',
         dmg: 4,
         hp: 13,
@@ -133,10 +133,10 @@ Classes.CLASSES = {
       },
     },
   },
-  slayer: {
-    spec_type: 'courage',
+  'Slayer': {
+    spec_type: 'Courage',
     characters: {
-      grimwulf_kaiser: {
+      'Grimwulf kaiser': {
         title: 'The Howling Death',
         dmg: 9,
         hp: 9,
@@ -156,7 +156,7 @@ Classes.CLASSES = {
           },
         },
       },
-      jackal: {
+      'Jackal': {
         title: 'The Soundslinger',
         dmg: 7,
         hp: 7,
@@ -176,7 +176,7 @@ Classes.CLASSES = {
           },
         },
       },
-      vulcana: {
+      'Vulcana': {
         title: 'The Pyroxian Flame',
         dmg: 8,
         hp: 8,
@@ -198,10 +198,10 @@ Classes.CLASSES = {
       },
     },
   },
-  enchanter: {
-    spec_type: 'aura',
+  'Enchanter': {
+    spec_type: 'Aura',
     characters: {
-      misteyes_snow: {
+      'Misteyes Snow': {
         title: 'The White Fox',
         dmg: 3,
         hp: 14,
@@ -221,7 +221,7 @@ Classes.CLASSES = {
           },
         },
       },
-      dexler: {
+      'Dexler': {
         title: 'The Mad Alchemist',
         dmg: 1,
         hp: 11,
@@ -241,7 +241,7 @@ Classes.CLASSES = {
           },
         },
       },
-      faerie: {
+      'Faerie': {
         title: 'The Fable of the Forest',
         dmg: 0,
         hp: 13,
@@ -263,10 +263,10 @@ Classes.CLASSES = {
       },
     },
   },
-  trickster: {
-    spec_type: 'luck',
+  'Trickster': {
+    spec_type: 'Luck',
     characters: {
-      ein: {
+      'Ein': {
         title: 'The Shadewalker',
         dmg: 5,
         hp: 10,
@@ -286,7 +286,7 @@ Classes.CLASSES = {
           },
         },
       },
-      zuciel: {
+      'Zuciel': {
         title: 'The Phantom of Sin',
         dmg: 0,
         hp: 13,
@@ -306,7 +306,7 @@ Classes.CLASSES = {
           },
         },
       },
-      marina: {
+      'Marina': {
         title: 'The Chronokeeper',
         dmg: 5,
         hp: 10,
@@ -358,5 +358,5 @@ Classes.$CLASS_SELECT = (function () {
     }
   }
 
-  return Select.makeSelect(options, 'js-class-select');
+  return Select.makeGroupedSelect(options, 'js-class-select', true);
 })();
