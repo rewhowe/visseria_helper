@@ -12,11 +12,11 @@ Select.makeSelect = function (groupedOptions, className, required = true) {
   $select.append('<option selected' + (required ? ' disabled' : '') + '>-</option>');
 
   for (let group in groupedOptions) {
-    $optGroup = $('<optgroup label="' + titleCase(group) + '">');
+    $optGroup = $('<optgroup label="' + group + '">');
 
     for (let option in groupedOptions[group]) {
       const key = group + Select.KEY_DELIMITER + option;
-      const $option = $('<option value="' + key + '">' + titleCase(groupedOptions[group][option]) + '</option>');
+      const $option = $('<option value="' + key + '">' + groupedOptions[group][option] + '</option>');
       $optGroup.append($option);
     }
 

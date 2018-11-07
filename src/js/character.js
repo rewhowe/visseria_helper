@@ -54,7 +54,7 @@ class Character {
 
     this.spec = {
       base: 1,
-      $name: this.$node.find('.js-spec-name').html(titleCase(character.specType)),
+      $name: this.$node.find('.js-spec-name').html(character.specType),
       $value: this.$node.find('.js-spec-value'),
       $detail: this.$node.find('.js-spec-detail'),
       $mod: this.$node.find('.js-spec-mod'),
