@@ -221,5 +221,5 @@ Gear.$GEAR_SELECT = (function () {
     }
   }
 
-  return Select.makeSelect(options, 'js-gear-select', false);
+  return Select.makeGroupedSelect(options, 'js-gear-select');
 })();

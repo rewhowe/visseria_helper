@@ -6,7 +6,7 @@ Select.makeKey = function (group, option) {
   return group + Select.KEY_DELIMITER + option;
 };
 
-Select.makeSelect = function (groupedOptions, className, required = true) {
+Select.makeGroupedSelect = function (groupedOptions, className, required = false) {
   const $select = $('<select class="' + className + '">');
 
   $select.append('<option selected' + (required ? ' disabled' : '') + '>-</option>');
@@ -21,6 +21,18 @@ Select.makeSelect = function (groupedOptions, className, required = true) {
     }
 
     $select.append($optGroup);
+  }
+
+  return $select;
+};
+
+Select.makeSelect = function (options, className, required = false) {
+  const $select = $('<select class="' + className + '">');
+
+  $select.append('<option selected' + (required ? ' disabled' : '') + '>-</option>');
+
+  for (let option in options) {
+    $select.append($('<option value="' + option + '">' + option + '</option>'));
   }
 
   return $select;

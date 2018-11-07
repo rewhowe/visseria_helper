@@ -56,3 +56,14 @@ Items.ITEMS = {
     effect: '1 inactive User becomes active',
   },
 };
+
+Items.getItemData = function (key) {
+  const item = Items.ITEMS[key];
+  if (!item) return;
+  item.name = key;
+  return item;
+};
+
+Items.$ITEM_SELECT = (function () {
+  return Select.makeSelect(Items.ITEMS, 'js-item-select');
+})();

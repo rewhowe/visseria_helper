@@ -1,4 +1,4 @@
-// @require Gear, Classes, Character
+// @require Gear, Classes, Character, Items
 
 const APP_VERSION = 'v2'; // not backwards compatible
 
@@ -15,7 +15,8 @@ $(function () {
   const storage = new Storage($mainContent, $keyShards, $gold);
 
   $template.find('.js-class').append(Classes.$CLASS_SELECT.clone());
-  $template.find('.js-gear').each((i, gear) => $(gear).prepend(Gear.$GEAR_SELECT.clone().attr('data-slot', i)));
+  $template.find('.js-gear').each( (i, gear) => $(gear).prepend(Gear.$GEAR_SELECT.clone().attr('data-slot', i)) );
+  $template.find('.js-item').each( (i, item) => $(item).prepend(Items.$ITEM_SELECT.clone()) );
 
   function addCharacter(bundle = null) {
     const $character = $template.clone();
@@ -73,6 +74,12 @@ $(function () {
     if (!canWear) $(this).val('-');
   });
 
+  $(document).on('change', '.js-item-select', function () {
+    const item = Items.getItemData($(this).val());
+    $(this).parent().find('.js-item-detail').html(item ? item.effect : '');
+    Character.updateEffect(item, $(this).parent(), 'item');
+  });
+
   $(document).on('change', '.js-status-mod', function () {
     const character = $(this).closest('.js-character').data('character');
     if (!character) return;
@@ -85,7 +92,7 @@ $(function () {
     character.changeCurrent($(this).data('status'));
   });
 
-  for (let type of ['gear', 'ability']) {
+  for (let type of ['gear', 'ability', 'item']) {
     $(document).on('click', '.js-' + type + '-show-detail', function () {
       $(this).toggleClass('pressed');
       const $detail = $(this).parent().siblings('.js-' + type + '-detail');

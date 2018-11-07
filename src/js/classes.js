@@ -358,5 +358,5 @@ Classes.$CLASS_SELECT = (function () {
     }
   }
 
-  return Select.makeSelect(options, 'js-class-select');
+  return Select.makeGroupedSelect(options, 'js-class-select', true);
 })();
