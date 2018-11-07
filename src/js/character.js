@@ -80,7 +80,7 @@ class Character {
 
     if (bundle) this.fromBundle(bundle);
 
-    for (let status of ['hp', 'dmg', 'spec', 'recharge']) this.mod(status);
+    this.refresh();
 
     this.$node.find('.js-character-detail').slideDown();
   }
@@ -183,9 +183,12 @@ class Character {
     const canWear = gear && (!gear.limit_class || this.class === gear.limit_class);
     this.gear[slot] = canWear ? gear : undefined;
 
-    for (let status of ['hp', 'dmg', 'spec', 'recharge']) this.mod(status);
+    this.refresh();
 
     this.updateGearEffect(this.gear[slot], $(this.$gear[slot]));
+
+    // TODO: trigger gear effects
+    // if (canWear) this.gear[slot].onEquip(this);
 
     return canWear;
   }
@@ -202,12 +205,16 @@ class Character {
 
   updateLevel(level) {
     this.level = Math.min(Character.MAX_LEVEL, Math.max(0, level));
-    this.mod('hp');
-    this.mod('dmg');
 
     // full heal
     this.hp.$current.val(this.hp.base + this.getLevelMod('hp') + this.getStatusMod('hp'));
     this.changeCurrent('hp');
+
+    this.mod('dmg');
+  }
+
+  refresh(statuses = ['hp', 'dmg', 'spec', 'recharge']) {
+    for (let status of statuses) this.mod(status);
   }
 
   // serializer
