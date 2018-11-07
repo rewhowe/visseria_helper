@@ -222,6 +222,13 @@ class Character {
     for (let status of statuses) this.mod(status);
   }
 
+  canDebuff(debuff) {
+    for (let gear of this.gear) {
+      if (gear && gear.name === 'Magus\' Cloak') return false;
+    }
+    return true;
+  }
+
   // serializer
 
   toBundle() {
