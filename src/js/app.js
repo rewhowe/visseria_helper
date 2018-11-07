@@ -101,8 +101,6 @@ $(function () {
   }
 
   $(document).on('click', '.js-debuff input[type="checkbox"]', function () {
-    // TODO: check character canDebuff(...)
-    // - check for T40
     const character = $(this).closest('.js-character').data('character');
     if (!character) return;
 
@@ -111,6 +109,8 @@ $(function () {
       $label.removeClass('checked');
     } else if (character.canDebuff($(this).data('type'))) {
       $label.addClass('checked');
+    } else {
+      return false;
     }
   });
 

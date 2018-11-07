@@ -10,11 +10,7 @@
 
   * Change Spec stat to class colour
 
-* Add a `canDebuff(debuff)` method
-
-  * T4O's passive
-
-  * Magus Cloak
+* Add `onEquip` callbacks for Gear
 
 * Add Success roll modifier somewhere
 
