@@ -93,9 +93,9 @@ $(function () {
   });
 
   for (let type of ['gear', 'ability', 'item']) {
-    $(document).on('click', '.js-' + type + '-show-detail', function () {
+    $(document).on('click', '.js-show-detail', function () {
       $(this).toggleClass('pressed');
-      const $detail = $(this).parent().siblings('.js-' + type + '-detail');
+      const $detail = $(this).parent().siblings('.js-detail');
       $detail.toggleClass('hidden');
     });
   }

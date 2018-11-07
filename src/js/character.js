@@ -1,4 +1,4 @@
-// @require Classes, Gear
+// @require Classes, Gear, Items
 
 class Character {
 
@@ -72,7 +72,7 @@ class Character {
     this.gear = [];
     this.$gear = this.$node.find('.js-gear');
     this.$gear.find('.js-gear-select').val('-');
-    this.$node.find('.js-gear-show-detail, .js-gear-detail, .js-item-show-detail, .js-item-detail')
+    this.$node.find('.js-gear .js-show-detail, .js-gear .js-detail, .js-item .js-show-detail, .js-item .js-detail')
       .addClass('hidden')
       .removeClass('pressed');
 
@@ -90,7 +90,7 @@ class Character {
     for (let abilityType in this.abilities) {
       const ability = this.abilities[abilityType];
       this.$node.find('.js-ability-' + abilityType + ' .js-ability-name').html(ability.name);
-      this.$node.find('.js-ability-' + abilityType + ' .js-ability-detail').html(ability.effect);
+      this.$node.find('.js-ability-' + abilityType + ' .js-detail').html(ability.effect);
     }
   }
 
@@ -185,7 +185,7 @@ class Character {
 
     this.refresh();
 
-    this.updateEffect(this.gear[slot], $(this.$gear[slot]), 'gear');
+    this.updateEffect(this.gear[slot], $(this.$gear[slot]));
 
     // TODO: trigger gear effects
     // if (canWear) this.gear[slot].onEquip(this);
@@ -196,16 +196,16 @@ class Character {
   changeItem($item, itemKey) {
     const item = Items.getItemData(itemKey);
     console.log(item);
-    this.updateEffect(item, $item, 'item');
+    this.updateEffect(item, $item);
   }
 
-  updateEffect(data, $node, type) {
+  updateEffect(data, $node) {
     if (data && data.effect) {
-      $node.find('.js-' + type + '-show-detail').removeClass('hidden');
-      $node.find('.js-' + type + '-detail').html(data.effect);
+      $node.find('.js-show-detail').removeClass('hidden');
+      $node.find('.js-detail').html(data.effect);
     } else {
-      $node.find('.js-' + type + '-show-detail, .js-' + type + '-detail').addClass('hidden');
-      $node.find('.js-' + type + '-detail').html('');
+      $node.find('.js-show-detail, .js-detail').addClass('hidden');
+      $node.find('.js-detail').html('');
     }
   }
 
