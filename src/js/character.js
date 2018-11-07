@@ -22,8 +22,8 @@ class Character {
       dmg: 0,
     };
 
-    // this.$icon = this.$node.find('.js-icon')
-    //   .attr('src', './public/img/' + snakeCase(this.name) + '.png');
+    this.$icon = this.$node.find('.js-icon')
+      .attr('src', './public/img/' + snakeCase(this.name) + '.png');
     this.$title = this.$node.find('.js-title')
       .html(character.title);
     this.$class = this.$node.find('.js-class-select');
@@ -195,7 +195,6 @@ class Character {
 
   changeItem($item, itemKey) {
     const item = Items.getItemData(itemKey);
-    console.log(item);
     this.updateEffect(item, $item);
   }
 
@@ -241,11 +240,17 @@ class Character {
         mod: int(this.recharge.$mod.val())
       },
       gear: [],
+      items: [],
     };
 
     for (let gear of this.gear) {
       if (gear) bundle.gear.push(Gear.getGearKey(gear));
     }
+
+    this.$node.find('.js-item select').each(function (i, item) {
+      const itemKey = $(item).val();
+      if (itemKey) bundle.items.push(itemKey);
+    });
 
     return bundle;
   }
@@ -258,6 +263,11 @@ class Character {
       this.gear[slot] = Gear.getGearData(bundle.gear[slot]);
       $(this.$gear[slot]).find('.js-gear-select').val(bundle.gear[slot]);
       this.updateEffect(this.gear[slot], $(this.$gear[slot]), 'gear');
+    }
+
+    const $items = this.$node.find('.js-item select');
+    for (let slot in bundle.items) {
+      $($items[slot]).val(bundle.items[slot]).trigger('change');
     }
 
     for (let status of ['hp', 'dmg', 'spec', 'recharge']) {
