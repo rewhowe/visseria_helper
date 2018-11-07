@@ -5,16 +5,6 @@ class Character {
   static get MAX_LEVEL() { return 3; }
   static get LEVEL_BONUS() { return 2; }
 
-  static updateEffect(data, $node, type) {
-    if (data && data.effect) {
-      $node.find('.js-' + type + '-show-detail').removeClass('hidden');
-      $node.find('.js-' + type + '-detail').html(data.effect);
-    } else {
-      $node.find('.js-' + type + '-show-detail, .js-' + type + '-detail').addClass('hidden');
-      $node.find('.js-' + type + '-detail').html('');
-    }
-  }
-
   constructor($node, characterKey, bundle = null) {
     this.$node = $node;
 
@@ -195,8 +185,7 @@ class Character {
 
     this.refresh();
 
-    // this.updateGearEffect(this.gear[slot], $(this.$gear[slot]));
-    Character.updateEffect(this.gear[slot], $(this.$gear[slot]), 'gear');
+    this.updateEffect(this.gear[slot], $(this.$gear[slot]), 'gear');
 
     // TODO: trigger gear effects
     // if (canWear) this.gear[slot].onEquip(this);
@@ -204,15 +193,21 @@ class Character {
     return canWear;
   }
 
-  // updateGearEffect(gear, $gear) {
-  //   if (gear && gear.effect) {
-  //     $gear.find('.js-gear-show-detail').removeClass('hidden');
-  //     $gear.find('.js-gear-detail').html(gear.effect);
-  //   } else {
-  //     $gear.find('.js-gear-show-detail, .js-gear-detail').addClass('hidden');
-  //     $gear.find('.js-gear-detail').html('');
-  //   }
-  // }
+  changeItem($item, itemKey) {
+    const item = Items.getItemData(itemKey);
+    console.log(item);
+    this.updateEffect(item, $item, 'item');
+  }
+
+  updateEffect(data, $node, type) {
+    if (data && data.effect) {
+      $node.find('.js-' + type + '-show-detail').removeClass('hidden');
+      $node.find('.js-' + type + '-detail').html(data.effect);
+    } else {
+      $node.find('.js-' + type + '-show-detail, .js-' + type + '-detail').addClass('hidden');
+      $node.find('.js-' + type + '-detail').html('');
+    }
+  }
 
   updateLevel(level) {
     this.level = Math.min(Character.MAX_LEVEL, Math.max(0, level));
@@ -262,8 +257,7 @@ class Character {
     for (let slot in bundle.gear) {
       this.gear[slot] = Gear.getGearData(bundle.gear[slot]);
       $(this.$gear[slot]).find('.js-gear-select').val(bundle.gear[slot]);
-      // this.updateGearEffect(this.gear[slot], $(this.$gear[slot]));
-      Character.updateEffect(this.gear[slot], $(this.$gear[slot]), 'gear');
+      this.updateEffect(this.gear[slot], $(this.$gear[slot]), 'gear');
     }
 
     for (let status of ['hp', 'dmg', 'spec', 'recharge']) {

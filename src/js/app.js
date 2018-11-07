@@ -75,9 +75,9 @@ $(function () {
   });
 
   $(document).on('change', '.js-item-select', function () {
-    const item = Items.getItemData($(this).val());
-    $(this).parent().find('.js-item-detail').html(item ? item.effect : '');
-    Character.updateEffect(item, $(this).parent(), 'item');
+    const character = $(this).closest('.js-character').data('character');
+    if (!character) return;
+    character.changeItem($(this).parent(), $(this).val());
   });
 
   $(document).on('change', '.js-status-mod', function () {
