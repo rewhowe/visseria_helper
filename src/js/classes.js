@@ -13,7 +13,7 @@ Classes.CLASSES = {
         abilities: {
           passive: {
             name: 'Endure',
-            effect: 'Any DMG Albatross Grand receives is reduced by (Room Lvl). When Albatross Grand activates an Ultimate ability: this ability is negated',
+            effect: 'Any DMG Albatross Grand receives is reduced by (Room Lvl). When Albatross Grand uses an Ultimate ability: this ability is negated',
           },
           active: {
             name: 'Divine Intervention',
@@ -106,7 +106,7 @@ Classes.CLASSES = {
           },
           ultimate: {
             name: 'Foreseer\'s Favour',
-            effect: "Ariadne gains the following ability based on the current Room type:\nMob/Boss Room - Once per Room: Ariadne gains (Intelligence Lvl) DMG for the Room\nTrap Room - Ariadne gains + (Intelligence Lvl) Success roll\nTreasure Room - Acquire 1 Item if an Item is acquired",
+            effect: "Once per Room: Ariadne gains the following ability based on the current Room Type: Mob/Boss Room - Once per Room: Ariadne gains (Intelligence Lvl) DMG until Ariadne Dies or leaves the current Room. Trap Room - Ariadne gains + (Intelligence Lvl) Success roll for the Room. Treasure Room - Once per Room, If an Item is acquired: Acquire 1 Item",
             recharge: 5,
           },
         },
@@ -151,7 +151,7 @@ Classes.CLASSES = {
           },
           ultimate: {
             name: 'Hellhound',
-            effect: 'Spawn a Hellhound Token with (Courage Lvl) DMG and (Courage Lvl) Max HP. Hellhound Token is treated as an ally User (cannot acquire or hold Gear). There can only be 1 Hellhound Token at a time',
+            effect: 'If no Hellhound Tokens exists: spawn a Hellhound Token with (Courage Lvl) DMG and (Courage Lvl) Max HP. Hellhound Token is treated as an ally User (cannot acquire or hold Items). If Grimwulf Kaiser is targeted for an attack: Hellhound Token is attacked instead',
             recharge: 5,
           },
         },
@@ -216,7 +216,7 @@ Classes.CLASSES = {
           },
           ultimate: {
             name: 'Light of Life',
-            effect: 'If an ally User is Dead: Resurrect the Dead User',
+            effect: 'Resurrect 1 Dead User',
             recharge: 10,
           },
         },
