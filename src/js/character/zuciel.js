@@ -1,7 +1,8 @@
 Classes.Zuciel = class Zuciel extends Character {
   mod(status) {
+    console.log('hoge? ' + GAME.getGold());
     const mod = this.getStatusMod(status);
-    const base = (status === 'dmg') ? int($('.js-gold').val()) : this[status].base;
+    const base = (status === 'dmg') ? GAME.getGold() : this[status].base;
     const value = base + this.getLevelMod(status);
     this[status].moddedValue = Math.max(0, value + mod);
 
@@ -16,7 +17,7 @@ Classes.Zuciel = class Zuciel extends Character {
       const operator = mod > 0 ? ' + ' : ' - ';
       this[status].$detail.html(value + operator + Math.abs(mod));
       this[status].$detail.parent().addClass('character-status-modified');
-    } else if (status === 'dmg' && int($('.js-gold').val()) !== 0) {
+    } else if (status === 'dmg' && GAME.getGold() !== 0) {
       this[status].$detail.html('');
       this[status].$detail.parent().addClass('character-status-modified');
     } else {

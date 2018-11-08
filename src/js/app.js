@@ -2,6 +2,8 @@
 
 const APP_VERSION = 'v2'; // not backwards compatible
 
+const GAME = {};
+
 $(function () {
   $('.js-version').html(APP_VERSION);
 
@@ -12,7 +14,10 @@ $(function () {
   const $gold = $('.js-gold');
   const $mainContent = $('.js-main-content');
   const $addButton = $('.js-add-character');
-  const storage = new Storage($mainContent, $keyShards, $gold);
+  const storage = new Storage($mainContent);
+
+  GAME.getKeyShards = () => int($keyShards.val());
+  GAME.getGold = () => int($gold.val());
 
   $template.find('.js-class').append(Classes.$CLASS_SELECT.clone());
   $template.find('.js-gear').each( (i, gear) => $(gear).prepend(Gear.$GEAR_SELECT.clone().attr('data-slot', i)) );
@@ -58,7 +63,7 @@ $(function () {
   $gold.on('change', function () {
     $mainContent.find('.js-character').each(function (i, el) {
       const character = $(el).data('character');
-      if (character && character.name === 'zuciel') character.mod('dmg');
+      if (character && character.name === 'Zuciel') character.mod('dmg');
     });
   });
 
@@ -71,7 +76,7 @@ $(function () {
   $(document).on('change', '.js-class-select', function () {
     const $character = $(this).closest('.js-character');
     const character = setCharacter($character, $(this).val());
-    character.updateLevel(int($keyShards.val()));
+    character.updateLevel(GAME.getKeyShards());
     if (character.name === 'Faerie') refreshAllCharacters();
   });
 
@@ -119,7 +124,7 @@ $(function () {
     if (changed) storage.queueSave();
   });
 
-  storage.loadFromStorage(addCharacter);
+  storage.loadFromStorage(addCharacter, $keyShards, $gold);
 
   if ($mainContent.find('.js-character').length === 0) {
     addCharacter();

@@ -4,7 +4,7 @@ Classes.Faerie = class Faerie extends Character {
 
     if (status !== 'hp') return;
 
-    const globalDmgMod = (this.hp.current === this.hp.moddedValue ? int($('.js-key-shards').val()) : 0);
+    const globalDmgMod = (this.hp.current === this.hp.moddedValue ? GAME.getKeyShards() : 0);
 
     if (globalDmgMod !== this.globalMod.dmg) {
       this.globalMod.dmg = globalDmgMod;
