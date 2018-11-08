@@ -93,9 +93,10 @@ class Character {
       let effect = ability.effect;
 
       for (let status of Character.STATUSES) {
-        // TODO: replace with spec
+        effect.replace('#' + status, '<strong>' + this[status].moddedValue + '</strong>');
       }
-      // TODO: also room level
+      effect.replace('#room', '<strong>' + GAME.getKeyShards() + '</strong>');
+      effect.replace('#gold', '<strong>' + GAME.getGold() + '</strong>');
 
       this.$node.find('.js-ability-' + abilityType + ' .js-ability-name').html(ability.name);
       this.$node.find('.js-ability-' + abilityType + ' .js-detail').html(effect);
