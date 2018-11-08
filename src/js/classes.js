@@ -121,7 +121,7 @@ Classes.CLASSES = {
         abilities: {
           passive: {
             name: 'Symmetry',
-            effect: 'Psykoshka gains #spec DMG', // TODO
+            effect: 'Psykoshka gains #spec DMG',
           },
           active: {
             name: 'Copycat',

@@ -4,11 +4,7 @@
 
 ## TODO
 
-* Show Special stat values as bold, class-coloured text in descriptions
-
-  * Use #SPEC placeholder
-
-  * Change Spec stat to class colour
+* TODO: psykoshka's passive
 
 * Add Success roll modifier somewhere
 
