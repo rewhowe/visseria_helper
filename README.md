@@ -10,8 +10,6 @@
 
   * Change Spec stat to class colour
 
-* Add `onEquip` callbacks for Gear
-
 * Add Success roll modifier somewhere
 
 * Add something to show damage reduction (ex. armour effects)

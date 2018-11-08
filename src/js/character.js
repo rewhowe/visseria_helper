@@ -185,8 +185,7 @@ class Character {
 
     this.updateEffect(this.gear[slot], $(this.$gear[slot]));
 
-    // TODO: trigger gear effects
-    // if (canWear) this.gear[slot].onEquip(this);
+    if (canWear && this.gear[slot].onEquip) this.gear[slot].onEquip(this);
 
     return canWear;
   }

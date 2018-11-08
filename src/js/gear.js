@@ -130,7 +130,10 @@ Gear.GEAR = {
       cost: 5,
       dmg: 5,
       hp: 0,
-      effect: 'While equipped with The Murmur: equipped User is debuffed with Silence', // TODO
+      effect: 'While equipped with The Murmur: equipped User is debuffed with Silence',
+      onEquip: function (character) {
+        character.addDebuff('silence');
+      },
     },
   },
   'Legendary Gear': {
@@ -166,9 +169,14 @@ Gear.GEAR = {
       dmg: 1,
       hp: 4,
       limit_class: 'Enchanter',
-      effect: 'Remove all debuffs from the equipped User. Equipped User is immune to debuffs. Can only be equipped by Enchanters', // TODO
+      effect: 'Remove all debuffs from the equipped User. Equipped User is immune to debuffs. Can only be equipped by Enchanters',
       spec: 3,
       spec_type: 'Aura',
+      onEquip: function (character) {
+        for (let debuff of ['blind', 'bleed', 'fear', 'silence', 'curse', 'undead', 'sleep']) {
+          character.removeDebuff(debuff);
+        }
+      },
     },
     'Weeper\'s Satchel': {
       cost: 15,
