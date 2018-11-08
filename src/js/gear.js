@@ -82,19 +82,13 @@ Gear.GEAR = {
       cost: 5,
       dmg: 2,
       hp: 0,
-      effect: 'Enemies the equipped User attacks are debuffed with Bleed',
+      effect: 'Enemies attacked by the equipped User are debuffed with Bleed',
     },
     'Mugger Dagger': {
       cost: 5,
       dmg: 2,
       hp: 0,
       effect: 'Equipped User gains 1G for every successful attack on an Enemy if Success roll',
-    },
-    'Bones': {
-      cost: 5,
-      dmg: 1,
-      hp: 5,
-      effect: 'While equipped with Bones: equipped User is debuffed with Undead', // TODO
     },
     'Lucky Charm': {
       cost: 5,

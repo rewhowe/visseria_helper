@@ -17,7 +17,7 @@ Items.ITEMS = {
   },
   'Elixir': {
     cost: 3,
-    effect: 'Recharges the User\'s Ultimate Gauge 1',
+    effect: 'Recharges the User\'s Ultimate Gauge',
   },
   'Liquid Courage': {
     cost: 3,
@@ -45,7 +45,7 @@ Items.ITEMS = {
   },
   'Smoke Bomb': {
     cost: 3,
-    effect: 'All active Users can Escape the active Room regardless of Success roll and return to the previous Room. Escaped Room Tile is reset',
+    effect: 'All Users can Escape the current Room and return to the previous Room. The Escaped Room Tile is Reset',
   },
   'Sorcerer\'s Eye': {
     cost: 3,
