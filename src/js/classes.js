@@ -37,7 +37,7 @@ Classes.CLASSES = {
           },
           active: {
             name: 'Self Destruct',
-            effect: 'T4O MKII deals X DMG to 1 Enemy and loses X HP (X cannot be greater than T4O MKII\'s current HP)',
+            effect: 'Declare X (X cannot be greater than T4O MKII\'s current HP): T4O MKII deals X DMG to 1 Enemy and loses X HP ',
           },
           ultimate: {
             name: 'Recharge',
