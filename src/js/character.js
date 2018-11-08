@@ -4,6 +4,7 @@ class Character {
 
   static get MAX_LEVEL() { return 3; }
   static get LEVEL_BONUS() { return 2; }
+  static get STATUSES() { return ['hp', 'dmg', 'spec', 'recharge']; }
 
   constructor($node, characterKey, bundle = null) {
     this.$node = $node;
@@ -32,7 +33,6 @@ class Character {
     this.$debuffs.each( (i, debuff) => $(debuff).removeClass('checked') );
 
     this.$ultimate = this.$node.find('.js-ability-ultimate');
-    this.setAbilities();
 
     this.hp = {
       current: character.hp,
@@ -87,12 +87,18 @@ class Character {
     this.$node.find('.js-character-detail').slideDown();
   }
 
-  // TODO: change to "updateAbilities" and call after mod spec
-  setAbilities() {
+  updateAbilities() {
     for (let abilityType in this.abilities) {
       const ability = this.abilities[abilityType];
+      let effect = ability.effect;
+
+      for (let status of Character.STATUSES) {
+        // TODO: replace with spec
+      }
+      // TODO: also room level
+
       this.$node.find('.js-ability-' + abilityType + ' .js-ability-name').html(ability.name);
-      this.$node.find('.js-ability-' + abilityType + ' .js-detail').html(ability.effect);
+      this.$node.find('.js-ability-' + abilityType + ' .js-detail').html(effect);
     }
   }
 
@@ -106,6 +112,7 @@ class Character {
 
     this.updateStatusDetail(status, mod, value);
     this.updateCurrentStatus(status);
+    this.updateAbilities();
   }
 
   getLevelMod(status) {
@@ -217,8 +224,8 @@ class Character {
     this.mod('dmg');
   }
 
-  refresh(statuses = ['hp', 'dmg', 'spec', 'recharge']) {
-    for (let status of statuses) this.mod(status);
+  refresh() {
+    for (let status of Character.STATUSES) this.mod(status);
   }
 
   addDebuff(debuff) {
@@ -292,7 +299,7 @@ class Character {
       $($items[slot]).val(bundle.items[slot]).trigger('change');
     }
 
-    for (let status of ['hp', 'dmg', 'spec', 'recharge']) {
+    for (let status of Character.STATUSES) {
       this[status].$mod.val(int(bundle[status].mod));
       if (['hp', 'recharge'].indexOf(status) !== -1) this[status].current = bundle[status].current;
     }
