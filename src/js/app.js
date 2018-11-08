@@ -100,18 +100,18 @@ $(function () {
     });
   }
 
-  $(document).on('click', '.js-debuff input[type="checkbox"]', function () {
+  $(document).on('click', '.js-debuff', function () {
     const character = $(this).closest('.js-character').data('character');
     if (!character) return;
 
-    const $label = $(this).parent();
-    if ($label.hasClass('checked')) {
-      $label.removeClass('checked');
-    } else if (character.canDebuff($(this).data('type'))) {
-      $label.addClass('checked');
+    let changed = false;
+    if ($(this).hasClass('checked')) {
+      changed = character.removeDebuff($(this).data('type'));
     } else {
-      return false;
+      changed = character.addDebuff($(this).data('type'));
     }
+
+    if (changed) storage.queueSave();
   });
 
   storage.loadFromStorage(addCharacter);
