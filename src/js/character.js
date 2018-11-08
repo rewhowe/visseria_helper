@@ -28,10 +28,8 @@ class Character {
       .html(character.title);
     this.$class = this.$node.find('.js-class-select');
 
-    this.$debuffs = this.$node.find('.js-debuff input[type="checkbox"]');
-    for (let debuff of this.$debuffs) {
-      $(debuff).prop('checked', false).parent().removeClass('checked');
-    }
+    this.$debuffs = this.$node.find('.js-debuff');
+    this.$debuffs.each( (i, debuff) => $(debuff).removeClass('checked') );
 
     this.$ultimate = this.$node.find('.js-ability-ultimate');
     this.setAbilities();
@@ -187,8 +185,7 @@ class Character {
 
     this.updateEffect(this.gear[slot], $(this.$gear[slot]));
 
-    // TODO: trigger gear effects
-    // if (canWear) this.gear[slot].onEquip(this);
+    if (canWear && this.gear[slot].onEquip) this.gear[slot].onEquip(this);
 
     return canWear;
   }
@@ -222,6 +219,15 @@ class Character {
     for (let status of statuses) this.mod(status);
   }
 
+  addDebuff(debuff) {
+    const $debuff = this.$debuffs.filter('[data-type="' + debuff + '"]');
+    const isChecked = $debuff.hasClass('checked');
+
+    if (this.canDebuff(debuff)) $debuff.addClass('checked');
+
+    return isChecked !== $debuff.hasClass('checked');
+  }
+
   canDebuff(debuff) {
     for (let gear of this.gear) {
       if (gear && gear.name === 'Magus\' Cloak') return false;
@@ -229,11 +235,18 @@ class Character {
     return true;
   }
 
+  removeDebuff(debuff) {
+    const $debuff = this.$debuffs.filter('[data-type="' + debuff + '"]');
+    if (!$debuff.hasClass('checked')) return false;
+    $debuff.removeClass('checked');
+    return true;
+  }
+
   // serializer
 
   toBundle() {
     const bundle = {
-      debuffs: this.$debuffs.map((i, checkbox) => checkbox.checked).toArray(),
+      debuffs: this.$debuffs.map( (i, debuff) => $(debuff).hasClass('checked') ).toArray(),
       character_key: Select.makeKey(this.class, this.name),
       level: this.level,
       hp: {
@@ -283,8 +296,7 @@ class Character {
     }
 
     for (let i in bundle.debuffs) {
-      if (!bundle.debuffs[i]) continue;
-      $(this.$debuffs[i]).prop('checked', true).parent().toggleClass('checked');
+      if (bundle.debuffs[i]) $(this.$debuffs[i]).addClass('checked');
     }
   }
 };

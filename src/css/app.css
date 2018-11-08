@@ -121,7 +121,6 @@ input { padding-left: 0.5rem; }
   display: flex;
   padding: 0.5rem 0;
 }
-.character-debuff input[type="checkbox"] { display: none; }
 .character-debuff .debuff {
   flex: 1;
   text-align: center;
