@@ -37,6 +37,7 @@ class Character {
     this.hp = {
       current: character.hp,
       base: character.hp,
+      moddedValue: character.hp,
       $current: this.$node.find('.js-hp-current').val(character.hp),
       $value: this.$node.find('.js-hp-max'),
       $detail: this.$node.find('.js-hp-detail'),
@@ -45,6 +46,7 @@ class Character {
 
     this.dmg = {
       base: character.dmg,
+      moddedValue: character.dmg,
       $value: this.$node.find('.js-dmg-value').val(character.dmg),
       $detail: this.$node.find('.js-dmg-detail'),
       $mod: this.$node.find('.js-dmg-mod'),
@@ -52,6 +54,7 @@ class Character {
 
     this.spec = {
       base: 1,
+      moddedValue: 1,
       $name: this.$node.find('.js-spec-name').html(character.specType),
       $value: this.$node.find('.js-spec-value'),
       $detail: this.$node.find('.js-spec-detail'),
@@ -61,6 +64,7 @@ class Character {
     this.recharge = {
       current: 0,
       base: character.abilities.ultimate.recharge,
+      moddedValue: character.abilities.ultimate.recharge,
       $current: this.$node.find('.js-recharge-current').val(0),
       $value: this.$node.find('.js-recharge-value'),
       $detail: this.$node.find('.js-recharge-detail'),
@@ -96,14 +100,12 @@ class Character {
     const mod = this.getStatusMod(status);
     const value = this[status].base + this.getLevelMod(status);
 
-    const moddedValue = Math.max(0, value + mod);
+    this[status].moddedValue = Math.max(0, value + mod);
 
-    this[status].$value.html(moddedValue);
+    this[status].$value.html(this[status].moddedValue);
 
     this.updateStatusDetail(status, mod, value);
-    this.updateCurrentStatus(status, moddedValue);
-
-    return moddedValue;
+    this.updateCurrentStatus(status);
   }
 
   getLevelMod(status) {
@@ -147,13 +149,13 @@ class Character {
     }
   }
 
-  updateCurrentStatus(status, moddedValue) {
+  updateCurrentStatus(status) {
     if (['hp', 'recharge'].indexOf(status) !== -1) {
-      this[status].current = Math.min(this[status].current, moddedValue);
+      this[status].current = Math.min(this[status].current, this[status].moddedValue);
       this[status].$current.val(this[status].current);
 
       if (status === 'recharge') {
-        if (this.recharge.current === moddedValue) {
+        if (this.recharge.current === this[status].moddedValue) {
           this.$ultimate.addClass('charged');
         } else {
           this.$ultimate.removeClass('charged');

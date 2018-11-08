@@ -28,10 +28,18 @@ $(function () {
   function setCharacter($node, characterKey, bundle = null) {
     const character = Classes.makeCharacter($node, characterKey, bundle);
     $node.data('character', character);
+    return character;
   }
 
   function checkCharacterLimit() {
     $mainContent.find('.js-character').length >= MAX_CHARACTERS ? $addButton.hide() : $addButton.show();
+  }
+
+  function refreshAllCharacters() {
+    $mainContent.find('.js-character').each(function (i, el) {
+      const character = $(el).data('character');
+      if (character) character.refresh();
+    });
   }
 
   $addButton.on('click', function () {
@@ -41,18 +49,16 @@ $(function () {
 
   $keyShards.on('change', function () {
     const level = int($(this).val());
-    $('.js-character').each(function (i, el) {
+    $mainContent.find('.js-character').each(function (i, el) {
       const character = $(el).data('character');
-      if (!character) return;
-      character.updateLevel(level);
+      if (character) character.updateLevel(level);
     });
   });
 
   $gold.on('change', function () {
     $mainContent.find('.js-character').each(function (i, el) {
       const character = $(el).data('character');
-      if (!character || character.name !== 'zuciel') return;
-      character.mod('dmg');
+      if (character && character.name === 'zuciel') character.mod('dmg');
     });
   });
 
@@ -64,7 +70,9 @@ $(function () {
 
   $(document).on('change', '.js-class-select', function () {
     const $character = $(this).closest('.js-character');
-    setCharacter($character, $(this).val());
+    const character = setCharacter($character, $(this).val());
+    character.updateLevel(int($keyShards.val()));
+    if (character.name === 'Faerie') refreshAllCharacters();
   });
 
   $(document).on('change', '.js-gear-select', function () {
@@ -76,20 +84,17 @@ $(function () {
 
   $(document).on('change', '.js-item-select', function () {
     const character = $(this).closest('.js-character').data('character');
-    if (!character) return;
-    character.changeItem($(this).parent(), $(this).val());
+    if (character) character.changeItem($(this).parent(), $(this).val());
   });
 
   $(document).on('change', '.js-status-mod', function () {
     const character = $(this).closest('.js-character').data('character');
-    if (!character) return;
-    character.mod($(this).data('status'));
+    if (character) character.mod($(this).data('status'));
   });
 
   $(document).on('change', '.js-hp-current, .js-recharge-current', function () {
     const character = $(this).closest('.js-character').data('character');
-    if (!character) return;
-    character.changeCurrent($(this).data('status'));
+    if (character) character.changeCurrent($(this).data('status'));
   });
 
   for (let type of ['gear', 'ability', 'item']) {

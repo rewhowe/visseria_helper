@@ -3,14 +3,12 @@ Classes.Zuciel = class Zuciel extends Character {
     const mod = this.getStatusMod(status);
     const base = (status === 'dmg') ? int($('.js-gold').val()) : this[status].base;
     const value = base + this.getLevelMod(status);
-    const moddedValue = Math.max(0, value + mod);
+    this[status].moddedValue = Math.max(0, value + mod);
 
-    this[status].$value.html(moddedValue);
+    this[status].$value.html(this[status].moddedValue);
 
     this.updateStatusDetail(status, mod, value);
-    this.updateCurrentStatus(status, moddedValue);
-
-    return moddedValue;
+    this.updateCurrentStatus(status);
   }
 
   updateStatusDetail(status, mod, value) {
