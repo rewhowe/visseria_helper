@@ -3,117 +3,106 @@
   border-color: #282;
 }
 .guardian.character-sheet select,
-.guardian.character-sheet input { border-color: #282; }
-.guardian.character-sheet .character-icon img { border-color: #282; }
-.guardian.character-sheet .character-debuff .debuff {
-  border-color: #282;
-  color: #282;
-}
+.guardian.character-sheet input,
+.guardian.character-sheet .character-icon img,
+.guardian.character-sheet .character-debuff .debuff,
+.guardian.character-sheet .detail-button { border-color: #282; }
+
 .guardian.character-sheet .character-debuff .debuff:first-of-type { border-left-color: #282; }
 .guardian.character-sheet .character-debuff .debuff:last-child { border-right-color: #282; }
-.guardian.character-sheet .character-status-spec .character-status-name { color: #282; }
-.guardian.character-sheet .character-status-spec .character-status-value { color: #282; }
-.guardian.character-sheet .detail-button {
-  border-color: #282;
-  color: #282;
-}
-.guardian.character-sheet .detail-button.pressed { background: #282; }
+
+.guardian.character-sheet .character-debuff .debuff,
+.guardian.character-sheet .character-status-spec .character-status-name,
+.guardian.character-sheet .character-status-spec .character-status-value,
+.guardian.character-sheet .detail-button,
 .guardian.character-sheet .character-ability-detail strong.spec { color: #282; }
+.guardian.character-sheet .detail-button.pressed { background: #282; }
 
 .spellweaver.character-sheet {
   background: #EEF3F8;
   border-color: #48B;
 }
 .spellweaver.character-sheet select,
-.spellweaver.character-sheet input { border-color: #48B; }
-.spellweaver.character-sheet .character-icon img { border-color: #48B; }
-.spellweaver.character-sheet .character-debuff .debuff {
-  border-color: #48B;
-  color: #48B;
-}
+.spellweaver.character-sheet input,
+.spellweaver.character-sheet .character-icon img,
+.spellweaver.character-sheet .character-debuff .debuff,
+.spellweaver.character-sheet .detail-button { border-color: #48B; }
+
 .spellweaver.character-sheet .character-debuff .debuff:first-of-type { border-left-color: #48B; }
 .spellweaver.character-sheet .character-debuff .debuff:last-child { border-right-color: #48B; }
-.spellweaver.character-sheet .character-status-spec .character-status-name { color: #48B; }
-.spellweaver.character-sheet .character-status-spec .character-status-value { color: #48B; }
-.spellweaver.character-sheet .detail-button {
-  border-color: #48B;
-  color: #48B;
-}
-.spellweaver.character-sheet .detail-button.pressed { background: #48B; }
+
+.spellweaver.character-sheet .character-debuff .debuff,
+.spellweaver.character-sheet .character-status-spec .character-status-name,
+.spellweaver.character-sheet .character-status-spec .character-status-value,
+.spellweaver.character-sheet .detail-button,
 .spellweaver.character-sheet .character-ability-detail strong.spec { color: #48B; }
+.spellweaver.character-sheet .detail-button.pressed { background: #48B; }
 
 .slayer.character-sheet {
   background: #FAEBEC;
   border: 0.1rem solid #D13;
 }
 .slayer.character-sheet select,
-.slayer.character-sheet input { border-color: #D13; }
-.slayer.character-sheet .character-icon img { border-color: #D13; }
-.slayer.character-sheet .character-debuff .debuff {
-  border-color: #D13;
-  color: #D13;
-}
+.slayer.character-sheet input,
+.slayer.character-sheet .character-icon img,
+.slayer.character-sheet .character-debuff .debuff,
+.slayer.character-sheet .detail-button { border-color: #D13; }
+
 .slayer.character-sheet .character-debuff .debuff:first-of-type { border-left-color: #D13; }
 .slayer.character-sheet .character-debuff .debuff:last-child { border-right-color: #D13; }
-.slayer.character-sheet .character-status-spec .character-status-name { color: #D13; }
-.slayer.character-sheet .character-status-spec .character-status-value { color: #D13; }
-.slayer.character-sheet .detail-button {
-  border-color: #D13;
-  color: #D13;
-}
-.slayer.character-sheet .detail-button.pressed { background: #D13; }
+
+.slayer.character-sheet .character-debuff .debuff,
+.slayer.character-sheet .character-status-spec .character-status-name,
+.slayer.character-sheet .character-status-spec .character-status-value,
+.slayer.character-sheet .detail-button,
 .slayer.character-sheet .character-ability-detail strong.spec { color: #D13; }
+.slayer.character-sheet .detail-button.pressed { background: #D13; }
 
 .enchanter.character-sheet {
   background: #F8EBF3;
   border: 0.1rem solid #C18;
 }
 .enchanter.character-sheet select,
-.enchanter.character-sheet input { border-color: #C18; }
-.enchanter.character-sheet .character-icon img { border-color: #C18; }
-.enchanter.character-sheet .character-debuff .debuff {
-  border-color: #C18;
-  color: #C18;
-}
+.enchanter.character-sheet input,
+.enchanter.character-sheet .character-icon img,
+.enchanter.character-sheet .character-debuff .debuff,
+.enchanter.character-sheet .detail-button { border-color: #C18; }
+
 .enchanter.character-sheet .character-debuff .debuff:first-of-type { border-left-color: #C18; }
 .enchanter.character-sheet .character-debuff .debuff:last-child { border-right-color: #C18; }
-.enchanter.character-sheet .character-status-spec .character-status-name { color: #C18; }
-.enchanter.character-sheet .character-status-spec .character-status-value { color: #C18; }
-.enchanter.character-sheet .detail-button {
-  border-color: #C18;
-  color: #C18;
-}
-.enchanter.character-sheet .detail-button.pressed { background: #C18; }
+
+.enchanter.character-sheet .character-debuff .debuff,
+.enchanter.character-sheet .character-status-spec .character-status-name,
+.enchanter.character-sheet .character-status-spec .character-status-value,
+.enchanter.character-sheet .detail-button,
 .enchanter.character-sheet .character-ability-detail strong.spec { color: #C18; }
+.enchanter.character-sheet .detail-button.pressed { background: #C18; }
 
 .trickster.character-sheet {
   background: #FBF7ED;
   border: 0.1rem solid #DA2
 }
 .trickster.character-sheet select,
-.trickster.character-sheet input { border-color: #DA2; }
-.trickster.character-sheet .character-icon img { border-color: #DA2; }
-.trickster.character-sheet .character-debuff .debuff {
-  border-color: #DA2;
-  color: #DA2;
-}
+.trickster.character-sheet input,
+.trickster.character-sheet .character-icon img,
+.trickster.character-sheet .character-debuff .debuff,
+.trickster.character-sheet .detail-button { border-color: #DA2; }
+
 .trickster.character-sheet .character-debuff .debuff:first-of-type { border-left-color: #DA2; }
 .trickster.character-sheet .character-debuff .debuff:last-child { border-right-color: #DA2; }
-.trickster.character-sheet .character-status-spec .character-status-name { color: #DA2; }
-.trickster.character-sheet .character-status-spec .character-status-value { color: #DA2; }
-.trickster.character-sheet .detail-button {
-  border-color: #DA2;
-  color: #DA2;
-}
-.trickster.character-sheet .detail-button.pressed { background: #DA2; }
+
+.trickster.character-sheet .character-debuff .debuff,
+.trickster.character-sheet .character-status-spec .character-status-name,
+.trickster.character-sheet .character-status-spec .character-status-value,
+.trickster.character-sheet .detail-button,
 .trickster.character-sheet .character-ability-detail strong.spec { color: #DA2; }
+.trickster.character-sheet .detail-button.pressed { background: #DA2; }
 
 .guardian .character-debuff .debuff.checked,
 .spellweaver .character-debuff .debuff.checked,
 .slayer .character-debuff .debuff.checked,
 .enchanter .character-debuff .debuff.checked,
-.trickster .character-debuff .debuff.checked { color: #FFF; }
-
+.trickster .character-debuff .debuff.checked,
 .guardian.character-sheet .detail-button.pressed,
 .spellweaver.character-sheet .detail-button.pressed,
 .slayer.character-sheet .detail-button.pressed,
