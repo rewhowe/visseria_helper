@@ -3,10 +3,6 @@
 const Items = {};
 
 Items.ITEMS = {
-  'Antidote': {
-    cost: 3,
-    effect: 'Removes all Debuffs from 1 User',
-  },
   'Bangbang Bomb': {
     cost: 3,
     effect: 'Deal 5 DMG to 1 Enemy ',
@@ -17,13 +13,9 @@ Items.ITEMS = {
   },
   'Elixir': {
     cost: 3,
-    effect: 'Recharges the User\'s Ultimate Gauge',
+    effect: 'Recharges the User\'s Ultimate Gauge to Max',
   },
-  'Liquid Courage': {
-    cost: 3,
-    effect: 'Grants +2 Decisive roll for the Room',
-  },
-  'Lucky Fruit': {
+  'Fortune\'s Fruit': {
     cost: 3,
     effect: 'User gains +2 Success roll for the Room',
   },
@@ -31,9 +23,13 @@ Items.ITEMS = {
     cost: 3,
     effect: 'Immediately battle a Mimic Mob',
   },
+  'Panacea': {
+    cost: 3,
+    effect: 'Removes all Debuffs from 1 User',
+  },
   'Potion': {
     cost: 3,
-    effect: '1 active User Recovers (Room Lvl) +5 HP',
+    effect: '1 User Recovers (Room Lvl) +5 HP',
   },
   'Resurrection Ring': {
     cost: 15,
@@ -54,6 +50,10 @@ Items.ITEMS = {
   'Stamina Potion': {
     cost: 3,
     effect: '1 inactive User becomes active',
+  },
+  'Tasty Haste': {
+    cost: 3,
+    effect: 'Grants +2 Decisive roll for the Room',
   },
 };
 
