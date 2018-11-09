@@ -18,7 +18,7 @@
   color: #282;
 }
 .guardian.character-sheet .detail-button.pressed { background: #282; }
-.guardian.character-sheet .character-ability strong.spec { color: #282; }
+.guardian.character-sheet .character-ability-detail strong.spec { color: #282; }
 
 .spellweaver.character-sheet {
   background: #EEF3F8;
@@ -40,7 +40,7 @@
   color: #48B;
 }
 .spellweaver.character-sheet .detail-button.pressed { background: #48B; }
-.spellweaver.character-sheet .character-ability strong.spec { color: #48B; }
+.spellweaver.character-sheet .character-ability-detail strong.spec { color: #48B; }
 
 .slayer.character-sheet {
   background: #FAEBEC;
@@ -62,7 +62,7 @@
   color: #D13;
 }
 .slayer.character-sheet .detail-button.pressed { background: #D13; }
-.slayer.character-sheet .character-ability strong.spec { color: #D13; }
+.slayer.character-sheet .character-ability-detail strong.spec { color: #D13; }
 
 .enchanter.character-sheet {
   background: #F8EBF3;
@@ -84,7 +84,7 @@
   color: #C18;
 }
 .enchanter.character-sheet .detail-button.pressed { background: #C18; }
-.enchanter.character-sheet .character-ability strong.spec { color: #C18; }
+.enchanter.character-sheet .character-ability-detail strong.spec { color: #C18; }
 
 .trickster.character-sheet {
   background: #FBF7ED;
@@ -106,7 +106,7 @@
   color: #DA2;
 }
 .trickster.character-sheet .detail-button.pressed { background: #DA2; }
-.trickster.character-sheet .character-ability strong.spec { color: #DA2; }
+.trickster.character-sheet .character-ability-detail strong.spec { color: #DA2; }
 
 .guardian .character-debuff .debuff.checked,
 .spellweaver .character-debuff .debuff.checked,
