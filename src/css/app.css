@@ -209,6 +209,8 @@ input { padding-left: 0.5rem; }
   -moz-animation: ChargePulse 2s ease infinite;
   animation: ChargePulse 2s ease infinite;
 }
+.character-ability-detail { padding: 0.5rem; }
+.character-ability-detail strong { font-weight: bold; }
 
 .add-character {
   margin-top: 1.5rem;

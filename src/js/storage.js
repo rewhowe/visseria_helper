@@ -21,10 +21,8 @@ class Storage {
     };
   }
 
-  constructor($mainContent, $keyShards, $gold) {
+  constructor($mainContent) {
     this.$mainContent = $mainContent;
-    this.$keyShards = $keyShards;
-    this.$gold = $gold;
 
     this.gameData = {};
     this.savePid = {};
@@ -48,8 +46,8 @@ class Storage {
 
   saveToStorage() {
     this.gameData[APP_VERSION] = {
-      key_shards: int(this.$keyShards.val()),
-      gold: int(this.$gold.val()),
+      key_shards: GAME.getKeyShards(),
+      gold: GAME.getGold(),
       characters: [],
     };
 
@@ -63,7 +61,7 @@ class Storage {
     localStorage.visseria = JSON.stringify(this.gameData);
   }
 
-  loadFromStorage(addCharacter) {
+  loadFromStorage(addCharacter, $keyShards, $gold) {
     if (Storage.localStorageAvailable() && localStorage.visseria) {
       try {
         this.gameData = JSON.parse(localStorage.visseria);
@@ -73,8 +71,8 @@ class Storage {
           throw 'App was updated to version: ' + APP_VERSION;
         }
 
-        this.$keyShards.val(this.gameData[APP_VERSION].key_shards);
-        this.$gold.val(this.gameData[APP_VERSION].gold);
+        $keyShards.val(this.gameData[APP_VERSION].key_shards);
+        $gold.val(this.gameData[APP_VERSION].gold);
 
         if (this.gameData[APP_VERSION].characters) {
           for (let bundle of this.gameData[APP_VERSION].characters) {
