@@ -13,4 +13,4 @@ Classes.T4OMKII = class T4OMKII extends Character {
     if (debuff === 'bleed' || debuff === 'fear') return false;
     return super.canDebuff(debuff);
   }
-}
+};

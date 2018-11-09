@@ -15,4 +15,4 @@ Classes.Faerie = class Faerie extends Character {
       });
     }
   }
-}
+};

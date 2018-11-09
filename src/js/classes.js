@@ -251,7 +251,7 @@ Classes.CLASSES = {
         abilities: {
           passive: {
             name: 'Blessing of the Fae',
-            effect: 'While Faerie is at Max HP: Faerie and ally Users gain + 1 Success roll and Aura Lvl (#room) DMG',
+            effect: 'While Faerie is at Max HP: Faerie and ally Users gain + 1 Success roll and Room Lvl (#room) DMG',
           },
           active: {
             name: 'Sacred Medicine',
