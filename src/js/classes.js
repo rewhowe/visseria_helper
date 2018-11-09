@@ -296,7 +296,7 @@ Classes.CLASSES = {
         abilities: {
           passive: {
             name: 'Greed',
-            effect: 'Zuciel cannot gain DMG from any Gear but gains DMG equal to the Party’s total G. Zuciel\'s Party can buy Items for 1 less G. This ability cannot be negated by Silence',
+            effect: 'Zuciel cannot gain DMG from any Gear but gains DMG equal to the Party\'s total G (#gold). Zuciel\'s Party can buy Items for 1 less G. This ability cannot be negated by Silence',
           },
           active: {
             name: 'Sloth',

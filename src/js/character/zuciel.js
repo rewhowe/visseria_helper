@@ -1,6 +1,5 @@
 Classes.Zuciel = class Zuciel extends Character {
   mod(status) {
-    console.log('hoge? ' + GAME.getGold());
     const mod = this.getStatusMod(status);
     const base = (status === 'dmg') ? GAME.getGold() : this[status].base;
     const value = base + this.getLevelMod(status);
@@ -10,6 +9,7 @@ Classes.Zuciel = class Zuciel extends Character {
 
     this.updateStatusDetail(status, mod, value);
     this.updateCurrentStatus(status);
+    this.updateAbilities();
   }
 
   updateStatusDetail(status, mod, value) {

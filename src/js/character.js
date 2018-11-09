@@ -95,6 +95,7 @@ class Character {
       effect = effect.replace(/#dmg/g, '<strong>' + this.dmg.moddedValue + '</strong>');
       effect = effect.replace(/#spec/g, '<strong class="spec">' + this.spec.moddedValue + '</strong>');
       effect = effect.replace(/#room/g, '<strong>' + GAME.getKeyShards() + '</strong>');
+      effect = effect.replace(/#gold/g, '<strong>' + GAME.getGold() + '</strong>');
 
       this.$node.find('.js-ability-' + abilityType + ' .js-ability-name').html(ability.name);
       this.$node.find('.js-ability-' + abilityType + ' .js-detail').html(effect);
