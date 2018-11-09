@@ -90,7 +90,7 @@ Gear.GEAR = {
       hp: 0,
       effect: 'Equipped User gains 1G for every successful attack on an Enemy if Success roll',
     },
-    'Lucky Charm': {
+    'Robbit\'s Foot': {
       cost: 5,
       dmg: 1,
       hp: 1,
