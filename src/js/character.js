@@ -92,12 +92,9 @@ class Character {
       const ability = this.abilities[abilityType];
       let effect = ability.effect;
 
-      // for (let status of Character.STATUSES) {
-      for (let status of ['dmg', 'spec']) { // at the moment, only these are being used
-        effect = effect.replace('#' + status, '<strong>' + this[status].moddedValue + '</strong>');
-      }
-      effect = effect.replace('#room', GAME.getKeyShards());
-      // effect = effect.replace('#gold', GAME.getGold()); // also not used right now
+      effect = effect.replace(/#dmg/g, '<strong>' + this.dmg.moddedValue + '</strong>');
+      effect = effect.replace(/#spec/g, '<strong class="spec">' + this.spec.moddedValue + '</strong>');
+      effect = effect.replace(/#room/g, '<strong>' + GAME.getKeyShards() + '</strong>');
 
       this.$node.find('.js-ability-' + abilityType + ' .js-ability-name').html(ability.name);
       this.$node.find('.js-ability-' + abilityType + ' .js-detail').html(effect);
