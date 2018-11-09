@@ -4,8 +4,6 @@
 
 ## TODO
 
-* TODO: psykoshka's passive
-
 * Add Success roll modifier somewhere
 
 * Add something to show damage reduction (ex. armour effects)
