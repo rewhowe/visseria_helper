@@ -107,9 +107,9 @@ Classes.CLASSES = {
           ultimate: {
             name: 'Foreseer\'s Favour',
             effect: 'Once per Room: Ariadne gains the following ability based on the current Room Type:<br>'
-              + 'Mob/Boss Room - Ariadne gains Intelligence Lvl (#spec) DMG until Ariadne Dies or leaves the current Room<br>'
-              + 'Trap Room - Ariadne gains + Intelligence Lvl (#spec) Success roll for the Room<br>'
-              + 'Treasure Room - If an Item is acquired: Acquire 1 additional Item',
+              + '・Mob/Boss Room - Ariadne gains Intelligence Lvl (#spec) DMG until Ariadne Dies or leaves the current Room<br>'
+              + '・Trap Room - Ariadne gains + Intelligence Lvl (#spec) Success roll for the Room<br>'
+              + '・Treasure Room - If an Item is acquired: Acquire 1 additional Item',
             recharge: 5,
           },
         },
