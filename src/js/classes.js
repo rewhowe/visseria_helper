@@ -109,7 +109,7 @@ Classes.CLASSES = {
             effect: 'Once per Room: Ariadne gains the following ability based on the current Room Type:<br>'
               + 'Mob/Boss Room - Ariadne gains Intelligence Lvl (#spec) DMG until Ariadne Dies or leaves the current Room<br>'
               + 'Trap Room - Ariadne gains + Intelligence Lvl (#spec) Success roll for the Room<br>'
-              + 'Treasure Room - If an Item is acquired: Acquire 1 Item',
+              + 'Treasure Room - If an Item is acquired: Acquire 1 additional Item',
             recharge: 5,
           },
         },
@@ -125,11 +125,11 @@ Classes.CLASSES = {
           },
           active: {
             name: 'Copycat',
-            effect: 'Psykoshka can use the active ability of 1 ally User and gains that User\'s Special Stat and Special Stat Lvl until Psykoshka becomes active',
+            effect: 'Psykoshka can use the active ability of 1 ally User and gains that User\'s Spec and Spec Lvl until Psykoshka becomes active',
           },
           ultimate: {
             name: 'Loyalty',
-            effect: 'Ally Users gain Intelligence Lvl (#spec) Special Stat Lvl until Psykoshka becomes active',
+            effect: 'Ally Users gain Intelligence Lvl (#spec) Spec Lvl until Psykoshka becomes active',
             recharge: 8,
           },
         },
@@ -311,7 +311,7 @@ Classes.CLASSES = {
       },
       'Marina': {
         title: 'The Chronokeeper',
-        dmg: 5,
+        dmg: 4,
         hp: 10,
         abilities: {
           passive: {
