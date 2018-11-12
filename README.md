@@ -4,8 +4,6 @@
 
 ## TODO
 
-* Room Lvl = Key Shards + 1
-
 * Add Success roll modifier somewhere
 
 * Add something to show damage reduction (ex. armour effects)
