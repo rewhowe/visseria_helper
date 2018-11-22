@@ -21,7 +21,7 @@ Classes.CLASSES = {
           },
           ultimate: {
             name: 'Beckoning Light',
-            effect: 'Enemies can only attack Albatross Grand. Any DMG Albatross Grand receives is reduced by Soul Lvl (#spec) DMG. This ability lasts until Albatross Grand becomes active',
+            effect: 'Until Albatross Grand becomes active: Enemies can only attack Albatross Grand. Any DMG Albatross Grand receives is reduced by Soul Lvl (#spec) DMG',
             recharge: 7,
           },
         },
@@ -40,8 +40,8 @@ Classes.CLASSES = {
             effect: 'Declare X (X cannot be greater than T4O MKII\'s current HP): T4O MKII deals X DMG to 1 Enemy and loses X HP ',
           },
           ultimate: {
-            name: 'Recharge',
-            effect: 'T4O MKII Recovers to Max HP',
+            name: 'Reconstruct',
+            effect: 'T4O MKII Recovers to Max HP and loses all debuffs',
             recharge: 7,
           },
         },
@@ -169,8 +169,8 @@ Classes.CLASSES = {
             effect: 'During Battle before Decisive roll, Success roll: Jackal can immediately attack 1 Enemy',
           },
           active: {
-            name: 'Distortion',
-            effect: 'Deal Courage Lvl (#spec) DMG to all Enemies with debuffs',
+            name: 'Echo',
+            effect: 'Deal Courage Lvl (#spec) DMG to 1 Enemy and Room Lvl (#room) DMG to all other Enemies',
           },
           ultimate: {
             name: 'EQ',
