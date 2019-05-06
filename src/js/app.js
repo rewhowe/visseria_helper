@@ -78,7 +78,7 @@ $(function () {
     const $character = $(this).closest('.js-character');
     const character = setCharacter($character, $(this).val());
     character.updateLevel(GAME.getKeyShards());
-    if (character.name === 'Faerie') refreshAllCharacters();
+    refreshAllCharacters();
   });
 
   $(document).on('change', '.js-gear-select', function () {
