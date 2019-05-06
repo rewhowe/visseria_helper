@@ -92,6 +92,7 @@ class Character {
       const ability = this.abilities[abilityType];
       let effect = ability.effect;
 
+      effect = effect.replace(/\n/g, '<br>');
       effect = effect.replace(/#dmg/g, '<strong>' + this.dmg.moddedValue + '</strong>');
       effect = effect.replace(/#spec/g, '<strong class="spec">' + this.spec.moddedValue + '</strong>');
       effect = effect.replace(/#room/g, '<strong>' + GAME.getRoomLevel() + '</strong>');
