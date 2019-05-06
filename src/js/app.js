@@ -17,7 +17,7 @@ $(function () {
   const storage = new Storage($mainContent);
 
   GAME.getKeyShards = () => int($keyShards.val());
-  GAME.getRoomLevel = () => Math.max(3, int($keyShards.val()) + 1);
+  GAME.getRoomLevel = () => Math.min(3, int($keyShards.val()) + 1);
   GAME.getGold = () => int($gold.val());
 
   $template.find('.js-class').append(Classes.$CLASS_SELECT.clone());
