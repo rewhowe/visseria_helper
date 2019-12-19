@@ -5,7 +5,7 @@ const Items = {};
 Items.ITEMS = {
   'Bangbang Bomb': {
     cost: 3,
-    effect: 'Deal 5 DMG to 1 Enemy ',
+    effect: 'Deal 3 x (Room Lvl) DMG to 1 Enemy',
   },
   'Counterfeit Coin': {
     cost: 3,
@@ -17,7 +17,7 @@ Items.ITEMS = {
   },
   'Fortune\'s Fruit': {
     cost: 3,
-    effect: 'User gains +2 Success roll for the Room',
+    effect: 'Grant 1 User to pass a Success roll regardless of roll result',
   },
   'Minimimic': {
     cost: 3,
@@ -29,7 +29,7 @@ Items.ITEMS = {
   },
   'Potion': {
     cost: 3,
-    effect: '1 User Recovers (Room Lvl) +5 HP',
+    effect: '1 User Recovers 3 x (Room Lvl) HP',
   },
   'Resurrection Ring': {
     cost: 15,
@@ -46,10 +46,6 @@ Items.ITEMS = {
   'Sorcerer\'s Eye': {
     cost: 3,
     effect: 'Reveals all adjacent Room Tiles. Any Room not entered by the end of the turn is reset',
-  },
-  'Stamina Potion': {
-    cost: 3,
-    effect: '1 inactive User becomes active',
   },
   'Tasty Haste': {
     cost: 3,

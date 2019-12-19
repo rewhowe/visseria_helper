@@ -1,4 +1,4 @@
-Classes.Faerie = class Faerie extends Character {
+Classes.Færie = class Færie extends Character {
   mod(status) {
     super.mod(status);
 
