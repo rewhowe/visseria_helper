@@ -12,36 +12,36 @@ Classes.CLASSES = {
         hp: 18,
         abilities: {
           passive: {
-            name: 'Feather Shield',
-            effect: 'Albatross Grand takes -1x (Soul Lvl) DMG from enemy attacks',
+            name: 'Divine Intervention',
+            effect: 'Any DMG Albatross Grand receives from Enemy attacks is reduced by (Room Lvl). When an ally User is attacked: Albatross Grand can be designated as the attack target instead.',
           },
           active: {
-            name: 'Guardian of the Gods',
-            effect: 'Albatross Grand can block 2 enemies per Round',
+            name: 'Disarm',
+            effect: 'Target 1 Enemy: deal (Soul Lvl) to the targeted Enemy. Success roll: the targeted Enemy becomes inactive.',
           },
           ultimate: {
-            name: 'Divine Intervention',
-            effect: 'Negate any DMG any 1 active ally User is dealt this turn',
-            recharge: 5,
+            name: 'Aegis of Grandeur',
+            effect: 'Any DMG Albatross Grand and ally Users receive from each Enemy\'s next attack is reduced by (Soul Lvl).',
+            recharge: 8,
           },
         },
       },
       T4O_MKII: {
         title: 'The Soul in the Shell',
         dmg: 3,
-        hp: 16,
+        hp: 17,
         abilities: {
           passive: {
             name: 'Welded Will',
-            effect: 'T4O MKII cannot be debuffed with Bleed or Fear. T4O MKII gains +1x (Soul Lvl) Max HP',
+            effect: 'T4O MKII cannot be debuffed with Bleed or Fear. T4O MKII gains (Soul Lvl) Max HP.',
           },
           active: {
-            name: 'Self Destruct',
-            effect: 'T4O MKII deals XDMG to 1 enemy and loses XHP. (X cannot be greater than T4O MKII\'s Max HP)',
+            name: 'Soul Cannon',
+            effect: 'Declare X less than or equal to T4O MKII\'s current HP. Target 1 Enemy: deal X + (Room Lvl) to targeted Enemy. T4O MKII loses X HP.',
           },
           ultimate: {
-            name: 'Recharge',
-            effect: 'T4O MKII heals to Max HP',
+            name: 'Undying Spirit',
+            effect: 'T4O MKII is restored to Max HP. All debuffs on T4O MKII are removed.',
             recharge: 7,
           },
         },
@@ -52,17 +52,17 @@ Classes.CLASSES = {
         hp: 16,
         abilities: {
           passive: {
-            name: 'Siphon',
-            effect: 'Attacking enemies heals Lilith for +1x (Soul Lvl) HP. Attacking enemies debuffs them with Bleed',
+            name: 'Blood Drain',
+            effect: 'Any DMG from Enemies debuffed with Bleed Lilith or ally Users receive is reduced by (Room Lvl). ',
           },
           active: {
-            name: 'Blood Drain',
-            effect: 'If an active enemy is debuffed with Bleed, remove the debuff and deal 1x (Soul Lvl) DMG to that enemy',
+            name: 'Red Terror',
+            effect: 'Target 1 Enemy: deal (Soul Lvl) to the targeted Enemy. The targeted Enemy becomes debuffed with Bleed. Lilith restores (Room Lvl) HP. If the targeted Enemy is debuffed with Bleed, remove the debuff: Lilith restores (Room Lvl) +  (Soul Lvl) HP instead.',
           },
           ultimate: {
-            name: 'Vampire\'s Desire',
-            effect: 'All enemies are debuffed with Bleed',
-            recharge: 6,
+            name: 'Blood Moon',
+            effect: 'All Enemies are now debuffed with Bleed',
+            recharge: 8,
           },
         },
       },
@@ -73,60 +73,60 @@ Classes.CLASSES = {
     characters: {
       harmony_marx: {
         title: 'The Sorcerer Songstress',
-        dmg: 5,
+        dmg: 3,
         hp: 14,
         abilities: {
           passive: {
-            name: 'Tempo',
-            effect: 'Harmony Marx gains +1x (Intelligence Lvl) succession roll for each successful attack on an enemy. This effect stacks but resets when Harmony Marx leaves the Room',
+            name: 'Forte',
+            effect: 'Harmony Marx gains + (Intelligence Lvl) Success roll when using abilities. ',
           },
           active: {
             name: 'Song of Silence',
-            effect: 'Debuff 1 basic enemy with Silence til the end of the next turn if succession roll',
+            effect: 'Target 1 Enemy: deal 2 x (Intelligence Lvl) to the targeted Enemy. Success roll: the targeted Enemy becomes debuffed with Silence. ',
           },
           ultimate: {
-            name: 'Da Capo',
-            effect: 'Once per Room, gain an extra turn if succession roll',
+            name: 'Pentatonic Harmony',
+            effect: 'Each User deals their respective DMG to an Enemy. l',
             recharge: 10,
           },
         },
       },
       ariadne: {
         title: 'The Blind Prophet',
-        dmg: 6,
+        dmg: 1,
         hp: 11,
         abilities: {
           passive: {
             name: 'Dimensional Decision',
-            effect: 'Once during your turn when a Room Type is revealed, draw the top 3 Rooms of that revealed Type and choose 1. It is now that chosen Room',
+            effect: 'Before entering a Room when a Room Tile is revealed: reveal the top 2 Room Cards of that revealed Room Tile type from the respective deck and choose 1. The revealed Room Tile is now that chosen Room Card. Shuffle the other Room Cards revealed this way back into their respective decks. ',
           },
           active: {
             name: 'Darkness Falls',
-            effect: 'Blind 1 basic enemy til the end of the next turn if succession roll',
+            effect: 'Target 1 Enemy: deal 2 x (Intelligence Lvl) to the targeted Enemy. Success roll: the targeted Enemy becomes debuffed with Blind.  ',
           },
           ultimate: {
             name: 'Foreseer\'s Favour',
-            effect: "Ariadne gains the following ability based on the current Room type:\nMob/Boss Room - Once per Room, Ariadne gains +1x (Intelligence Lvl) DMG for the Room\nTrap Room - Ariadne gains +1x (Intelligence Lvl) succession roll\nTreasure Room - Gain +1 Item if an Item is gained and/or gain +1 Note if a Note is gained",
+            effect: "Once per Room, reveal and reset 1 undiscovered Room Tile or target 1 discovered Room Tile. Ariadne gains the following effects based on the revealed or targeted Room Tile type: \nMob Room/Mini Boss Room: Ariadne gains + (Intelligence Lvl) DMG for the Room\nTrap Room: Ariadne gains + (Intelligence Lvl) Success roll for the Room\nTreasure Room: Ariadne and ally Users restore (Intelligence Lvl) HP",
             recharge: 5,
           },
         },
       },
       psykoshka: {
         title: 'The Lost Familiar',
-        dmg: 4,
+        dmg: 2,
         hp: 13,
         abilities: {
           passive: {
-            name: 'Symmetry',
-            effect: 'Psykoshka gains +1x (Intelligence Lvl) DMG',
+            name: 'Equilibrium',
+            effect: 'Psykoshka gains + (Intelligence Lvl) Soul Lvl, Courage Lvl, Aura Lvl and Luck Lvl. ',
           },
           active: {
             name: 'Copycat',
-            effect: 'Once per turn, Psykoshka can use the active ability of an active User',
+            effect: 'Psykoshka can use the active ability of 1 ally User. ',
           },
           ultimate: {
-            name: 'Loyalty',
-            effect: 'Active ally Users gain +1x (Intelligence Lvl) Special Stat Lvl for the turn',
+            name: 'Remnai\'s Retribution',
+            effect: 'Each User chooses either: restore their respective Spec Lvl HP or deal their respective Spec Lvl to an Enemy.',
             recharge: 8,
           },
         },
@@ -138,21 +138,21 @@ Classes.CLASSES = {
     characters: {
       grimwulf_kaiser: {
         title: 'The Howling Death',
-        dmg: 5,
+        dmg: 9,
         hp: 9,
         abilities: {
           passive: {
-            name: 'First Strike',
-            effect: 'Gain +1x (Courage Lvl) decisive roll',
+            name: 'Battle Howl',
+            effect: 'The party gains + (Courage Lvl) Decisive roll',
           },
           active: {
-            name: 'Dual Wield',
-            effect: 'Deal half of DMG (rounded up) to up to 2 enemies',
+            name: 'Duality',
+            effect: 'Target 2 Enemies: deal half of the sum of (DMG) + (Courage Lvl) (rounded up) to the targeted Enemies. ',
           },
           ultimate: {
-            name: 'Hellhound',
-            effect: 'Grimwulf Kaiser spawns a Hellhound Token with +1x (Courage Lvl) DMG and 1 Max HP. There can only be 1 active Hellhound Token at a time',
-            recharge: 6,
+            name: 'Grim Execution',
+            effect: 'Deal DMG + (Number of Room Lvl Enemies in the discard pile (Max. 10)) divided to any number of Enemies. Shuffle all Room Lvl Enemies back into their respective decks.',
+            recharge: 5,
           },
         },
       },
@@ -163,35 +163,35 @@ Classes.CLASSES = {
         abilities: {
           passive: {
             name: 'Sonic Snipe',
-            effect: 'Upon discovering a Mob room before decisive roll, Jackal can immediately attack 1 enemy if succession roll',
+            effect: 'When entering a Mob Room/Boss Room before Decisive roll, Success roll: Deal (DMG) + (Courage Lvl) to 1 Enemy.',
           },
           active: {
             name: 'Echo',
-            effect: 'Deal DMG to 1 enemy equal to the last blocked DMG by Jackal +1x (Courage Lvl)',
+            effect: 'Target 1 Enemy: deal (Courage Lvl) to targeted Enemy and (Room Lvl) to all other Enemies. ',
           },
           ultimate: {
-            name: 'Distortion',
-            effect: '1 active enemy receives +1x (Courage Lvl) DMG from attacks for the turn',
+            name: 'EQ',
+            effect: 'Target 1 Enemy: deal (Room Lvl) + (Courage Lvl) to targeted Enemy. Jackal restores (Room Lvl) + (Courage Lvl) HP. Remove all debuffs from Jackal and debuff the targeted Enemy with the debuffs removed this way.',
             recharge: 7,
           },
         },
       },
       vulcana: {
         title: 'The Pyroxian Flame',
-        dmg: 6,
+        dmg: 8,
         hp: 8,
         abilities: {
           passive: {
-            name: 'Catching Fire',
-            effect: 'Any overkill damage done by Vulcana is dealt to another activ enemy',
+            name: 'Overheat',
+            effect: 'When Vulcana defeats an Enemy, Success roll: deal any overkill DMG to another Enemy.',
           },
           active: {
-            name: 'Fire Dance',
-            effect: 'Vulcana gains +1x (Courage Lvl) DMG for the next attack',
+            name: 'Spontaneous Combustion',
+            effect: 'Randomly choose a target between Vulcana and each Enemy. If Vulcana is targeted: Vulcana restores (Courage Lvl) HP. If an Enemy is targeted: deal (DMG) to that enemy.',
           },
           ultimate: {
-            name: 'Pyreball',
-            effect: 'Vulcana deals 3+ (Courage Lvl) DMG to 1 enemy if succession roll. This ability repeats until Vulcana fails a succession roll',
+            name: 'Reckless Inferno',
+            effect: ' Vulcana deals (DMG) + (Courage Lvl) to 1 Enemy. Vulcana gains + (Courage Lvl) Success roll during the Round this ability is used. Vulcana loses (Courage Lvl) HP.',
             recharge: 6,
           },
         },
@@ -204,19 +204,19 @@ Classes.CLASSES = {
       misteyes_snow: {
         title: 'The White Fox',
         dmg: 3,
-        hp: 14,
+        hp: 7,
         abilities: {
           passive: {
-            name: 'Empath',
-            effect: 'Any healing Misteyes Snow receives also heals 1 active ally User for the same amount +1x (Aura Lvl) ',
+            name: 'Empath\'s Crystal',
+            effect: 'When Misteyes Snow or an ally User restores HP, they restore an additional (Room Lvl) HP. If a User restored HP with this ability while at (Aura Lvl) HP or less: they restore 2 x (Room Lvl) instead.',
           },
           active: {
-            name: 'Erasure',
-            effect: 'Once per Room, Misteyes Snow can remove all debuffs on 1x (Aura Lvl) active Users',
+            name: 'Whiteout',
+            effect: 'Remove all debuffs on up to (Aura Lvl) ally User(s). If this ability removes a debuff: deal (DMG) to 1 Enemy.',
           },
           ultimate: {
-            name: 'Light of Life',
-            effect: 'Once per Room, If an active ally User (except Misteyes Snow) died of any source this turn, they are immediately resurrected',
+            name: 'Spirit Snowfall',
+            effect: 'Resurrect 1 Dead User.',
             recharge: 10,
           },
         },
@@ -224,39 +224,39 @@ Classes.CLASSES = {
       dexler: {
         title: 'The Mad Alchemist',
         dmg: 1,
-        hp: 11,
+        hp: 8,
         abilities: {
           passive: {
             name: 'Duplicate',
-            effect: 'Once per turn when a basic consumable item is used or discarded, Dexler gains 1 copy of that item if succession roll',
+            effect: 'Once per Room, when a Consumable Item would be discarded by Dexler\'s active ability or consumed, Success roll: gain the effects of the Consumable Item without discarding or consuming it. ',
           },
           active: {
             name: 'Alchemic Warfare',
-            effect: 'Dexler can discard a consumable Item to deal 5+ (Aura Lvl) DMG to an enemy or heal an active ally User for 5+ (Aura Lvl) HP',
+            effect: 'Discard 1 Consumable Item. Either target 1 Enemy: deal (Room Lvl) + (Aura Lvl) to targeted Enemy or target 1 ally User. Targeted ally User restores (Room Lvl) + (Aura Lvl) HP.',
           },
           ultimate: {
             name: 'The Creator',
-            effect: 'Once per Room, Dexler acquires any one basic consumable',
-            recharge: 5,
+            effect: 'Reveal (Aura Lvl) cards from the top of the Item Deck: acquire (Room Lvl) Consumable Item(s) (if any) of the revealed Item cards and shuffle the rest back into the Item deck.',
+            recharge: 10,
           },
         },
       },
-      faerie: {
+      færie: {
         title: 'The Fable of the Forest',
         dmg: 0,
-        hp: 13,
+        hp: 9,
         abilities: {
           passive: {
-            name: 'Blessing of the Fae',
-            effect: 'During Battle, all active ally Users gain +1x (Aura Lvl) DMG for the first attack if they attack first.',
+            name: 'Blessing of the Fæ',
+            effect: 'While Færie is at Max HP: Færie and ally Users gain + 1 Success roll and + (Room Lvl) DMG. ',
           },
           active: {
             name: 'Sacred Medicine',
-            effect: 'Heal 1 active ally User +1x (Aura Lvl) ',
+            effect: 'Target 1 User: targeted User restores (Room Lvl) + (Aura Lvl) HP.',
           },
           ultimate: {
-            name: 'Faeth',
-            effect: 'Heal 1 active ally User to Max HP. That User cannot attack or use abilities the turn this ability is used',
+            name: 'Fæth',
+            effect: 'Target 1 User with (Room Lvl) + (Aura Lvl) HP or less: the targeted User restores Max HP. All debuffs on targeted User are removed.',
             recharge: 7,
           },
         },
@@ -267,62 +267,62 @@ Classes.CLASSES = {
     spec_type: 'luck',
     characters: {
       ein: {
-        title: 'The Shadewalker',
-        dmg: 6,
+        title: 'The Defier of Destiny',
+        dmg: 5,
         hp: 10,
         abilities: {
           passive: {
-            name: 'Chance and Luck',
-            effect: 'Successful succession rolls grants Ein +1x (Luck Lvl) DMG. This effect can stack but resets if a succession roll fails',
+            name: 'Get Chance and Luck',
+            effect: 'Ein gains + (Luck Lvl) Success roll. Whenever Ein passes a Success roll: Ein restores (Room Lvl) HP.',
           },
           active: {
-            name: 'Gamble',
-            effect: 'Active ally Users gain +1x (Luck Lvl) succession roll for the turn',
+            name: 'Tempt Fate',
+            effect: 'Target 1 Enemy, Success roll: deal (DMG) + (Luck Lvl) to targeted Enemy. If Success roll fails: deal (DMG) - (Luck Lvl) to targeted Enemy instead.',
           },
           ultimate: {
-            name: 'Shadow Sneak',
-            effect: 'Upon discovering a Trap Room, it is disabled if succession roll',
-            recharge: 5,
+            name: 'Lucky Break',
+            effect: 'Success roll 3 times: deal (Luck Lvl) to up to 3 Enemies. If a Success roll fails, this ability does nothing.',
+            recharge: 7,
           },
         },
       },
       zuciel: {
         title: 'The Phantom of Sin',
-        dmg: 0,
+        dmg: 4,
         hp: 13,
         abilities: {
           passive: {
             name: 'Greed',
-            effect: 'Zuciel cannot gain DMG from any Gear but gains DMG equal to the party\'s total G',
+            effect: 'Whenever Zuciel attacks, declare X: Zuciel deals (DMG) + (X) to the attack target. Discard (X) G. The party can buy Items with (Room Lvl) less G.',
           },
           active: {
             name: 'Sloth',
-            effect: 'Zuciel heals for +1x (Luck Lvl) HP',
+            effect: 'Zuciel restores (Luck Lvl) HP.',
           },
           ultimate: {
             name: 'Wrath',
-            effect: 'If Zuciel is at full health, he can attack 1x (Luck Lvl) enemies. Zuciel\'s health becomes 1',
-            recharge: 1,
+            effect: 'Deal (G) to (Luck Lvl) Enemies. Discard (Luck Lvl) G. ',
+            recharge: 2,
           },
         },
       },
       marina: {
         title: 'The Chronokeeper',
-        dmg: 5,
-        hp: 10,
+        dmg: 4,
+        hp: 12,
         abilities: {
           passive: {
-            name: 'Choice of Chronos',
-            effect: 'Once per Room, when an Item is acquired, Marina can discard the Item and acquire a new one instead. This can be repeated 1x (Luck Lvl) times',
+            name: 'Temporal Shift',
+            effect: 'Once per Room, when any die is rolled: Marina can reroll the result.',
           },
           active: {
-            name: 'Rewrite Destiny',
-            effect: 'When a die is rolled, Marina can ignore the result and roll once more',
+            name: 'Photon Pulse',
+            effect: 'Target 1 Enemy, D10 roll: deal (D10 roll) + (Luck Lvl) to targeted Enemy.',
           },
           ultimate: {
-            name: 'Gift of the Chronokeepers',
-            effect: 'Once per Room, all other active Users\' Ultimate Gauge become full',
-            recharge: 10,
+            name: 'Chrono Cure',
+            effect: 'Roll the Target die (Room Lvl) times. Declare 1 result: declared targeted User restores (Luck Lvl) HP and Ultimate Gauge is recharged by (Luck Lvl).',
+            recharge: 8,
           },
         },
       },
