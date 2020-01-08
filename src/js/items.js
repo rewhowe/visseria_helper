@@ -5,7 +5,7 @@ const Items = {};
 Items.ITEMS = {
   'Bangbang Bomb': {
     cost: 3,
-    effect: 'Deal 3 x (Room Lvl) DMG to 1 Enemy',
+    effect: 'Deal 3 x Room Lvl (#room) to 1 Enemy',
   },
   'Counterfeit Coin': {
     cost: 3,
@@ -17,7 +17,7 @@ Items.ITEMS = {
   },
   'Fortune\'s Fruit': {
     cost: 3,
-    effect: 'Grant 1 User to pass a Success roll regardless of roll result',
+    effect: 'Grant 1 User to pass a Success roll regardless of roll result (Can be consumed after a Success roll is performed)',
   },
   'Minimimic': {
     cost: 3,
@@ -29,7 +29,7 @@ Items.ITEMS = {
   },
   'Potion': {
     cost: 3,
-    effect: '1 User Recovers 3 x (Room Lvl) HP',
+    effect: 'Restore 1 User by 3 x Room Lvl (#room) HP',
   },
   'Resurrection Ring': {
     cost: 15,
@@ -37,7 +37,7 @@ Items.ITEMS = {
   },
   'Shine Shield': {
     cost: 3,
-    effect: 'Blocks 5 DMG',
+    effect: 'Reduce DMG dealt to 1 User from an Enemy attack to 0. Any effects that trigger when that User is attacked is negated',
   },
   'Smoke Bomb': {
     cost: 3,
@@ -45,11 +45,11 @@ Items.ITEMS = {
   },
   'Sorcerer\'s Eye': {
     cost: 3,
-    effect: 'Reveals all adjacent Room Tiles. Any Room not entered by the end of the turn is reset',
+    effect: 'Reveal undiscovered Room Tiles until you discover a Trap, Treasure or Mini Boss Room Tile. Reset the revealed Trap, Treasure or Mini Boss Room Tile',
   },
   'Tasty Haste': {
     cost: 3,
-    effect: 'Grants +2 Decisive roll for the Room',
+    effect: 'Party attacks first regardless of Decisive roll result (Can be consumed after a Decisive roll is performed) ',
   },
 };
 
