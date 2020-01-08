@@ -61,7 +61,7 @@ Classes.CLASSES = {
           },
           ultimate: {
             name: 'Blood Moon',
-            effect: 'All Enemies are now debuffed with Bleed',
+            effect: 'All Enemies are now debuffed with Bleed.',
             recharge: 8,
           },
         },
@@ -82,7 +82,7 @@ Classes.CLASSES = {
           },
           active: {
             name: 'Song of Silence',
-            effect: 'Target 1 Enemy: deal 2 x Intelligence Lvl (#spec) to the targeted Enemy.\nSuccess roll: the targeted Enemy becomes debuffed with Silence.',
+            effect: "Target 1 Enemy: deal 2 x Intelligence Lvl (#spec) to the targeted Enemy.\nSuccess roll: the targeted Enemy becomes debuffed with Silence.",
           },
           ultimate: {
             name: 'Pentatonic Harmony',
@@ -102,7 +102,7 @@ Classes.CLASSES = {
           },
           active: {
             name: 'Darkness Falls',
-            effect: 'Target 1 Enemy: deal 2 x Intelligence Lvl (#spec) to the targeted Enemy.\nSuccess roll: the targeted Enemy becomes debuffed with Blind.',
+            effect: "Target 1 Enemy: deal 2 x Intelligence Lvl (#spec) to the targeted Enemy.\nSuccess roll: the targeted Enemy becomes debuffed with Blind.",
           },
           ultimate: {
             name: 'Foreseer\'s Favour',
@@ -143,7 +143,7 @@ Classes.CLASSES = {
         abilities: {
           passive: {
             name: 'Battle Howl',
-            effect: 'The party gains + Courage Lvl (#spec) Decisive roll',
+            effect: 'The party gains + Courage Lvl (#spec) Decisive roll.',
           },
           active: {
             name: 'Duality',
@@ -151,7 +151,7 @@ Classes.CLASSES = {
           },
           ultimate: {
             name: 'Grim Execution',
-            effect: 'Deal DMG + (Number of Room Lvl Enemies in the discard pile (Max. 10)) divided to any number of Enemies. Shuffle all Room Lvl Enemies back into their respective decks.',
+            effect: 'Deal DMG (#dmg) + Number of Room Lvl Enemies in the discard pile (Max. 10) divided to any number of Enemies. Shuffle all Room Lvl Enemies back into their respective decks.',
             recharge: 5,
           },
         },
@@ -187,7 +187,7 @@ Classes.CLASSES = {
           },
           active: {
             name: 'Spontaneous Combustion',
-            effect: 'Randomly choose a target between Vulcana and each Enemy.\nIf Vulcana is targeted: Vulcana restores Courage Lvl (#spec) HP.\n If an Enemy is targeted: deal DMG (#dmg) to that enemy.',
+            effect: "Randomly choose a target between Vulcana and each Enemy.\nIf Vulcana is targeted: Vulcana restores Courage Lvl (#spec) HP.\n If an Enemy is targeted: deal DMG (#dmg) to that enemy.",
           },
           ultimate: {
             name: 'Reckless Inferno',
@@ -266,7 +266,7 @@ Classes.CLASSES = {
   'Trickster': {
     spec_type: 'Luck',
     characters: {
-      ein: {
+      Ein: {
         title: 'The Defier of Destiny',
         dmg: 5,
         hp: 10,
@@ -277,7 +277,7 @@ Classes.CLASSES = {
           },
           active: {
             name: 'Tempt Fate',
-            effect: 'Target 1 Enemy, Success roll: deal DMG (#dmg) + Luck Lvl (#spec) to the targeted Enemy.\nIf Success roll fails: deal DMG (#dmg) - Luck Lvl (#spec) to targeted Enemy instead.',
+            effect: "Target 1 Enemy, Success roll: deal DMG (#dmg) + Luck Lvl (#spec) to the targeted Enemy.\nIf Success roll fails: deal DMG (#dmg) - Luck Lvl (#spec) to targeted Enemy instead.",
           },
           ultimate: {
             name: 'Lucky Break',
