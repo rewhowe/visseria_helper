@@ -49,7 +49,7 @@ Items.ITEMS = {
   },
   'Tasty Haste': {
     cost: 3,
-    effect: 'Party attacks first regardless of Decisive roll result (Can be consumed after a Decisive roll is performed) ',
+    effect: 'Party attacks first regardless of Decisive roll result (Can be consumed after a Decisive roll is performed)',
   },
 };
 
@@ -58,7 +58,7 @@ Items.getItemData = function (key) {
   if (!item) return;
   item.name = key;
   return item;
-}; 
+};
 
 Items.$ITEM_SELECT = (function () {
   return Select.makeSelect(Items.ITEMS, 'js-item-select');
