@@ -1,12 +1,10 @@
 <html>
   <head>
     <title>Visseria Helper</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta charset="UTF-8">
     <link rel="preload" as="style" onload="this.rel='stylesheet'" href="./public/css/lib/reset.css"/>
-    <link rel="preload"
-          as="style"
-          onload="this.rel='stylesheet'"
-          href="./public/css/visseria.min.css?v=201810311143"/>
+    <link rel="preload" as="style" onload="this.rel='stylesheet'" href="./public/css/visseria.min.css?v=2.0.0"/>
   </head>
   <body>
     <div class="js-character-template" style="display:none;">
@@ -21,14 +19,14 @@
 
         <div class="js-character-detail" style="display:none;">
 
-          <div class="character-debuff js-debuff">
-            <label class="debuff debuff-bli"><input type="checkbox">BLI</label>
-            <label class="debuff debuff-ble"><input type="checkbox">BLE</label>
-            <label class="debuff debuff-fea"><input type="checkbox">FEA</label>
-            <label class="debuff debuff-sil"><input type="checkbox">SIL</label>
-            <label class="debuff debuff-cur"><input type="checkbox">CUR</label>
-            <label class="debuff debuff-und"><input type="checkbox">UND</label>
-            <label class="debuff debuff-sle"><input type="checkbox">SLE</label>
+          <div class="character-debuff">
+            <span class="debuff debuff-bli js-debuff" data-type="blind">BLI</span>
+            <span class="debuff debuff-ble js-debuff" data-type="bleed">BLE</span>
+            <span class="debuff debuff-fea js-debuff" data-type="fear">FEA</span>
+            <span class="debuff debuff-sil js-debuff" data-type="silence">SIL</span>
+            <span class="debuff debuff-cur js-debuff" data-type="curse">CUR</span>
+            <span class="debuff debuff-und js-debuff" data-type="undead">UND</span>
+            <span class="debuff debuff-sle js-debuff" data-type="sleep">SLE</span>
           </div>
 
           <table class="col-12">
@@ -44,14 +42,14 @@
               </td>
             </tr>
             <tr>
-              <td class="character-status-name col-3">Dmg</td>
+              <td class="character-status-name col-3">DMG</td>
               <td class="character-status-value col-4 js-dmg-value"></td>
               <td class="character-status-detail col-3 js-dmg-detail"></td>
               <td class="character-status-mod col-2">
                 <input type="number" data-status="dmg" class="js-status-mod js-dmg-mod"></input>
               </td>
             </tr>
-            <tr>
+            <tr class="character-status-spec">
               <td class="character-status-name col-3 js-spec-name"></td>
               <td class="character-status-value col-4 js-spec-value"></td>
               <td class="character-status-detail col-3 js-spec-detail"></td>
@@ -77,27 +75,27 @@
           <div class="character-section">Gear</div>
           <div class="character-gear js-gear">
             <div class="character-gear-show-detail">
-              <i class="detail-button js-gear-show-detail">？</i>
+              <i class="detail-button js-show-detail">？</i>
             </div>
-            <div class="col-12 hidden js-gear-detail"></div>
+            <div class="col-12 hidden js-detail"></div>
           </div>
           <div class="character-gear js-gear">
             <div class="character-gear-show-detail">
-              <i class="detail-button js-gear-show-detail">？</i>
+              <i class="detail-button js-show-detail">？</i>
             </div>
-            <div class="col-12 hidden js-gear-detail"></div>
+            <div class="col-12 hidden js-detail"></div>
           </div>
           <div class="character-gear js-gear">
             <div class="character-gear-show-detail">
-              <i class="detail-button js-gear-show-detail">？</i>
+              <i class="detail-button js-show-detail">？</i>
             </div>
-            <div class="col-12 hidden js-gear-detail"></div>
+            <div class="col-12 hidden js-detail"></div>
           </div>
           <div class="character-gear js-gear">
             <div class="character-gear-show-detail">
-              <i class="detail-button js-gear-show-detail">？</i>
+              <i class="detail-button js-show-detail">？</i>
             </div>
-            <div class="col-12 hidden js-gear-detail"></div>
+            <div class="col-12 hidden js-detail"></div>
           </div>
 
           <hr>
@@ -107,25 +105,53 @@
           <div class="character-ability js-ability-passive">
             <div class="character-ability-name col-10 js-ability-name"></div>
             <div class="character-ability-show-detail col-2">
-              <i class="detail-button js-ability-show-detail">？</i>
+              <i class="detail-button js-show-detail">？</i>
             </div>
-            <div class="js-ability-detail hidden"></div>
+            <div class="character-ability-detail js-detail hidden"></div>
           </div>
           <div class="character-ability-head">Active:</div>
           <div class="character-ability js-ability-active">
             <div class="character-ability-name col-10 js-ability-name"></div>
             <div class="character-ability-show-detail col-2">
-              <i class="detail-button js-ability-show-detail">？</i>
+              <i class="detail-button js-show-detail">？</i>
             </div>
-            <div class="js-ability-detail hidden"></div>
+            <div class="character-ability-detail js-detail hidden"></div>
           </div>
           <div class="character-ability-head">Ultimate:</div>
           <div class="character-ability js-ability-ultimate">
             <div class="character-ability-name col-10 js-ability-name"></div>
             <div class="character-ability-show-detail col-2">
-              <i class="detail-button js-ability-show-detail">？</i>
+              <i class="detail-button js-show-detail">？</i>
             </div>
-            <div class="js-ability-detail hidden"></div>
+            <div class="character-ability-detail js-detail hidden"></div>
+          </div>
+
+          <hr>
+
+          <div class="character-section">Items</div>
+          <div class="character-item js-item">
+            <div class="character-item-show-detail">
+              <i class="detail-button js-show-detail">？</i>
+            </div>
+            <div class="col-12 hidden js-detail"></div>
+          </div>
+          <div class="character-item js-item">
+            <div class="character-item-show-detail">
+              <i class="detail-button js-show-detail">？</i>
+            </div>
+            <div class="col-12 hidden js-detail"></div>
+          </div>
+          <div class="character-item js-item">
+            <div class="character-item-show-detail">
+              <i class="detail-button js-show-detail">？</i>
+            </div>
+            <div class="col-12 hidden js-detail"></div>
+          </div>
+          <div class="character-item js-item">
+            <div class="character-item-show-detail">
+              <i class="detail-button js-show-detail">？</i>
+            </div>
+            <div class="col-12 hidden js-detail"></div>
           </div>
         </div>
       </div>
@@ -162,5 +188,5 @@
   </body>
 
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-  <script async type="text/javascript" src="./public/js/visseria.min.js?v=201810311143"></script>
+  <script async type="text/javascript" src="./public/js/visseria.min.js?v=2.0.0"></script>
 </html>

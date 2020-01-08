@@ -121,7 +121,6 @@ input { padding-left: 0.5rem; }
   display: flex;
   padding: 0.5rem 0;
 }
-.character-debuff input[type="checkbox"] { display: none; }
 .character-debuff .debuff {
   flex: 1;
   text-align: center;
@@ -153,16 +152,13 @@ input { padding-left: 0.5rem; }
 }
 .character-status-value { padding-left: 0.5rem; }
 .character-status-value span:before { content: ' / '; }
-.character-status-detail {
-  color: transparent;
-  font-size: 0.8rem;
-}
+.character-status-detail { font-size: 0.8rem; }
+.character-status-detail:empty { color: transparent; }
 .character-status-detail:before { content: '('; }
 .character-status-detail:after { content: ')'; }
 
 .character-status-modified .character-status-value { font-weight: bold; }
 .character-status-modified .character-status-value span:before { font-weight: normal; }
-.character-status-modified .character-status-detail { color: inherit; }
 
 .character-status-mod { vertical-align: bottom; }
 .character-status-mod input { float: right; }
@@ -171,17 +167,22 @@ input { padding-left: 0.5rem; }
   text-align: center;
 }
 
-.character-gear {
+.character-gear,
+.character-item {
   display: flex;
   flex-wrap: wrap;
   margin: 0.5rem 0;
   align-items: center;
 }
-.character-gear select {
+.character-gear select,
+.character-item select {
   width: 85%;
+  height: 1.5rem;
+  margin: 0.2rem 0;
   padding: 0.2rem 0 0.2rem 0.5rem;
 }
-.character-gear-show-detail {
+.character-gear-show-detail,
+.character-item-show-detail {
   width: 15%;
   display: block;
   text-align: right;
@@ -208,6 +209,8 @@ input { padding-left: 0.5rem; }
   -moz-animation: ChargePulse 2s ease infinite;
   animation: ChargePulse 2s ease infinite;
 }
+.character-ability-detail { padding: 0.5rem; }
+.character-ability-detail strong { font-weight: bold; }
 
 .add-character {
   margin-top: 1.5rem;
