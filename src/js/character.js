@@ -3,7 +3,6 @@
 class Character {
 
   static get MAX_LEVEL() { return 3; }
-  static get LEVEL_BONUS() { return 2; }
   static get STATUSES() { return ['hp', 'dmg', 'spec', 'recharge']; }
 
   constructor($node, characterKey, bundle = null) {
@@ -105,7 +104,7 @@ class Character {
 
   mod(status) {
     const mod = this.getStatusMod(status);
-    const value = this[status].base + this.getLevelMod(status);
+    const value = this[status].base;
 
     this[status].moddedValue = Math.max(0, value + mod);
 
@@ -114,12 +113,6 @@ class Character {
     this.updateStatusDetail(status, mod, value);
     this.updateCurrentStatus(status);
     this.updateAbilities();
-  }
-
-  getLevelMod(status) {
-    if (['hp', 'dmg'].indexOf(status) === -1) return 0
-    if (this.name == 'zuciel' && status == 'dmg') return 0;
-    return this.level * Character.LEVEL_BONUS;
   }
 
   getStatusMod(status) {
@@ -219,7 +212,7 @@ class Character {
     this.level = Math.min(Character.MAX_LEVEL, Math.max(0, level));
 
     // full heal
-    this.hp.$current.val(this.hp.base + this.getLevelMod('hp') + this.getStatusMod('hp'));
+    this.hp.$current.val(this.hp.base + this.getStatusMod('hp'));
     this.changeCurrent('hp');
 
     this.mod('dmg');
