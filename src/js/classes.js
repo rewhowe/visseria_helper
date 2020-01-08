@@ -106,7 +106,10 @@ Classes.CLASSES = {
           },
           ultimate: {
             name: 'Foreseer\'s Favour',
-            effect: "Once per Room, reveal and reset 1 undiscovered Room Tile or target 1 discovered Room Tile. Ariadne gains the following effects based on the revealed or targeted Room Tile type: \nMob Room/Mini Boss Room: Ariadne gains + Intelligence Lvl (#spec) DMG for the Room\nTrap Room: Ariadne gains + Intelligence Lvl (#spec) Success roll for the Room\nTreasure Room: Ariadne and ally Users restore Intelligence Lvl (#spec) HP",
+            effect: "Once per Room, reveal and reset 1 undiscovered Room Tile or target 1 discovered Room Tile. Ariadne gains the following effects based on the revealed or targeted Room Tile type:\n"
+              + "・Mob Room/Mini Boss Room: Ariadne gains + Intelligence Lvl (#spec) DMG for the Room\n"
+              + "・Trap Room: Ariadne gains + Intelligence Lvl (#spec) Success roll for the Room\n"
+              + "・Treasure Room: Ariadne and ally Users restore Intelligence Lvl (#spec) HP",
             recharge: 5,
           },
         },
@@ -136,7 +139,7 @@ Classes.CLASSES = {
   'Slayer': {
     spec_type: 'Courage',
     characters: {
-      'Grimwulf kaiser': {
+      'Grimwulf Kaiser': {
         title: 'The Howling Death',
         dmg: 9,
         hp: 9,
