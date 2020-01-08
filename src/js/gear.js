@@ -101,8 +101,9 @@ Gear.GEAR = {
       dmg: 3,
       hp: 3,
       effect: 'Equipped User becomes debuffed with Curse',
-            onEquip: function (character) {
+      onEquip: function (character) {
         character.addDebuff('curse');
+      },
     },
     'Bravery Charm': {
       cost: 5,
@@ -120,8 +121,7 @@ Gear.GEAR = {
       cost: 5,
       dmg: 2,
       hp: 2,
-      effect: 'Equipped User\'s Ultimate recharge rate is 2'
-      },
+      effect: 'Equipped User\'s Ultimate recharge rate is 2',
     },
   },
   'Legendary Gear': {
@@ -171,7 +171,7 @@ Gear.GEAR = {
       dmg: 3,
       hp: 2,
       limit_class: 'Trickster',
-      effect: 'When this item is acquired: acquire 1 Item and (Luck Lvl) Coins. The equipped User gains +2 Success roll and +1 Consumable Item slot. Can only be equipped by Tricksters',
+      effect: 'When this item is acquired: acquire 1 Item and Luck Lvl (#spec) Coins. The equipped User gains +2 Success roll and +1 Consumable Item slot. Can only be equipped by Tricksters',
       spec: 3,
       spec_type: 'Luck',
     }
@@ -212,4 +212,4 @@ Gear.$GEAR_SELECT = (function () {
   }
 
   return Select.makeGroupedSelect(options, 'js-gear-select');
-})(); 
+})();
