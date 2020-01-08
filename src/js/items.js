@@ -58,7 +58,7 @@ Items.getItemData = function (key) {
   if (!item) return;
   item.name = key;
   return item;
-};
+}; 
 
 Items.$ITEM_SELECT = (function () {
   return Select.makeSelect(Items.ITEMS, 'js-item-select');
