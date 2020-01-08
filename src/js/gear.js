@@ -78,40 +78,43 @@ Gear.GEAR = {
     },
   },
   'Standard Gear': {
-    'Thirstfire': {
+    'Scattershot': {
       cost: 5,
-      dmg: 2,
+      dmg: 0,
       hp: 0,
-      effect: 'Enemies attacked by the equipped User are debuffed with Bleed',
+      effect: 'Whenever the equipped User attacks, Success roll: deal Room Lvl (#room) to 1 other enemy',
     },
     'Mugger Dagger': {
       cost: 5,
       dmg: 2,
       hp: 0,
-      effect: 'Equipped User gains 1G for every successful attack on an Enemy if Success roll',
+      effect: 'Whenever equipped User attacks, Success roll: acquire 1 Coin',
     },
     'Robbit\'s Foot': {
       cost: 5,
       dmg: 1,
       hp: 1,
-      effect: 'Equipped User gains +2 Success roll',
+      effect: 'Equipped User gains +1 Success roll',
     },
     'Devil Charm': {
       cost: 5,
       dmg: 3,
       hp: 3,
-      effect: 'Equipped User gains -2 Success roll',
+      effect: 'Equipped User becomes debuffed with Curse',
+      onEquip: function (character) {
+        character.addDebuff('curse');
+      },
     },
     'Bravery Charm': {
       cost: 5,
       dmg: 2,
       hp: 1,
-      effect: 'Equipped User gains +1 Decisive roll in battle involving User',
+      effect: 'Equipped User\'s Party gains + 1 Decisive roll',
     },
     'Artifact Coin': {
       cost: 5,
-      dmg: 2,
-      hp: 2,
+      dmg: 1,
+      hp: 0,
       effect: 'Item is treated as 5G',
     },
     'Absorbing Spirit': {
@@ -119,21 +122,6 @@ Gear.GEAR = {
       dmg: 2,
       hp: 2,
       effect: 'Equipped User\'s Ultimate recharge rate is 2',
-    },
-    'Regenerating Armour': {
-      cost: 5,
-      dmg: 0,
-      hp: 3,
-      effect: 'Any DMG the equipped User receives from any source is reduced by 1 DMG',
-    },
-    'The Murmur': {
-      cost: 5,
-      dmg: 5,
-      hp: 0,
-      effect: 'While equipped with The Murmur: equipped User is debuffed with Silence',
-      onEquip: function (character) {
-        character.addDebuff('silence');
-      },
     },
   },
   'Legendary Gear': {
@@ -148,10 +136,10 @@ Gear.GEAR = {
     },
     'Solomon\'s Cipher': {
       cost: 15,
-      dmg: 2,
-      hp: 3,
+      dmg: 1,
+      hp: 4,
       limit_class: 'Spellweaver',
-      effect: 'The equipped User can attack and use abilities once each before becoming inactive. Can only be equipped by Spellweavers',
+      effect: 'The equipped User gains + Room Lvl (#room) Intelligence. Can only be equipped by Spellweavers',
       spec: 3,
       spec_type: 'Intelligence',
     },
@@ -160,7 +148,7 @@ Gear.GEAR = {
       dmg: 5,
       hp: 0,
       limit_class: 'Slayer',
-      effect: 'When the equipped User attacks: equipped User recovers (Room Lvl) HP. Can only be equipped by Slayers',
+      effect: 'When the equipped User attacks: equipped User restores Room Lvl (#room) HP. Can only be equipped by Slayers',
       spec: 3,
       spec_type: 'Courage',
     },
@@ -183,7 +171,7 @@ Gear.GEAR = {
       dmg: 3,
       hp: 2,
       limit_class: 'Trickster',
-      effect: 'When this item is acquired: acquire 1 Item and +XG equal to D10 roll. The equipped User gains +2 Success roll. Can only be equipped by Tricksters',
+      effect: 'When this item is acquired: acquire 1 Item and Luck Lvl (#spec) Coins. The equipped User gains +2 Success roll and +1 Consumable Item slot. Can only be equipped by Tricksters',
       spec: 3,
       spec_type: 'Luck',
     }

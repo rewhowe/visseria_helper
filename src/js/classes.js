@@ -296,7 +296,7 @@ Classes.CLASSES = {
         abilities: {
           passive: {
             name: 'Greed',
-            effect: 'Whenever Zuciel attacks, declare X: Zuciel deals DMG (#dmg) + (X) to the attack target. Discard (X) G. The party can buy Items with Room Lvl (#spec) less G.',
+            effect: 'Whenever Zuciel attacks, declare X: Zuciel deals DMG (#dmg) + (X) to the attack target. Discard (X) G. The party can buy Items with Room Lvl (#room) less G.',
           },
           active: {
             name: 'Sloth',
