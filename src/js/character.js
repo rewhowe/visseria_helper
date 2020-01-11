@@ -108,9 +108,9 @@ class Character {
     this.updateCurrentStatus(status);
     this.updateAbilities();
 
-    //for (let slot in this.gear) {
-    //  if (this.gear[slot]) this.updateEffect(this.gear[slot], $(this.$gear[slot]));
-    //}
+    for (let slot in this.gear) {
+      if (this.gear[slot]) this.updateEffect(this.gear[slot], $(this.$gear[slot]));
+    }
   }
 
   formatEffect(effect) {
@@ -207,7 +207,8 @@ class Character {
   updateEffect(data, $node) {
     if (data && data.effect) {
       $node.find('.js-show-detail').removeClass('hidden');
-      $node.find('.js-detail').html(data.effect);
+      const effect = this.formatEffect(data.effect);
+      $node.find('.js-detail').html(effect);
     } else {
       $node.find('.js-show-detail, .js-detail').addClass('hidden');
       $node.find('.js-detail').html('');
@@ -291,7 +292,7 @@ class Character {
     for (let slot in bundle.gear) {
       this.gear[slot] = Gear.getGearData(bundle.gear[slot]);
       $(this.$gear[slot]).find('.js-gear-select').val(bundle.gear[slot]);
-      this.updateEffect(this.gear[slot], $(this.$gear[slot]), 'gear');
+      this.updateEffect(this.gear[slot], $(this.$gear[slot]));
     }
 
     const $items = this.$node.find('.js-item select');
