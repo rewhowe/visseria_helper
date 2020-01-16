@@ -89,13 +89,7 @@ class Character {
   updateAbilities() {
     for (let abilityType in this.abilities) {
       const ability = this.abilities[abilityType];
-      let effect = ability.effect;
-
-      effect = effect.replace(/\n/g, '<br>');
-      effect = effect.replace(/#dmg/g, '<strong>' + this.dmg.moddedValue + '</strong>');
-      effect = effect.replace(/#spec/g, '<strong class="spec">' + this.spec.moddedValue + '</strong>');
-      effect = effect.replace(/#room/g, '<strong>' + GAME.getRoomLevel() + '</strong>');
-      effect = effect.replace(/#gold/g, '<strong>' + GAME.getGold() + '</strong>');
+      const effect = this.formatEffect(ability.effect);
 
       this.$node.find('.js-ability-' + abilityType + ' .js-ability-name').html(ability.name);
       this.$node.find('.js-ability-' + abilityType + ' .js-detail').html(effect);
@@ -113,6 +107,18 @@ class Character {
     this.updateStatusDetail(status, mod, value);
     this.updateCurrentStatus(status);
     this.updateAbilities();
+
+    for (let slot in this.gear) {
+      if (this.gear[slot]) this.updateEffect(this.gear[slot], $(this.$gear[slot]));
+    }
+  }
+
+  formatEffect(effect) {
+    return effect.replace(/\n/g, '<br>')
+      .replace(/#dmg/g, '<strong>' + this.dmg.moddedValue + '</strong>')
+      .replace(/#spec/g, '<strong class="spec">' + this.spec.moddedValue + '</strong>')
+      .replace(/#room/g, '<strong>' + GAME.getRoomLevel() + '</strong>')
+      .replace(/#gold/g, '<strong>' + GAME.getGold() + '</strong>');
   }
 
   getStatusMod(status) {
@@ -201,7 +207,8 @@ class Character {
   updateEffect(data, $node) {
     if (data && data.effect) {
       $node.find('.js-show-detail').removeClass('hidden');
-      $node.find('.js-detail').html(data.effect);
+      const effect = this.formatEffect(data.effect);
+      $node.find('.js-detail').html(effect);
     } else {
       $node.find('.js-show-detail, .js-detail').addClass('hidden');
       $node.find('.js-detail').html('');
@@ -285,7 +292,7 @@ class Character {
     for (let slot in bundle.gear) {
       this.gear[slot] = Gear.getGearData(bundle.gear[slot]);
       $(this.$gear[slot]).find('.js-gear-select').val(bundle.gear[slot]);
-      this.updateEffect(this.gear[slot], $(this.$gear[slot]), 'gear');
+      this.updateEffect(this.gear[slot], $(this.$gear[slot]));
     }
 
     const $items = this.$node.find('.js-item select');
